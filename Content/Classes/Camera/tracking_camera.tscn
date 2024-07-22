@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://ccba8a6xdtcd7"]
+
+[ext_resource type="Script" path="res://Content/Classes/Camera/tracking_camera.gd" id="1_j6vxx"]
+
+[node name="CameraCenter" type="Node3D"]
+script = ExtResource("1_j6vxx")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 30, 30)

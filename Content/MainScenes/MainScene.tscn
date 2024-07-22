@@ -1,0 +1,51 @@
+[gd_scene load_steps=3 format=3 uid="uid://skyapf40d7lg"]
+
+[ext_resource type="PackedScene" uid="uid://pvbtwtmqm74r" path="res://Content/Classes/Column/Column.tscn" id="1_eaco0"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_cvcha"]
+size = Vector3(100, 1, 100)
+
+[node name="MainScene" type="Node3D"]
+
+[node name="TestCamera" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.902254, 0.431204, 0, -0.431204, 0.902254, 0, 10, 8)
+
+[node name="Floor" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.523935, 0)
+mesh = SubResource("BoxMesh_cvcha")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.0209947, 0.99978, 0, -0.99978, 0.0209947, 0, 11.7229, 0)
+
+[node name="Columns" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.675, 0, 8.74508)
+
+[node name="Column" parent="Columns" instance=ExtResource("1_eaco0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 116.982, 0)
+
+[node name="Column2" parent="Columns" instance=ExtResource("1_eaco0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 116.982, 0)
+
+[node name="Column3" parent="Columns" instance=ExtResource("1_eaco0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 116.982, 0)
+
+[node name="Column4" parent="Columns" instance=ExtResource("1_eaco0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 116.982, 0)
+
+[node name="Column5" parent="Columns" instance=ExtResource("1_eaco0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 116.982, 0)
+
+[node name="Column6" parent="Columns" instance=ExtResource("1_eaco0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 116.982, 0)
+
+[node name="Column7" parent="Columns" instance=ExtResource("1_eaco0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 116.982, 0)
+
+[node name="Column8" parent="Columns" instance=ExtResource("1_eaco0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 116.982, 0)
+
+[node name="Column9" parent="Columns" instance=ExtResource("1_eaco0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 116.982, 0)
+
+[node name="Column10" parent="Columns" instance=ExtResource("1_eaco0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 116.982, 0)
