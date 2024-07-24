@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://ccba8a6xdtcd7" path="res://Content/Classes/Camera/tracking_camera.tscn" id="1_555a4"]
 [ext_resource type="PackedScene" uid="uid://0o5jeu8n6e6x" path="res://Content/Classes/Generator/Generator.tscn" id="1_plau4"]
-[ext_resource type="PackedScene" uid="uid://cwvxmmuxuxws0" path="res://Content/Classes/Player/Player.tscn" id="2_4u52e"]
+[ext_resource type="PackedScene" uid="uid://waqdjnmtb8sl" path="res://Content/Classes/Player/Player.tscn" id="2_4u52e"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_cvcha"]
 size = Vector3(100, 1, 100)
@@ -14,6 +14,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 20)
 tracking_object = NodePath("../Player")
 
 [node name="Player" parent="." instance=ExtResource("2_4u52e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.09048, 0)
 
 [node name="Generator" parent="." instance=ExtResource("1_plau4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0388284, 0)
