@@ -1,5 +1,7 @@
 extends CharacterBody3D
 
+signal Move(body : Node3D)
+
 #Детект движения по экрану
 var StartTouch
 var RelativeTouch
@@ -37,15 +39,15 @@ func _input(event):
 	#Конец касания экрана
 	if event is InputEventScreenTouch and event.is_released():
 		IsPressed = false
-		scale.y = 1
+		create_tween().tween_property(self, "scale", Vector3(1, 1, 1), 0.05)
+		#scale.y = 1
+		Move.emit($"../MeshInstance3D")
 		print("Realese")
 		
 	#Положение текущего касания
 	if IsPressed and (scale.y <= 1) and (scale.y >= 0.1):
 		RelativeTouch = event.position
 		CurrentCompression = abs((StartTouch.y - RelativeTouch.y)) / 30
-		print(CurrentCompression/MaxCompression)
-		
 		scale.y = (scale.y - (CurrentCompression/MaxCompression))
 
 			

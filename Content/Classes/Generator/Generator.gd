@@ -1,7 +1,12 @@
 extends Node3D
-signal spawn_next
 
-signal SpawnNewColumn
+enum DIRECTION 
+{
+LEFT,
+RIGHT,
+FORWARD,
+BACK
+}
 
 @export_category("Columns Settings")
 @export var StartColumnLocation = Vector3.ZERO
