@@ -1,3 +1,4 @@
+class_name Collumn
 extends Node3D
 
 var Use : bool = false

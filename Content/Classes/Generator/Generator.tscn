@@ -1,40 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://0o5jeu8n6e6x"]
+[gd_scene load_steps=2 format=3 uid="uid://0o5jeu8n6e6x"]
 
 [ext_resource type="Script" path="res://Content/Classes/Generator/Generator.gd" id="1_f6mlm"]
-[ext_resource type="PackedScene" uid="uid://pvbtwtmqm74r" path="res://Content/Classes/Column/Column.tscn" id="1_px6bq"]
 
 [node name="Generator" type="Node3D"]
 script = ExtResource("1_f6mlm")
 CountColumns = 10
-
-[node name="Column" parent="." instance=ExtResource("1_px6bq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 300, 0)
-
-[node name="Column2" parent="." instance=ExtResource("1_px6bq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 300, 0)
-
-[node name="Column3" parent="." instance=ExtResource("1_px6bq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 300, 0)
-
-[node name="Column4" parent="." instance=ExtResource("1_px6bq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 300, 0)
-
-[node name="Column5" parent="." instance=ExtResource("1_px6bq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 300, 0)
-
-[node name="Column6" parent="." instance=ExtResource("1_px6bq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 300, 0)
-
-[node name="Column7" parent="." instance=ExtResource("1_px6bq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 300, 0)
-
-[node name="Column8" parent="." instance=ExtResource("1_px6bq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 300, 0)
-
-[node name="Column9" parent="." instance=ExtResource("1_px6bq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 300, 0)
-
-[node name="Column10" parent="." instance=ExtResource("1_px6bq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 300, 0)
-
-[connection signal="spawn_next" from="." to="." method="_spawn_next"]

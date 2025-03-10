@@ -6,29 +6,22 @@ extends Node3D
 @export var CountColumns : int
 
 #Буфер колонн
-var columns: Array[Node]
+var Collumns: Array[Collumn]
 var used_columns: Array[Node]
+var CollumnSpawnPosition := Vector3(0,30,0)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	#Спавн и инициализация первой колонны
-	get_node("Column").position = StartColumnLocation
-	get_node("Column").Use = true
-	used_columns.append(get_node("Column"))
-	columns.append(get_node("Column"))
-	
 	#Инициализация буферного массива
-	var str_columns : String
-	for i in range(2, CountColumns):
-		if(get_node("Column" + str(i)) != null):
-			columns.append(get_node("Column" + str(i)))
+	for i in Global.MaxCountCollumns + 3: _create_collumn()
 	
-	#Тестовое
-	spawn_column(Global.DIRECTION.LEFT)
-	spawn_column(Global.DIRECTION.LEFT)
-	spawn_column(Global.DIRECTION.LEFT)
-	spawn_column(Global.DIRECTION.LEFT)
-	delete_column()
+	Collumns[0].position = StartColumnLocation
+	Collumns[0].Use = true
+	
+	_spawn_column(Global.DIRECTION.LEFT)
+	_spawn_column(Global.DIRECTION.LEFT)
+	_spawn_column(Global.DIRECTION.LEFT)
+	_spawn_column(Global.DIRECTION.LEFT)
 	
 	Global.player.MovingFinished.connect(_spawn_next)
 
@@ -39,28 +32,38 @@ func _process(delta):
 	pass
 	
 func _spawn_next():
+	_spawn_column(Global.Direction)
 	delete_column()
-	spawn_column(Global.Direction)
 
-func spawn_column(direction_ : Global.DIRECTION):
-	var Column
-	for it in columns:
+func _create_collumn():
+	var collumn = load("uid://pvbtwtmqm74r").instantiate() #инитим коллонну
+	add_child(collumn)
+	collumn.position = CollumnSpawnPosition
+	Collumns.append(collumn)
+	print("Creating collumn ", collumn.name, " at ", collumn.position)
+	
+func _spawn_column(direction_ : Global.DIRECTION):
+	var Collumn
+	for it in Collumns:
 		if (!it.Use):
-			Column = it
+			Collumn = it
 			break
 	
 	match direction_:
 		Global.DIRECTION.LEFT:
 			StartColumnLocation.x -= SpawnDistance
-			Column.position =StartColumnLocation
-			Column.Use = true 
-			used_columns.append(Column)
 		Global.DIRECTION.FORWARD:
 			StartColumnLocation.z -= SpawnDistance
-			Column.position = StartColumnLocation
-			Column.Use = true 
-			used_columns.append(Column)
+		Global.DIRECTION.RIGHT:
+			StartColumnLocation.x += SpawnDistance
+		Global.DIRECTION.BACK:
+			StartColumnLocation.z += SpawnDistance
+			
+	Collumn.position = StartColumnLocation
+	Collumn.Use = true 
+	Collumns.erase(Collumn)
+	Collumns.push_front(Collumn)
 		
 func delete_column():
-	used_columns.front().Use = false
-	used_columns.erase(used_columns.front())
+	Collumns.back().Use = false
+	Collumns.back().position = StartColumnLocation

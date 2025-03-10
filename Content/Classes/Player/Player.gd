@@ -52,10 +52,10 @@ func _input(event):
 			IsPressed = false
 			create_tween().tween_property(self, "scale", Vector3(1, 1, 1), 0.05)
 			print("CompressinRatio: ", CompressinRatio)
-			move()
+			if CompressinRatio < 0.7: move()
 			
 		#Положение текущего касания
-		if IsPressed and (scale.y <= 1) and (scale.y >= 0.1):
+		if IsPressed and (scale.y <= 1) and (scale.y >= 0.3):
 			RelativeTouch = event.position
 			CurrentCompression = abs((StartTouch.y - RelativeTouch.y)) / 30
 			scale.y = (scale.y - (CurrentCompression/MaxCompression))
