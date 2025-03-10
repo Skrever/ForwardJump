@@ -1,6 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://waqdjnmtb8sl"]
+[gd_scene load_steps=6 format=3 uid="uid://waqdjnmtb8sl"]
 
 [ext_resource type="Script" path="res://Content/Classes/Player/Player.gd" id="1_kswa7"]
+
+[sub_resource type="Curve" id="Curve_4g42k"]
+_data = [Vector2(0, 0), 0.0, 5.7487, 0, 0, Vector2(0.355805, 1), 0.252326, 0.252326, 0, 0, Vector2(1, 0), -2.64296, 0.0, 0, 0]
+point_count = 3
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_8udbd"]
 
@@ -11,6 +15,7 @@ albedo_color = Color(0.338395, 0.530045, 0.773421, 1)
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_kswa7")
+JumpCurve = SubResource("Curve_4g42k")
 
 [node name="Collision" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_8udbd")

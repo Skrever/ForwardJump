@@ -1,13 +1,5 @@
 extends Node3D
 
-enum DIRECTION 
-{
-LEFT,
-RIGHT,
-FORWARD,
-BACK
-}
-
 @export_category("Columns Settings")
 @export var StartColumnLocation = Vector3.ZERO
 @export var SpawnDistance : float = 3.0
@@ -32,11 +24,13 @@ func _ready():
 			columns.append(get_node("Column" + str(i)))
 	
 	#Тестовое
-	spawn_column("left")
-	spawn_column("left")
-	spawn_column("left")
-	spawn_column("left")
+	spawn_column(Global.DIRECTION.LEFT)
+	spawn_column(Global.DIRECTION.LEFT)
+	spawn_column(Global.DIRECTION.LEFT)
+	spawn_column(Global.DIRECTION.LEFT)
 	delete_column()
+	
+	Global.player.MovingFinished.connect(_spawn_next)
 
 
 
@@ -44,27 +38,28 @@ func _ready():
 func _process(delta):
 	pass
 	
-func _spawn_next(direction: String):
+func _spawn_next():
 	delete_column()
-	spawn_column(direction)
+	spawn_column(Global.Direction)
 
-func spawn_column(direction : String):
+func spawn_column(direction_ : Global.DIRECTION):
 	var Column
 	for it in columns:
 		if (!it.Use):
 			Column = it
 			break
 	
-	if (direction == "left"):
-		StartColumnLocation.x -= SpawnDistance
-		Column.position =StartColumnLocation
-		Column.Use = true 
-		used_columns.append(Column)
-	elif (direction == "forward"):
-		StartColumnLocation.z -= SpawnDistance
-		Column.position =StartColumnLocation
-		Column.Use = true 
-		used_columns.append(Column)
+	match direction_:
+		Global.DIRECTION.LEFT:
+			StartColumnLocation.x -= SpawnDistance
+			Column.position =StartColumnLocation
+			Column.Use = true 
+			used_columns.append(Column)
+		Global.DIRECTION.FORWARD:
+			StartColumnLocation.z -= SpawnDistance
+			Column.position = StartColumnLocation
+			Column.Use = true 
+			used_columns.append(Column)
 		
 func delete_column():
 	used_columns.front().Use = false

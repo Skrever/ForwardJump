@@ -15,6 +15,7 @@ func _process(delta: float) -> void:
 func _activate(body : Node3D):
 	print("234")
 	rdSlide.add_child(body)
+	print("Children of Curve: ",rdSlide.get_children())
 	create_tween().tween_property(rdSlide, "progress_ratio", 1.0, 0.2)
 	add_sibling(body)
 	#rdSlide.progress_ratio = 0;
