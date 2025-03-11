@@ -2,13 +2,11 @@ extends Node3D
 
 @export_category("Columns Settings")
 @export var StartColumnLocation = Vector3.ZERO
-@export var SpawnDistance : float = 3.0
-@export var CountColumns : int
 
 #Буфер колонн
 var Collumns: Array[Collumn]
-var used_columns: Array[Node]
 var CollumnSpawnPosition := Vector3(0,30,0)
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -20,7 +18,7 @@ func _ready():
 	
 	_spawn_column(Global.DIRECTION.LEFT)
 	_spawn_column(Global.DIRECTION.LEFT)
-	_spawn_column(Global.DIRECTION.LEFT)
+	_spawn_column(Global.DIRECTION.FORWARD)
 	_spawn_column(Global.DIRECTION.LEFT)
 	
 	Global.player.MovingFinished.connect(_spawn_next)
@@ -32,11 +30,15 @@ func _process(delta):
 	pass
 	
 func _spawn_next():
-	_spawn_column(Global.Direction)
-	delete_column()
+	if Global.RandomSpawn:
+		Global.Direction = randi_range(0,1)
+		_spawn_column(Global.Direction)
+		delete_column()
+	else:
+		print("Random spawn disabled")
 
 func _create_collumn():
-	var collumn = load("uid://pvbtwtmqm74r").instantiate() #инитим коллонну
+	var collumn : Collumn = load("uid://pvbtwtmqm74r").instantiate() #инитим коллонну
 	add_child(collumn)
 	collumn.position = CollumnSpawnPosition
 	Collumns.append(collumn)
@@ -51,16 +53,21 @@ func _spawn_column(direction_ : Global.DIRECTION):
 	
 	match direction_:
 		Global.DIRECTION.LEFT:
-			StartColumnLocation.x -= SpawnDistance
+			StartColumnLocation.x -= Global.Distance
+			StartColumnLocation.x = floor(StartColumnLocation.x)
 		Global.DIRECTION.FORWARD:
-			StartColumnLocation.z -= SpawnDistance
+			StartColumnLocation.z -= Global.Distance
+			StartColumnLocation.z = floor(StartColumnLocation.z)
 		Global.DIRECTION.RIGHT:
-			StartColumnLocation.x += SpawnDistance
+			StartColumnLocation.x += Global.Distance
+			StartColumnLocation.x = floor(StartColumnLocation.x)
 		Global.DIRECTION.BACK:
-			StartColumnLocation.z += SpawnDistance
+			StartColumnLocation.z += Global.Distance
+			StartColumnLocation.z = floor(StartColumnLocation.z)
 			
 	Collumn.position = StartColumnLocation
 	Collumn.Use = true 
+	Collumns.front().NextCollumnAt = direction_
 	Collumns.erase(Collumn)
 	Collumns.push_front(Collumn)
 		

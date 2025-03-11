@@ -4,4 +4,3 @@
 
 [node name="Generator" type="Node3D"]
 script = ExtResource("1_f6mlm")
-CountColumns = 10

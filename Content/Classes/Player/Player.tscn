@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://waqdjnmtb8sl"]
+[gd_scene load_steps=7 format=3 uid="uid://waqdjnmtb8sl"]
 
 [ext_resource type="Script" path="res://Content/Classes/Player/Player.gd" id="1_kswa7"]
 
@@ -13,13 +13,35 @@ point_count = 3
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fjfkj"]
 albedo_color = Color(0.338395, 0.530045, 0.773421, 1)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_akq4u"]
+size = Vector3(0.95, 0.177246, 0.95)
+
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_kswa7")
 JumpCurve = SubResource("Curve_4g42k")
 
 [node name="Collision" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.513805, 0)
 shape = SubResource("BoxShape3D_8udbd")
 
-[node name="Mesh" type="MeshInstance3D" parent="Collision"]
+[node name="Root" type="Node3D" parent="Collision"]
+
+[node name="Mesh" type="MeshInstance3D" parent="Collision/Root"]
 mesh = SubResource("BoxMesh_hyoxq")
+skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_fjfkj")
+
+[node name="CheckFloor" type="RayCast3D" parent="Collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.40943, 0)
+target_position = Vector3(0, -2, 0)
+
+[node name="Checker" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.273852, 0)
+collision_layer = 0
+
+[node name="CheckFloor" type="CollisionShape3D" parent="Checker"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0124307, 0)
+shape = SubResource("BoxShape3D_akq4u")
+
+[connection signal="body_entered" from="Checker" to="." method="_on_checker_body_entered"]
+[connection signal="body_exited" from="Checker" to="." method="_on_checker_body_exited"]

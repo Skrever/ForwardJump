@@ -1,7 +1,9 @@
 class_name Collumn
-extends Node3D
+extends StaticBody3D
 
 var Use : bool = false
+var NextCollumnAt : Global.DIRECTION = Global.DIRECTION.LEFT
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass

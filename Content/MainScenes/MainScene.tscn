@@ -1,19 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://skyapf40d7lg"]
+[gd_scene load_steps=6 format=3 uid="uid://skyapf40d7lg"]
 
 [ext_resource type="PackedScene" uid="uid://ccba8a6xdtcd7" path="res://Content/Classes/Camera/tracking_camera.tscn" id="1_555a4"]
 [ext_resource type="PackedScene" uid="uid://0o5jeu8n6e6x" path="res://Content/Classes/Generator/Generator.tscn" id="1_plau4"]
 [ext_resource type="PackedScene" uid="uid://waqdjnmtb8sl" path="res://Content/Classes/Player/Player.tscn" id="2_4u52e"]
-[ext_resource type="Script" path="res://Content/MainScenes/path_3d.gd" id="4_5kv17"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_cvcha"]
-size = Vector3(100, 1, 100)
-
-[sub_resource type="Curve3D" id="Curve3D_bv3bj"]
-_data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 3, 0, 0, 1.5, 0, 0, -0.74, 0, 0, 1.77031, 1.69966, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-"tilts": PackedFloat32Array(0, 0, 0)
-}
-point_count = 3
+[ext_resource type="PackedScene" uid="uid://djukxyj1v26ks" path="res://Content/Classes/DinamicFloor/DinamicFloor.tscn" id="4_vq4ek"]
 
 [sub_resource type="Environment" id="Environment_p0hts"]
 background_color = Color(0.52616, 0.273195, 0.225693, 1)
@@ -35,17 +25,7 @@ tracking_object = NodePath("../Player")
 [node name="Generator" parent="." instance=ExtResource("1_plau4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0388284, 0)
 
-[node name="Floor" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.523935, 0)
-mesh = SubResource("BoxMesh_cvcha")
-
-[node name="MovementCurve" type="Path3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.142982, 8.51053, 0)
-curve = SubResource("Curve3D_bv3bj")
-script = ExtResource("4_5kv17")
-
-[node name="Slide" type="PathFollow3D" parent="MovementCurve"]
-transform = Transform3D(1.53515e-07, 0.81019, 0.586166, -2.98023e-08, 0.586166, -0.81019, -1, 1.06907e-07, 1.14131e-07, 3, 0, 0)
+[node name="DinamicFloor" parent="." instance=ExtResource("4_vq4ek")]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_p0hts")
