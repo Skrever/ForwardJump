@@ -1,0 +1,38 @@
+[gd_scene load_steps=7 format=3 uid="uid://bvonua6sbs2lr"]
+
+[ext_resource type="StyleBox" uid="uid://faplfbbo0mfy" path="res://Content/UI/Buttons/Store/StoreButtonPressed.tres" id="1_2gi2w"]
+[ext_resource type="StyleBox" uid="uid://bpxyus48k3wlg" path="res://Content/UI/Buttons/Restart/RestartButtonPressed.tres" id="1_mii8u"]
+[ext_resource type="StyleBox" uid="uid://bosejewh5hfdm" path="res://Content/UI/Buttons/Store/StoreButtonHower.tres" id="2_5m80y"]
+[ext_resource type="StyleBox" uid="uid://pxk4au4buu6" path="res://Content/UI/Buttons/Store/StoreButtonNormal.tres" id="3_exwcq"]
+[ext_resource type="Texture2D" uid="uid://vaoluo4cde5g" path="res://Content/UI/Textures/Restart.png" id="4_q4v0s"]
+[ext_resource type="Script" path="res://Content/UI/Buttons/button.gd" id="5_hul7c"]
+
+[node name="RestartButton" type="Button"]
+offset_left = -47.5
+offset_top = -47.5
+offset_right = 47.5
+offset_bottom = 47.5
+pivot_offset = Vector2(47.5, 47.5)
+theme_override_styles/focus = ExtResource("1_mii8u")
+theme_override_styles/hover_pressed = ExtResource("1_2gi2w")
+theme_override_styles/hover = ExtResource("2_5m80y")
+theme_override_styles/pressed = ExtResource("1_2gi2w")
+theme_override_styles/normal = ExtResource("3_exwcq")
+script = ExtResource("5_hul7c")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.5
+offset_top = 20.5
+offset_right = -24.5
+offset_bottom = -22.5
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(27, 27)
+texture = ExtResource("4_q4v0s")
+expand_mode = 1
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

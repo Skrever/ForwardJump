@@ -1,0 +1,87 @@
+[gd_scene load_steps=5 format=3 uid="uid://cnngwsatonfl4"]
+
+[ext_resource type="Texture2D" uid="uid://b85ftuwvlais3" path="res://Content/UI/Textures/Деньги.png" id="1_j60nf"]
+[ext_resource type="Script" path="res://Content/UI/Panels/Money/label.gd" id="2_cs3yk"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v2dnn"]
+bg_color = Color(0.466667, 0.466667, 0.466667, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+anti_aliasing_size = 0.5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yrejj"]
+bg_color = Color(0.313726, 0.313726, 0.313726, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[node name="MoneyPanel" type="Panel"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -31.667
+offset_right = 100.0
+offset_bottom = 31.666
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(100, 31.667)
+theme_override_styles/panel = SubResource("StyleBoxFlat_v2dnn")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 14.0
+offset_top = -17.1665
+offset_right = 49.0
+offset_bottom = 17.8335
+grow_vertical = 2
+texture = ExtResource("1_j60nf")
+expand_mode = 1
+
+[node name="Panel2" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -140.695
+offset_top = -19.9995
+offset_right = -10.695
+offset_bottom = 20.0005
+grow_horizontal = 0
+grow_vertical = 2
+pivot_offset = Vector2(30, 20)
+theme_override_styles/panel = SubResource("StyleBoxFlat_yrejj")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -139.0
+offset_top = -11.6665
+offset_right = -12.0
+offset_bottom = 11.3335
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_font_sizes/font_size = 24
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("2_cs3yk")

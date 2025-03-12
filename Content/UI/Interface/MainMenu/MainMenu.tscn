@@ -1,0 +1,76 @@
+[gd_scene load_steps=6 format=3 uid="uid://byuagjvh3bkib"]
+
+[ext_resource type="Script" path="res://Content/UI/Interface/MainMenu/main_menu.gd" id="1_2p0dp"]
+[ext_resource type="StyleBox" uid="uid://bftp76pqmv3oi" path="res://Content/UI/Panels/DefaultPanelWithoutBorders.tres" id="1_ev2de"]
+[ext_resource type="PackedScene" uid="uid://bdcq5ds5o4rni" path="res://Content/UI/Buttons/Crown/CrownButton.tscn" id="2_1k03k"]
+[ext_resource type="PackedScene" uid="uid://jqt3oa5ki8ym" path="res://Content/UI/Buttons/Settings/SettingsButton.tscn" id="3_6280k"]
+[ext_resource type="PackedScene" uid="uid://b0ehrqfiiwmb1" path="res://Content/UI/Buttons/Store/StoreButton.tscn" id="4_k8852"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_2p0dp")
+
+[node name="GroupBox" type="Control" parent="."]
+custom_minimum_size = Vector2(321, 112)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -160.0
+offset_top = -180.0
+offset_right = 161.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Panel" type="Panel" parent="GroupBox"]
+custom_minimum_size = Vector2(321, 112)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -160.5
+offset_right = 160.5
+offset_bottom = 112.0
+grow_horizontal = 2
+theme_override_styles/panel = ExtResource("1_ev2de")
+
+[node name="CrownButton" parent="GroupBox/Panel" instance=ExtResource("2_1k03k")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 54.5
+offset_right = 149.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SettingsButton" parent="GroupBox/Panel" instance=ExtResource("3_6280k")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="StoreButton" parent="GroupBox/Panel" instance=ExtResource("4_k8852")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -149.5
+offset_right = -54.5
+grow_horizontal = 2
+grow_vertical = 2

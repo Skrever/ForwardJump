@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://b0ehrqfiiwmb1"]
+
+[ext_resource type="StyleBox" uid="uid://faplfbbo0mfy" path="res://Content/UI/Buttons/Store/StoreButtonPressed.tres" id="1_5ypro"]
+[ext_resource type="StyleBox" uid="uid://bosejewh5hfdm" path="res://Content/UI/Buttons/Store/StoreButtonHower.tres" id="2_v27yx"]
+[ext_resource type="StyleBox" uid="uid://pxk4au4buu6" path="res://Content/UI/Buttons/Store/StoreButtonNormal.tres" id="3_en3uy"]
+[ext_resource type="Script" path="res://Content/UI/Buttons/button.gd" id="4_xqi1s"]
+[ext_resource type="Texture2D" uid="uid://c3wrn2s8umpm4" path="res://Content/UI/Textures/Кот.png" id="5_r5pji"]
+
+[node name="StoreButton" type="Button"]
+offset_left = -47.5
+offset_top = -47.5
+offset_right = 47.5
+offset_bottom = 47.5
+pivot_offset = Vector2(47.5, 47.5)
+theme_override_styles/focus = ExtResource("1_5ypro")
+theme_override_styles/hover_pressed = ExtResource("1_5ypro")
+theme_override_styles/hover = ExtResource("2_v27yx")
+theme_override_styles/pressed = ExtResource("1_5ypro")
+theme_override_styles/normal = ExtResource("3_en3uy")
+script = ExtResource("4_xqi1s")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 23.5
+offset_top = 23.5
+offset_right = -25.5
+offset_bottom = -25.5
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(24, 24)
+texture = ExtResource("5_r5pji")
+expand_mode = 1
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

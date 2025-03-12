@@ -22,4 +22,5 @@ extends Node3D
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
 	# "Догоняем" объект
+	#if Global.GameState == Global.GAMESTATS.GOING:
 	position = position.lerp(tracking_object.position, delta * speed_tracking)

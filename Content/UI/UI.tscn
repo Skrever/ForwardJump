@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://c8jwf3341lg6s"]
+
+[ext_resource type="PackedScene" uid="uid://byuagjvh3bkib" path="res://Content/UI/Interface/MainMenu/MainMenu.tscn" id="1_tqbjm"]
+[ext_resource type="PackedScene" uid="uid://cju8t4vsenjnj" path="res://Content/UI/Interface/DeadMenu/DeadMenu.tscn" id="2_e72pl"]
+
+[node name="UI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MainMenu" parent="." instance=ExtResource("1_tqbjm")]
+layout_mode = 1
+
+[node name="DeadMenu" parent="." instance=ExtResource("2_e72pl")]
+layout_mode = 1

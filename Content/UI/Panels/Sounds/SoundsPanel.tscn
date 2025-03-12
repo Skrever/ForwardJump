@@ -1,0 +1,87 @@
+[gd_scene load_steps=8 format=3 uid="uid://bhkqqcgex1iva"]
+
+[ext_resource type="StyleBox" uid="uid://tjhskm4tx1e1" path="res://Content/UI/Panels/DefaultPanel.tres" id="1_kjp8a"]
+[ext_resource type="Script" path="res://Content/UI/Panels/Sounds/sounds_panel.gd" id="2_k23r8"]
+[ext_resource type="Texture2D" uid="uid://ndrnftkxmqtm" path="res://Content/UI/Textures/Динамик.png" id="2_psraa"]
+[ext_resource type="Texture2D" uid="uid://xsv4o6kg7yvm" path="res://Content/UI/Textures/ИконкаСлайдера.png" id="3_phf7r"]
+[ext_resource type="StyleBox" uid="uid://ddajgfi25on0i" path="res://Content/UI/Panels/Music/MusicPanelSlider.tres" id="4_crj0m"]
+[ext_resource type="StyleBox" uid="uid://3s7uvxearxrp" path="res://Content/UI/Panels/Music/MusicPanelGrabberArea.tres" id="5_ebnq3"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qn524"]
+bg_color = Color(0.305882, 0.576471, 0.882353, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 7
+corner_radius_top_right = 7
+corner_radius_bottom_right = 7
+corner_radius_bottom_left = 7
+anti_aliasing_size = 0.5
+
+[node name="SoundsPanel" type="Panel"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -31.667
+offset_right = 100.0
+offset_bottom = 31.666
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(100, 31.667)
+theme_override_styles/panel = ExtResource("1_kjp8a")
+script = ExtResource("2_k23r8")
+
+[node name="Note" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 12.0
+offset_top = -20.0
+offset_right = 52.0
+offset_bottom = 20.0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_qn524")
+
+[node name="TextureRect" type="TextureRect" parent="Note"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -13.0
+offset_top = -15.9995
+offset_right = 18.0
+offset_bottom = 15.0005
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_psraa")
+expand_mode = 1
+
+[node name="HSlider" type="HSlider" parent="."]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -141.0
+offset_top = -26.6665
+offset_right = -11.0
+offset_bottom = 26.3335
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_icons/grabber = ExtResource("3_phf7r")
+theme_override_icons/grabber_highlight = ExtResource("3_phf7r")
+theme_override_icons/grabber_disabled = ExtResource("3_phf7r")
+theme_override_icons/tick = ExtResource("3_phf7r")
+theme_override_styles/slider = ExtResource("4_crj0m")
+theme_override_styles/grabber_area = ExtResource("5_ebnq3")
+theme_override_styles/grabber_area_highlight = ExtResource("5_ebnq3")
+max_value = 60.0

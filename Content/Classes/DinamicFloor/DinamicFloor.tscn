@@ -1,21 +1,38 @@
-[gd_scene load_steps=4 format=3 uid="uid://djukxyj1v26ks"]
+[gd_scene load_steps=6 format=3 uid="uid://djukxyj1v26ks"]
 
 [ext_resource type="Script" path="res://Content/Classes/DinamicFloor/dinamic_floor.gd" id="1_x5vjj"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4ttcv"]
+albedo_color = Color(0.622167, 0.550314, 0.487416, 1)
+
 [sub_resource type="PlaneMesh" id="PlaneMesh_2bti1"]
-size = Vector2(100, 100)
+material = SubResource("StandardMaterial3D_4ttcv")
+size = Vector2(200, 200)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vheul"]
+size = Vector3(100, 0.307281, 100)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rq7yk"]
-size = Vector3(100, 0.850708, 100)
+size = Vector3(100, 0.731354, 100)
 
-[node name="DinamicFloor" type="Node3D"]
+[node name="DinamicFloor" type="StaticBody3D"]
+collision_layer = 2
+collision_mask = 0
 script = ExtResource("1_x5vjj")
 
 [node name="Mesh" type="MeshInstance3D" parent="."]
 mesh = SubResource("PlaneMesh_2bti1")
 
 [node name="Area" type="Area3D" parent="."]
+disable_mode = 2
+collision_layer = 0
 
-[node name="Collision" type="CollisionShape3D" parent="Area"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.074646, 0)
+[node name="Trigger" type="CollisionShape3D" parent="Area"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.137971, 0)
+shape = SubResource("BoxShape3D_vheul")
+
+[node name="Collision" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.377495, 0)
 shape = SubResource("BoxShape3D_rq7yk")
+
+[connection signal="body_entered" from="Area" to="." method="_on_area_body_entered"]

@@ -1,33 +1,52 @@
+class_name Generator
 extends Node3D
+
+
 
 @export_category("Columns Settings")
 @export var StartColumnLocation = Vector3.ZERO
 
 #Буфер колонн
 var Collumns: Array[Collumn]
-var CollumnSpawnPosition := Vector3(0,30,0)
+var CollumnSpawnPosition := Vector3(0, 30, 0)
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	Global.generator = self
+	Global.GameReload.connect(_on_reload_game)
 	#Инициализация буферного массива
 	for i in Global.MaxCountCollumns + 3: _create_collumn()
+	_cooking_columns()
 	
-	Collumns[0].position = StartColumnLocation
-	Collumns[0].Use = true
-	
-	_spawn_column(Global.DIRECTION.LEFT)
-	_spawn_column(Global.DIRECTION.LEFT)
-	_spawn_column(Global.DIRECTION.FORWARD)
-	_spawn_column(Global.DIRECTION.LEFT)
-	
-	Global.player.MovingFinished.connect(_spawn_next)
 
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
+
+func _on_reload_game():
+	for collumn in Collumns:
+		collumn.position = CollumnSpawnPosition
+		collumn.Use = false
+		collumn.NextCollumnAt = Global.DIRECTION.LEFT
+		collumn.DistanceToNextCollumn = 0
+	StartColumnLocation = Vector3.ZERO
+	_cooking_columns()
+	
+func _cooking_columns():
+	Collumns[0].position = StartColumnLocation
+	Collumns[0].Use = true
+
+	_spawn_column(Global.DIRECTION.LEFT)
+	await get_tree().create_timer(1).timeout
+	_spawn_column(Global.DIRECTION.LEFT)
+	_spawn_column(Global.DIRECTION.FORWARD)
+	_spawn_column(Global.DIRECTION.LEFT)
+	
+	Global.player.MovingFinished.connect(_spawn_next)
+	Global.CollumnGenerated.emit()
 	
 func _spawn_next():
 	if Global.RandomSpawn:
@@ -39,37 +58,33 @@ func _spawn_next():
 
 func _create_collumn():
 	var collumn : Collumn = load("uid://pvbtwtmqm74r").instantiate() #инитим коллонну
-	add_child(collumn)
 	collumn.position = CollumnSpawnPosition
+	add_child(collumn)
 	Collumns.append(collumn)
-	print("Creating collumn ", collumn.name, " at ", collumn.position)
 	
 func _spawn_column(direction_ : Global.DIRECTION):
-	var Collumn
+	var ReplacedCollumn : Collumn
 	for it in Collumns:
 		if (!it.Use):
-			Collumn = it
+			ReplacedCollumn = it
 			break
 	
 	match direction_:
 		Global.DIRECTION.LEFT:
-			StartColumnLocation.x -= Global.Distance
-			StartColumnLocation.x = floor(StartColumnLocation.x)
+			StartColumnLocation.x -= randf_range(Global.MinDistance, Global.MaxDistance)
 		Global.DIRECTION.FORWARD:
-			StartColumnLocation.z -= Global.Distance
-			StartColumnLocation.z = floor(StartColumnLocation.z)
+			StartColumnLocation.z -= randf_range(Global.MinDistance, Global.MaxDistance)
 		Global.DIRECTION.RIGHT:
-			StartColumnLocation.x += Global.Distance
-			StartColumnLocation.x = floor(StartColumnLocation.x)
+			StartColumnLocation.x += randf_range(Global.MinDistance, Global.MaxDistance)
 		Global.DIRECTION.BACK:
-			StartColumnLocation.z += Global.Distance
-			StartColumnLocation.z = floor(StartColumnLocation.z)
+			StartColumnLocation.z += randf_range(Global.MinDistance, Global.MaxDistance)
 			
-	Collumn.position = StartColumnLocation
-	Collumn.Use = true 
+	ReplacedCollumn.position = StartColumnLocation
+	ReplacedCollumn.Use = true 
 	Collumns.front().NextCollumnAt = direction_
-	Collumns.erase(Collumn)
-	Collumns.push_front(Collumn)
+	Collumns.front().DistanceToNextCollumn = ReplacedCollumn.position.distance_to(Collumns.front().position)
+	Collumns.erase(ReplacedCollumn)
+	Collumns.push_front(ReplacedCollumn)
 		
 func delete_column():
 	Collumns.back().Use = false

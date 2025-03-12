@@ -1,0 +1,79 @@
+[gd_scene load_steps=6 format=3 uid="uid://cju8t4vsenjnj"]
+
+[ext_resource type="StyleBox" uid="uid://bftp76pqmv3oi" path="res://Content/UI/Panels/DefaultPanelWithoutBorders.tres" id="1_le01m"]
+[ext_resource type="Script" path="res://Content/UI/Interface/DeadMenu/dead_menu.gd" id="1_xk66x"]
+[ext_resource type="PackedScene" uid="uid://bvonua6sbs2lr" path="res://Content/UI/Buttons/Restart/RestartButton.tscn" id="2_bhs4g"]
+[ext_resource type="PackedScene" uid="uid://bhiiuk1ug31lq" path="res://Content/UI/Buttons/No/NoButton.tscn" id="3_n76cp"]
+[ext_resource type="PackedScene" uid="uid://bawc6jfnynt2" path="res://Content/RewordedButton.tscn" id="4_wt5hd"]
+
+[node name="DeadMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xk66x")
+
+[node name="GroupBox" type="Control" parent="."]
+custom_minimum_size = Vector2(220, 220)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -110.0
+offset_top = -110.0
+offset_right = 110.0
+offset_bottom = 110.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="GroupBox"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(110, 110)
+theme_override_styles/panel = ExtResource("1_le01m")
+
+[node name="RestartButton" parent="GroupBox/Panel" instance=ExtResource("2_bhs4g")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 7.0
+offset_top = -100.0
+offset_right = 102.0
+offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="NoButton" parent="GroupBox/Panel" instance=ExtResource("3_n76cp")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -102.0
+offset_top = -100.0
+offset_right = -7.0
+offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RewordedButton" parent="GroupBox/Panel" instance=ExtResource("4_wt5hd")]
+layout_mode = 1
+offset_left = -102.0
+offset_top = 6.0
+offset_right = 102.0
+offset_bottom = 101.0
+
+[connection signal="pressed" from="GroupBox/Panel/RestartButton" to="." method="_on_restart_button_pressed"]
+[connection signal="pressed" from="GroupBox/Panel/NoButton" to="." method="_on_no_button_pressed"]

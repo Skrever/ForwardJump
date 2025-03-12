@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://bnbfy4p6y1u42"]
+
+[ext_resource type="StyleBox" uid="uid://b8a3e2ruh10jo" path="res://Content/UI/Buttons/Yes/YesButtonNormal.tres" id="1_53dx3"]
+[ext_resource type="StyleBox" uid="uid://bmditldnsdwrb" path="res://Content/UI/Buttons/Yes/YesButtonHower.tres" id="1_0714n"]
+[ext_resource type="StyleBox" uid="uid://b0d5wwieynkop" path="res://Content/UI/Buttons/Yes/YesButtonPressed.tres" id="2_njsto"]
+[ext_resource type="Script" path="res://Content/UI/Buttons/button.gd" id="4_5dned"]
+[ext_resource type="Texture2D" uid="uid://dfd7pdj2qhu1j" path="res://Content/UI/Textures/Галочка.png" id="4_arvpc"]
+
+[node name="YesButton" type="Button"]
+offset_left = -47.5
+offset_top = -47.5
+offset_right = 47.5
+offset_bottom = 47.5
+pivot_offset = Vector2(47.5, 47.5)
+theme_override_styles/focus = ExtResource("2_njsto")
+theme_override_styles/hover_pressed = ExtResource("2_njsto")
+theme_override_styles/hover = ExtResource("1_0714n")
+theme_override_styles/pressed = ExtResource("2_njsto")
+theme_override_styles/normal = ExtResource("1_53dx3")
+script = ExtResource("4_5dned")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 19.5
+offset_top = 19.5
+offset_right = -18.5
+offset_bottom = -18.5
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(28, 28)
+texture = ExtResource("4_arvpc")
+expand_mode = 1
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

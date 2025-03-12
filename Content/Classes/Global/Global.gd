@@ -1,5 +1,14 @@
 extends Node
 
+signal CollumnGenerated()
+
+signal GameReady()
+signal GameReload()
+signal GameStart()
+signal GameStop()
+signal GamePaused()
+signal GameResumed()
+
 enum DIRECTION 
 {
 	LEFT,
@@ -8,10 +17,62 @@ enum DIRECTION
 	BACK
 }
 
+enum GAMESTATS
+{
+	NONE,
+	READY,
+	GOING,
+	PAUSED
+}
+
+var GameState : GAMESTATS = GAMESTATS.NONE
+
 # Сторона и длинна, куда должен двигаться игрок и спавниться колоннки
 var Direction : DIRECTION = DIRECTION.LEFT
-var Distance : int = 7
+var MaxDistance : float = 10
+var MinDistance : float = 7
 var MaxCountCollumns : int = 10
 var RandomSpawn : bool = true
 
-var player : Player
+var player : Player = null
+var generator : Generator = null
+
+
+
+
+func _ready() -> void:
+	
+	GameReady.connect(_on_game_ready)
+	GameReload.connect(_on_game_reload)
+	GameStart.connect(_on_game_going)
+	GameStop.connect(_on_game_stopped)
+	GamePaused.connect(_on_game_paused)
+	GameResumed.connect(_on_game_resumed)
+	
+	await CollumnGenerated
+	GameReady.emit()
+	#GameStart.emit()	
+	
+func _on_game_ready():
+	GameState = GAMESTATS.NONE
+	print("Game Ready")
+	
+func _on_game_reload():
+	GameState = GAMESTATS.NONE
+	print("Game Reload")
+	
+func _on_game_going():
+	GameState = GAMESTATS.GOING
+	print("Game Going")
+
+func _on_game_paused():
+	GameState = GAMESTATS.PAUSED
+	print("Game Paused")
+	
+func _on_game_stopped():
+	GameState = GAMESTATS.NONE
+	print("Game Stopped")
+	
+func _on_game_resumed():
+	GameState = GAMESTATS.GOING
+	print("Game Resumed")
