@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://Content/UI/Interface/DeadMenu/dead_menu.gd" id="1_xk66x"]
 [ext_resource type="PackedScene" uid="uid://bvonua6sbs2lr" path="res://Content/UI/Buttons/Restart/RestartButton.tscn" id="2_bhs4g"]
 [ext_resource type="PackedScene" uid="uid://bhiiuk1ug31lq" path="res://Content/UI/Buttons/No/NoButton.tscn" id="3_n76cp"]
-[ext_resource type="PackedScene" uid="uid://bawc6jfnynt2" path="res://Content/RewordedButton.tscn" id="4_wt5hd"]
+[ext_resource type="PackedScene" uid="uid://bawc6jfnynt2" path="res://Content/UI/Buttons/RewordedRestart/RewordedButton.tscn" id="4_wt5hd"]
 
 [node name="DeadMenu" type="Control"]
 layout_mode = 3

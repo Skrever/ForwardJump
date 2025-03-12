@@ -38,6 +38,7 @@ func _on_reload_game():
 func _cooking_columns():
 	Collumns[0].position = StartColumnLocation
 	Collumns[0].Use = true
+	Collumns[0].canShake = false
 
 	_spawn_column(Global.DIRECTION.LEFT)
 	await get_tree().create_timer(1).timeout
@@ -87,5 +88,6 @@ func _spawn_column(direction_ : Global.DIRECTION):
 	Collumns.push_front(ReplacedCollumn)
 		
 func delete_column():
+	Collumns.back().canShake = true
 	Collumns.back().Use = false
 	Collumns.back().position = StartColumnLocation

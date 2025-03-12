@@ -14,9 +14,8 @@ point_count = 3
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fjfkj"]
 albedo_color = Color(0.338395, 0.530045, 0.773421, 1)
 
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_0qxua"]
-height = 0.015998
-radius = 0.429273
+[sub_resource type="BoxShape3D" id="BoxShape3D_o6ohr"]
+size = Vector3(1, 0.0168457, 1)
 
 [node name="Player" type="CharacterBody3D"]
 disable_mode = 2
@@ -43,7 +42,8 @@ collision_layer = 0
 collision_mask = 4
 
 [node name="Trigger" type="CollisionShape3D" parent="Area"]
-shape = SubResource("CylinderShape3D_0qxua")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.00231934, 0)
+shape = SubResource("BoxShape3D_o6ohr")
 
 [connection signal="body_entered" from="Area" to="." method="_on_area_body_entered"]
 [connection signal="body_exited" from="Area" to="." method="_on_area_body_exited"]

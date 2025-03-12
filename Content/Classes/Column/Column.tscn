@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://pvbtwtmqm74r"]
+[gd_scene load_steps=10 format=3 uid="uid://pvbtwtmqm74r"]
 
 [ext_resource type="Script" path="res://Content/Classes/Column/Column.gd" id="1_i2q6p"]
+[ext_resource type="PackedScene" uid="uid://cqv4goxnlhwlg" path="res://Content/Classes/Column/DropEffect3D.tscn" id="2_0mkec"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_riwsd"]
 size = Vector3(3, 3.977, 3)
@@ -13,6 +14,15 @@ albedo_color = Color(0.903223, 0.361231, 0.283591, 1)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_mr1vl"]
 radius = 0.210604
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_62bxd"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_hh40d"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_snijr"]
+viewport_path = NodePath("SubViewport")
 
 [node name="Column" type="StaticBody3D"]
 collision_layer = 5
@@ -34,5 +44,22 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.93744, 0)
 
 [node name="Trigger" type="CollisionShape3D" parent="GoalArea"]
 shape = SubResource("SphereShape3D_mr1vl")
+
+[node name="GoalEffect" type="Node3D" parent="."]
+
+[node name="DropEffect1" parent="GoalEffect" instance=ExtResource("2_0mkec")]
+transform = Transform3D(0.1, 0, 0, 0, -4.37114e-09, -0.1, 0, 0.1, -4.37114e-09, 0, 4.00641, 0)
+visible = false
+texture = SubResource("ViewportTexture_62bxd")
+
+[node name="DropEffect2" parent="GoalEffect" instance=ExtResource("2_0mkec")]
+transform = Transform3D(0.1, 0, 0, 0, -4.37114e-09, -0.1, 0, 0.1, -4.37114e-09, 0, 4.00641, 0)
+visible = false
+texture = SubResource("ViewportTexture_hh40d")
+
+[node name="DropEffect3" parent="GoalEffect" instance=ExtResource("2_0mkec")]
+transform = Transform3D(0.1, 0, 0, 0, -4.37114e-09, -0.1, 0, 0.1, -4.37114e-09, 0, 4.00641, 0)
+visible = false
+texture = SubResource("ViewportTexture_snijr")
 
 [connection signal="body_entered" from="GoalArea" to="." method="_on_goal_area_body_entered"]
