@@ -2,11 +2,14 @@ extends Node
 
 signal CollumnGenerated()
 
+signal SetMusicVolume()
+
 signal GameReady()
 signal GameReload()
 signal GameStart()
 signal GameStop()
 signal GamePaused()
+signal GameContinued()
 signal GameResumed()
 
 enum DIRECTION 
@@ -37,8 +40,8 @@ var RandomSpawn : bool = true
 var player : Player = null
 var generator : Generator = null
 
-
-
+var Music : float = 40
+var Sounds : float = 40
 
 func _ready() -> void:
 	
@@ -47,6 +50,7 @@ func _ready() -> void:
 	GameStart.connect(_on_game_going)
 	GameStop.connect(_on_game_stopped)
 	GamePaused.connect(_on_game_paused)
+	GameContinued.connect(_on_game_continued)
 	GameResumed.connect(_on_game_resumed)
 	
 	await CollumnGenerated
@@ -69,6 +73,10 @@ func _on_game_paused():
 	GameState = GAMESTATS.PAUSED
 	print("Game Paused")
 	
+func _on_game_continued():
+	GameState = GAMESTATS.GOING
+	print("Game Continued")
+	
 func _on_game_stopped():
 	GameState = GAMESTATS.NONE
 	print("Game Stopped")
@@ -76,3 +84,9 @@ func _on_game_stopped():
 func _on_game_resumed():
 	GameState = GAMESTATS.GOING
 	print("Game Resumed")
+	
+func lost_focus():
+	pass
+	
+func get_focus():
+	pass

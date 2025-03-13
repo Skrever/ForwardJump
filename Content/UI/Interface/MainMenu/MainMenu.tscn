@@ -74,3 +74,6 @@ offset_left = -149.5
 offset_right = -54.5
 grow_horizontal = 2
 grow_vertical = 2
+
+[connection signal="pressed" from="GroupBox/Panel/CrownButton" to="." method="_on_crown_button_pressed"]
+[connection signal="pressed" from="GroupBox/Panel/SettingsButton" to="." method="_on_settings_button_pressed"]

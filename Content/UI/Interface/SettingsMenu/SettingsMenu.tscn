@@ -1,0 +1,105 @@
+[gd_scene load_steps=7 format=3 uid="uid://wptxbmmb41q2"]
+
+[ext_resource type="Script" path="res://Content/UI/Interface/SettingsMenu/settings_menu.gd" id="1_1k6b1"]
+[ext_resource type="PackedScene" uid="uid://bhiiuk1ug31lq" path="res://Content/UI/Buttons/No/NoButton.tscn" id="1_e6d3o"]
+[ext_resource type="StyleBox" uid="uid://bftp76pqmv3oi" path="res://Content/UI/Panels/DefaultPanelWithoutBorders.tres" id="2_5twpf"]
+[ext_resource type="PackedScene" uid="uid://bnbfy4p6y1u42" path="res://Content/UI/Buttons/Yes/YesButton.tscn" id="2_g3pva"]
+[ext_resource type="PackedScene" uid="uid://bhkqqcgex1iva" path="res://Content/UI/Panels/Sounds/SoundsPanel.tscn" id="3_ypucp"]
+[ext_resource type="PackedScene" uid="uid://dc55lh7wssmnf" path="res://Content/UI/Panels/Music/MusicPanel.tscn" id="4_1dgco"]
+
+[node name="SettingsMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -243.0
+offset_right = 243.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_1k6b1")
+
+[node name="SettingsMenuGroupBox" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -109.5
+offset_top = -139.0
+offset_right = 110.5
+offset_bottom = 150.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(110, 150)
+
+[node name="BackSidePanel" type="Panel" parent="SettingsMenuGroupBox"]
+texture_filter = 6
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -110.0
+offset_top = -289.0
+offset_right = 110.0
+grow_horizontal = 2
+grow_vertical = 0
+pivot_offset = Vector2(110, 0)
+theme_override_styles/panel = ExtResource("2_5twpf")
+
+[node name="NoButton" parent="SettingsMenuGroupBox" instance=ExtResource("1_e6d3o")]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -99.0
+offset_top = -107.0
+offset_right = -4.0
+offset_bottom = -12.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="YesButton" parent="SettingsMenuGroupBox" instance=ExtResource("2_g3pva")]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = -107.0
+offset_right = 100.0
+offset_bottom = -12.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="SoundsPanel" parent="SettingsMenuGroupBox" instance=ExtResource("3_ypucp")]
+layout_mode = 1
+anchors_preset = 7
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -99.0
+offset_top = -195.0
+offset_right = 101.0
+offset_bottom = -131.667
+grow_vertical = 0
+
+[node name="MusicPanel" parent="SettingsMenuGroupBox" instance=ExtResource("4_1dgco")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.505
+anchor_top = 1.0
+anchor_right = 0.505
+anchor_bottom = 1.0
+offset_left = -100.1
+offset_top = -273.0
+offset_right = 99.9
+offset_bottom = -209.667
+
+[connection signal="pressed" from="SettingsMenuGroupBox/NoButton" to="." method="_on_no_button_pressed"]
+[connection signal="pressed" from="SettingsMenuGroupBox/YesButton" to="." method="_on_yes_button_pressed"]

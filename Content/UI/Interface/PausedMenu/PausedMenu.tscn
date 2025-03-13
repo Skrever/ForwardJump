@@ -1,0 +1,81 @@
+[gd_scene load_steps=6 format=3 uid="uid://ci8bjxyya3jf0"]
+
+[ext_resource type="StyleBox" uid="uid://bftp76pqmv3oi" path="res://Content/UI/Panels/DefaultPanelWithoutBorders.tres" id="1_a2gt5"]
+[ext_resource type="Script" path="res://Content/UI/Interface/PausedMenu/paused_menu.gd" id="1_uykqi"]
+[ext_resource type="PackedScene" uid="uid://bhiiuk1ug31lq" path="res://Content/UI/Buttons/No/NoButton.tscn" id="2_j3jy6"]
+[ext_resource type="PackedScene" uid="uid://teo2nhhllm30" path="res://Content/UI/Buttons/Next/NextButton.tscn" id="3_qn4g4"]
+[ext_resource type="PackedScene" uid="uid://jqt3oa5ki8ym" path="res://Content/UI/Buttons/Settings/SettingsButton.tscn" id="5_s276q"]
+
+[node name="PausedMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_uykqi")
+
+[node name="PauseGroupBox" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -160.5
+offset_top = -56.0
+offset_right = 160.5
+offset_bottom = 56.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BackSidePanel" type="Panel" parent="PauseGroupBox"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -160.5
+offset_top = -56.0
+offset_right = 160.5
+offset_bottom = 56.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(160, 56)
+theme_override_styles/panel = ExtResource("1_a2gt5")
+
+[node name="NoButton" parent="PauseGroupBox" instance=ExtResource("2_j3jy6")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -153.0
+offset_right = -58.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="NextButton" parent="PauseGroupBox" instance=ExtResource("3_qn4g4")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 57.5
+offset_right = 152.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SettingsButton" parent="PauseGroupBox" instance=ExtResource("5_s276q")]
+layout_mode = 0
+offset_left = 113.0
+offset_top = 8.5
+offset_right = 208.0
+offset_bottom = 103.5
+
+[connection signal="pressed" from="PauseGroupBox/NoButton" to="." method="_on_no_button_pressed"]
+[connection signal="pressed" from="PauseGroupBox/NextButton" to="." method="_on_next_button_pressed"]
+[connection signal="pressed" from="PauseGroupBox/SettingsButton" to="." method="_on_settings_button_pressed"]

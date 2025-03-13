@@ -1,0 +1,185 @@
+[gd_scene load_steps=7 format=3 uid="uid://gej74h1cledd"]
+
+[ext_resource type="Script" path="res://Content/UI/Interface/LeaderBoardPanel/leaderboard_panel.gd" id="1_q0faw"]
+[ext_resource type="StyleBox" uid="uid://bftp76pqmv3oi" path="res://Content/UI/Panels/DefaultPanelWithoutBorders.tres" id="1_x2n1c"]
+[ext_resource type="StyleBox" uid="uid://tjhskm4tx1e1" path="res://Content/UI/Panels/DefaultPanel.tres" id="2_ouxc1"]
+[ext_resource type="Script" path="res://Content/UI/local.gd" id="3_s0xtj"]
+[ext_resource type="PackedScene" uid="uid://bhiiuk1ug31lq" path="res://Content/UI/Buttons/No/NoButton.tscn" id="4_r1qni"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1rkrs"]
+
+[node name="LeaderboardPanel" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_q0faw")
+Leaderboard = "res://Content/UI/Panels/Leaderboard/LeaderboardPanel.tscn"
+metadata/_edit_vertical_guides_ = [-59.0]
+
+[node name="SetterGroupBox" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -200.0
+offset_right = 150.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(150, 0)
+
+[node name="BackSidePanel" type="Panel" parent="SetterGroupBox"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -200.0
+offset_right = 150.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(150, 0)
+theme_override_styles/panel = ExtResource("1_x2n1c")
+
+[node name="Control" type="Control" parent="SetterGroupBox/BackSidePanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -200.0
+offset_right = 150.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VScrollBar" type="VScrollBar" parent="SetterGroupBox/BackSidePanel/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -127.0
+offset_top = -152.0
+offset_right = 127.0
+offset_bottom = 153.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(127, 152.5)
+theme_override_styles/grabber = SubResource("StyleBoxFlat_1rkrs")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="SetterGroupBox/BackSidePanel/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -123.5
+offset_top = -148.5
+offset_right = 123.5
+offset_bottom = 148.5
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(127, 152.5)
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SetterGroupBox/BackSidePanel/Control/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="BackSideBistPanel" type="Panel" parent="SetterGroupBox"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -71.5
+offset_top = -50.0
+offset_right = 71.5
+offset_bottom = 25.0
+grow_horizontal = 2
+pivot_offset = Vector2(71.5, 75)
+theme_override_styles/panel = ExtResource("1_x2n1c")
+
+[node name="BestPanel" type="Panel" parent="SetterGroupBox/BackSideBistPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -55.0
+offset_top = -20.0
+offset_right = 55.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("2_ouxc1")
+
+[node name="Label" type="Label" parent="SetterGroupBox/BackSideBistPanel/BestPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Топ 10"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("3_s0xtj")
+Name_Text = "best"
+
+[node name="NoBackSideModel" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -57.0
+offset_top = -147.0
+offset_right = 57.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Panel" type="Panel" parent="NoBackSideModel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -57.0
+offset_top = -147.0
+offset_right = 57.0
+offset_bottom = -33.0
+grow_horizontal = 2
+grow_vertical = 0
+pivot_offset = Vector2(57, 57)
+theme_override_styles/panel = ExtResource("1_x2n1c")
+
+[node name="NoButton" parent="NoBackSideModel/Panel" instance=ExtResource("4_r1qni")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[connection signal="pressed" from="NoBackSideModel/Panel/NoButton" to="." method="_on_no_button_pressed"]

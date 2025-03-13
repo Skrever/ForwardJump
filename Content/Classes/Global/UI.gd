@@ -10,13 +10,35 @@ signal CloseDeadMenu()
 signal DeadMenuOpened()
 signal DeadMenuClosed()
 
+signal OpenSettingsMenu()
+signal CloseSettingsMenu()
+signal SettingsMenuOpened()
+signal SettingsMenuClosed()
+
+signal OpenLeaderboardMenu()
+signal CloseLeaderboardMenu()
+signal LeaderboardMenuOpened()
+signal LeaderboardMenuClosed()
+
+signal OpenPauseMenu()
+signal ClosePauseMenu()
+signal PauseMenuOpened()
+signal PauseMenuClosed()
+
+signal OpenHUD()
+signal CloseHUD()
+signal HUDOpened()
+signal HUDClosed()
 
 enum FOCUS_IN
 {
 	NONE,
 	MAIN_MENU,
 	GAME,
-	DEAD_MENU
+	DEAD_MENU,
+	PAUSE_MENU,
+	SETTINGS_MENU,
+	LEADERBOARD_MENU
 }
 
 var focus : FOCUS_IN = FOCUS_IN.NONE
@@ -30,6 +52,7 @@ func _ready() -> void:
 	Global.GameStart.connect(_on_game_going)
 	Global.GameStop.connect(_on_game_stopped)
 	Global.GamePaused.connect(_on_game_paused)
+	Global.GameContinued.connect(_on_game_continued)
 	Global.GameResumed.connect(_on_game_resumed)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -41,12 +64,17 @@ func _on_game_ready():
 	
 func _on_game_going():
 	CloseMainMenu.emit()
-	focus = FOCUS_IN.GAME
+	OpenHUD.emit()
 
 func _on_game_paused():
-	pass
+	CloseHUD.emit()
+	OpenPauseMenu.emit()
+
+func _on_game_continued():
+	OpenHUD.emit()
 	
 func _on_game_stopped():
+	CloseHUD.emit()
 	await get_tree().create_timer(1).timeout
 	OpenDeadMenu.emit()
 	

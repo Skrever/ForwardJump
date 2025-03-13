@@ -1,0 +1,147 @@
+[gd_scene load_steps=9 format=3 uid="uid://bk8xsyk3c03ub"]
+
+[ext_resource type="StyleBox" uid="uid://bftp76pqmv3oi" path="res://Content/UI/Panels/DefaultPanelWithoutBorders.tres" id="1_3jg0c"]
+[ext_resource type="Script" path="res://Content/UI/YandexAuthMenu/yandex_auth_menu.gd" id="1_janqu"]
+[ext_resource type="Shader" path="res://Content/UI/blur.gdshader" id="1_k7axw"]
+[ext_resource type="PackedScene" uid="uid://bhiiuk1ug31lq" path="res://Content/UI/Buttons/No/NoButton.tscn" id="2_e0fsh"]
+[ext_resource type="PackedScene" uid="uid://bnbfy4p6y1u42" path="res://Content/UI/Buttons/Yes/YesButton.tscn" id="3_r7fyx"]
+[ext_resource type="StyleBox" uid="uid://tjhskm4tx1e1" path="res://Content/UI/Panels/DefaultPanel.tres" id="5_y2qq8"]
+[ext_resource type="Script" path="res://Content/UI/local.gd" id="6_oywuj"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jb70t"]
+shader = ExtResource("1_k7axw")
+shader_parameter/color = null
+shader_parameter/value = 0.5
+
+[node name="YandexAuthMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_janqu")
+
+[node name="blur" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_jb70t")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ConfirmationPanel" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -110.0
+offset_top = -158.0
+offset_right = 110.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Panel" type="Panel" parent="ConfirmationPanel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -110.0
+offset_right = 110.0
+offset_bottom = 114.0
+grow_horizontal = 2
+theme_override_styles/panel = ExtResource("1_3jg0c")
+
+[node name="NoButton" parent="ConfirmationPanel" instance=ExtResource("2_e0fsh")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -70.0
+offset_right = -5.0
+offset_bottom = 25.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="YesButton" parent="ConfirmationPanel" instance=ExtResource("3_r7fyx")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 4.0
+offset_top = -70.0
+offset_right = 99.0
+offset_bottom = 25.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MessageGroupBox" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -224.0
+offset_right = 150.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(150, 110)
+
+[node name="BackSidePanel" type="Panel" parent="MessageGroupBox"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(150, 0)
+theme_override_styles/panel = ExtResource("1_3jg0c")
+
+[node name="Message" type="Panel" parent="MessageGroupBox/BackSidePanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -119.0
+offset_top = -72.5
+offset_right = 119.0
+offset_bottom = 72.5
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(119, 0)
+theme_override_styles/panel = ExtResource("5_y2qq8")
+
+[node name="Label" type="Label" parent="MessageGroupBox/BackSidePanel/Message"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 27.0
+offset_top = 1.0
+offset_right = -20.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 15
+text = "Вы не авторизованы, хотите авторизоваться?"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+script = ExtResource("6_oywuj")
+Name_Text = "auth"
+
+[connection signal="pressed" from="ConfirmationPanel/NoButton" to="." method="_on_no_button_pressed"]
+[connection signal="pressed" from="ConfirmationPanel/YesButton" to="." method="_on_yes_button_pressed"]

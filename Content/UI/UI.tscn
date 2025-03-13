@@ -1,7 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://c8jwf3341lg6s"]
+[gd_scene load_steps=7 format=3 uid="uid://c8jwf3341lg6s"]
 
+[ext_resource type="PackedScene" uid="uid://dkoo4tqq6dyyn" path="res://Content/UI/Interface/HUD/HUD.tscn" id="1_5dpc1"]
 [ext_resource type="PackedScene" uid="uid://byuagjvh3bkib" path="res://Content/UI/Interface/MainMenu/MainMenu.tscn" id="1_tqbjm"]
 [ext_resource type="PackedScene" uid="uid://cju8t4vsenjnj" path="res://Content/UI/Interface/DeadMenu/DeadMenu.tscn" id="2_e72pl"]
+[ext_resource type="PackedScene" uid="uid://ci8bjxyya3jf0" path="res://Content/UI/Interface/PausedMenu/PausedMenu.tscn" id="3_l15h5"]
+[ext_resource type="PackedScene" uid="uid://wptxbmmb41q2" path="res://Content/UI/Interface/SettingsMenu/SettingsMenu.tscn" id="3_st6w8"]
+[ext_resource type="PackedScene" uid="uid://gej74h1cledd" path="res://Content/UI/Interface/LeaderBoardPanel/LeaderboardPanel.tscn" id="4_xu64i"]
 
 [node name="UI" type="Control"]
 layout_mode = 3
@@ -11,8 +15,25 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="HUD" parent="." instance=ExtResource("1_5dpc1")]
+layout_mode = 1
+
 [node name="MainMenu" parent="." instance=ExtResource("1_tqbjm")]
+visible = false
+layout_mode = 1
+
+[node name="PausedMenu" parent="." instance=ExtResource("3_l15h5")]
+visible = false
 layout_mode = 1
 
 [node name="DeadMenu" parent="." instance=ExtResource("2_e72pl")]
+visible = false
+layout_mode = 1
+
+[node name="SettingsMenu" parent="." instance=ExtResource("3_st6w8")]
+visible = false
+layout_mode = 1
+
+[node name="LeaderboardPanel" parent="." instance=ExtResource("4_xu64i")]
+visible = false
 layout_mode = 1

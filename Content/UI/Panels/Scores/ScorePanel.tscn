@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=3 uid="uid://cbgmtt1j3p262"]
+
+[ext_resource type="StyleBox" uid="uid://bftp76pqmv3oi" path="res://Content/UI/Panels/DefaultPanelWithoutBorders.tres" id="1_0rhlc"]
+[ext_resource type="Script" path="res://Content/UI/Panels/Scores/level.gd" id="2_bynvv"]
+
+[node name="ScorePanel" type="Panel"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -59.0
+offset_top = -27.0
+offset_right = 59.0
+offset_bottom = 27.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(59, 27)
+theme_override_styles/panel = ExtResource("1_0rhlc")
+
+[node name="Level" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 35
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("2_bynvv")

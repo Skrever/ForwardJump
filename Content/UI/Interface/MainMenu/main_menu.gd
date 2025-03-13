@@ -41,3 +41,13 @@ func setInvisible():
 	UI.focus = UI.FOCUS_IN.NONE
 	UI.MainMenuClosed.emit()
 	mouse_filter = MouseFilter.MOUSE_FILTER_IGNORE
+
+
+func _on_settings_button_pressed() -> void:
+	await setInvisible()
+	UI.OpenSettingsMenu.emit()
+
+
+func _on_crown_button_pressed() -> void:
+	await setInvisible()
+	UI.OpenLeaderboardMenu.emit()

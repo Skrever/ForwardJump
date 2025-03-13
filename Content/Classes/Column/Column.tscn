@@ -13,7 +13,7 @@ size = Vector3(3, 4, 3)
 albedo_color = Color(0.903223, 0.361231, 0.283591, 1)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_mr1vl"]
-radius = 0.210604
+radius = 0.125635
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_62bxd"]
 viewport_path = NodePath("SubViewport")
