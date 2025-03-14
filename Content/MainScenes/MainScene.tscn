@@ -6,7 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://djukxyj1v26ks" path="res://Content/Classes/DinamicFloor/DinamicFloor.tscn" id="4_vq4ek"]
 
 [sub_resource type="Environment" id="Environment_p0hts"]
-background_color = Color(0.52616, 0.273195, 0.225693, 1)
+background_mode = 1
+background_color = Color(0.720773, 0.473735, 0.406016, 1)
 background_energy_multiplier = 1.6
 ambient_light_source = 2
 ambient_light_color = Color(0.851769, 0.851769, 0.851769, 1)

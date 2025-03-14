@@ -16,8 +16,8 @@ var Localisation : Dictionary = {
 	
 	"best" : 
 		{
-			"ru": "Топ 10",
-			"en": "Top 10"
+			"ru": "Топ 5",
+			"en": "Top 5"
 		},
 	"noname" : 
 		{

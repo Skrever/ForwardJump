@@ -133,11 +133,11 @@ func _get_raw_leaderboard(success, entries):
 					var usr := false
 					if str(entry.name) == Bridge.player.name:
 						usr = true
-						#print("User in leaderboard")
+					print("Player: ", str(entry.name), " Scores: ", str(entry.score))
 					var name_ = str(entry.name)
 					if str(entry.name).is_empty():
 						name_ = ""
-					#print("сырое имя игрока: ", entry.name, " После обработки: ", name_)
+					print("сырое имя игрока: ", entry.name, " После обработки: ", name_)
 					var user = {
 							"name" : name_,
 							"score" : str(entry.score),
@@ -173,8 +173,8 @@ func _update_leaderboard():
 	var options = {
 		"leaderboardName": "Best",
 		"includeUser": true,
-		"quantityAround": 0,
-		"quantityTop": 10
+		"quantityAround": 1,
+		"quantityTop": 5
 		}
 	Bridge.leaderboard.get_entries(options, Callable(self, "_get_raw_leaderboard"))
 
@@ -200,27 +200,9 @@ func saveData():
 	canSaiving = false
 	if isDataLoading: await DataLoaded # Если сейчас загружается что-то, пропуск
 	isDataSaving = true
-	#print("Попытка сохранить...")
-	#
-	#var boughtCats : String
-	#for i in Global.boughtCats:
-		#if i:
-			#boughtCats += "1"
-		#else:
-			#boughtCats += "0"
-	#var TakedCatID : int = Global.TakedCat
-	#var TakedGunID : int = Global.TakedGun
-	#var Coins : int = Global.Coins
-	#var CountKilledZombies : int = Global.CountKilledZombie # Сохраняем максимальное число, чтоб потом сравнивать с текущим
-	#var Music : int = Global.Music
-	#var Sounds : int = Global.Sounds
-	#var PlayerLevel = Global.PlayerLevel
-	#var ProgressKillZombie : int = Global.ProgressKillZombie
-	#var CatName : String = Global.CatName
-	#var ControlSystem : String = "touch" if Global.ControlSystem == Global.CONTROL.TOUCH else "joystick"
-	#
-	#Bridge.storage.set(["boughtCats", "TakedCatID", "TakedGunID", "Coins", "CountKilledZombies", "Music", "Sounds", "PlayerLevel", "ProgressKillZombie", "CatName", "ControlSystem"], [boughtCats, TakedCatID, TakedGunID, Coins, CountKilledZombies, Music, Sounds, PlayerLevel, ProgressKillZombie, CatName, ControlSystem], Callable(self, "_on_storage_set_completed"), Bridge.StorageType.LOCAL_STORAGE)
-	#
+	print("Попытка сохранить...")
+	var MaxScore = Global.MaxScore
+	Bridge.storage.set(["MaxScore"], [MaxScore], Callable(self, "_on_storage_set_completed"), Bridge.StorageType.LOCAL_STORAGE)
 	
 func _on_get_score_completed(success, score):
 	if success:
@@ -242,8 +224,9 @@ func loadUserData():
 	if isDataSaving: await DataSaved
 	isDataLoading = true
 	
-	Bridge.storage.get(["boughtCats", "TakedCatID", "TakedGunID", "Coins", "CountKilledZombies", "Music", "Sounds", "PlayerLevel", "ProgressKillZombie", "CatName", "ControlSystem"], Callable(self, "_on_storage_get_completed"), Bridge.StorageType.LOCAL_STORAGE)
+	Bridge.storage.get(["MaxScore"], Callable(self, "_on_storage_get_completed"), Bridge.StorageType.LOCAL_STORAGE)
 	Bridge.leaderboard.get_score({ "leaderboardName": "Best" }, Callable(self, "_on_get_score_completed"))
+	
 	#if Bridge.storage.is_supported(Bridge.StorageType.PLATFORM_INTERNAL):
 		#print("Выбрали облако")
 		#Bridge.storage.get(["boughtCats", "TakedCatID", "TakedGunID", "Coins", "CountKilledZombies", "Music", "Sounds", "PlayerLevel", "ProgressKillZombie", "CatName"], Callable(self, "_on_storage_get_completed"))
@@ -254,63 +237,17 @@ func loadUserData():
 func _on_storage_get_completed(success, data):
 	if success:
 		pass
-		#print(data)
-		#print("Load user data is ", success)
-		#if data[0] != null:
-			#for i in range(0, data[0].length()):
-				#if (data[0][i] == "1") or (data[0][i] == "0"):
-					#if (data[0][i] == "1") : Global.boughtCats[i] = true
-					#else : Global.boughtCats[i] = false
-		#else:
-			#Global.boughtCats = [true, false, false, false]
-		#if data[1] != null:
-			#Global.TakedCat = data[1]
-		#else:
-			#Global.TakedCat = 0
-		#if data[2] != null:
-			#Global.TakedGun = data[2]
-		#else:
-			#Global.TakedGun = 0
-		#if data[3] != null:
-			#Global.Coins = data[3]
-		#else:
-			#Global.Coins = 0
-		#if data[4] != null:
-			#Global.CountKilledZombie = data[4]
-		#else:
-			#Global.CountKilledZombie = 0
-		#if data[5] != null:
-			#Global.Music = data[5]
-		#else:
-			#Global.Music = 40
-		#if data[6] != null:
-			#Global.Sounds = data[6]
-		#else:
-			#Global.Sounds = 40
-		#if data[7] != null:
-			#Global.PlayerLevel = data[7]
-			#Global.PlayerLevelChanged.emit(Global.PlayerLevel)
-		#else:
-			#Global.PlayerLevel = 1
-		#if data[8] != null:
-			#Global.ProgressKillZombie = data[8]
-		#else:
-			#Global.ProgressKillZombie = 0
-		#if data[9] != null:
-			#Global.CatName = data[9]
-		#else: 
-			#Global.CatName = " "
-		#if data[10] != null:
-			#Global.ControlSystem = Global.CONTROL.TOUCH if data[10] == "touch" else Global.CONTROL.JOYSTICK
-			#if device == "mobile": Global.ControlSystem = Global.CONTROL.JOYSTICK
-		#else:
-			#Global.ControlSystem = Global.CONTROL.TOUCH if device == "desktop" else Global.CONTROL.JOYSTICK
+		print(data)
+		print("Load user data is ", success)
+		if data[0] != null:
+			Global.MaxScore = int(data[0])
+		else:
+			Global.MaxScore = 0
 	else:
 		print("Loading Data is insucces")
 		
 	DataLoadedFully = true
 	DataLoaded.emit()
-	Global.DataLoadedCorrectly.emit()
 	isDataLoading = false
 		
 #func GameIsOn():

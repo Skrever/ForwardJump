@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://pvbtwtmqm74r"]
+[gd_scene load_steps=11 format=3 uid="uid://pvbtwtmqm74r"]
 
 [ext_resource type="Script" path="res://Content/Classes/Column/Column.gd" id="1_i2q6p"]
 [ext_resource type="PackedScene" uid="uid://cqv4goxnlhwlg" path="res://Content/Classes/Column/DropEffect3D.tscn" id="2_0mkec"]
@@ -23,6 +23,9 @@ viewport_path = NodePath("SubViewport")
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_snijr"]
 viewport_path = NodePath("SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_wt10y"]
+viewport_path = NodePath("NumberEffect/NumberEffect/SubViewport")
 
 [node name="Column" type="StaticBody3D"]
 collision_layer = 5
@@ -61,5 +64,28 @@ texture = SubResource("ViewportTexture_hh40d")
 transform = Transform3D(0.1, 0, 0, 0, -4.37114e-09, -0.1, 0, 0.1, -4.37114e-09, 0, 4.00641, 0)
 visible = false
 texture = SubResource("ViewportTexture_snijr")
+
+[node name="NumberEffect" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.22616, 0)
+
+[node name="NumberEffect" type="Sprite3D" parent="NumberEffect"]
+visible = false
+billboard = 1
+texture = SubResource("ViewportTexture_wt10y")
+
+[node name="SubViewport" type="SubViewport" parent="NumberEffect/NumberEffect"]
+disable_3d = true
+transparent_bg = true
+
+[node name="Label" type="Label" parent="NumberEffect/NumberEffect/SubViewport"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 140
+text = "123"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="body_entered" from="GoalArea" to="." method="_on_goal_area_body_entered"]

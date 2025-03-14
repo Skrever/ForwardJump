@@ -48,10 +48,15 @@ func _ready():
 func _process(delta):
 	pass
 
+var time_passed : float = 0
 func _physics_process(delta):
 
 	if (!moving and !isDead):
 		velocity.y = -500 * delta
+		time_passed += delta
+		var _tmp_scale : float = 1 +  sin(time_passed * 4) / 40
+		rdRoot.scale = Vector3(_tmp_scale,_tmp_scale,_tmp_scale)
+	
 	move_and_slide()
 
 func _input(event):
@@ -124,7 +129,14 @@ func _on_game_reload():
 
 
 func _on_area_body_entered(body: Node3D) -> void:
-	Floor = body if body is Collumn else null
+	if body is Collumn:
+		Floor = body
+		if Global.GameState == Global.GAMESTATS.GOING:
+			body._show_number()
+			Global.CountTouchesCollumn += 1
+			Global.PlayerOnCollumn.emit()
+	else:
+		Floor = null
 
 
 func _on_area_body_exited(body: Node3D) -> void:

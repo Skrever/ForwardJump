@@ -25,6 +25,11 @@ signal ClosePauseMenu()
 signal PauseMenuOpened()
 signal PauseMenuClosed()
 
+signal OpenLearningMenu()
+signal CloseLearningMenu()
+signal LearningMenuOpened()
+signal LearningMenuClosed()
+
 signal OpenHUD()
 signal CloseHUD()
 signal HUDOpened()
@@ -47,6 +52,7 @@ func _ready() -> void:
 	# Дебаг
 	await get_tree().create_timer(2).timeout
 	OpenMainMenu.emit()
+	OpenLearningMenu.emit()
 	
 	Global.GameReady.connect(_on_game_ready)
 	Global.GameStart.connect(_on_game_going)
@@ -64,6 +70,7 @@ func _on_game_ready():
 	
 func _on_game_going():
 	CloseMainMenu.emit()
+	CloseLearningMenu.emit()
 	OpenHUD.emit()
 
 func _on_game_paused():

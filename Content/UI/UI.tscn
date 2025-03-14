@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://c8jwf3341lg6s"]
+[gd_scene load_steps=8 format=3 uid="uid://c8jwf3341lg6s"]
 
 [ext_resource type="PackedScene" uid="uid://dkoo4tqq6dyyn" path="res://Content/UI/Interface/HUD/HUD.tscn" id="1_5dpc1"]
 [ext_resource type="PackedScene" uid="uid://byuagjvh3bkib" path="res://Content/UI/Interface/MainMenu/MainMenu.tscn" id="1_tqbjm"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://ci8bjxyya3jf0" path="res://Content/UI/Interface/PausedMenu/PausedMenu.tscn" id="3_l15h5"]
 [ext_resource type="PackedScene" uid="uid://wptxbmmb41q2" path="res://Content/UI/Interface/SettingsMenu/SettingsMenu.tscn" id="3_st6w8"]
 [ext_resource type="PackedScene" uid="uid://gej74h1cledd" path="res://Content/UI/Interface/LeaderBoardPanel/LeaderboardPanel.tscn" id="4_xu64i"]
+[ext_resource type="PackedScene" uid="uid://xni5iwv0wqj2" path="res://Content/UI/Interface/LearningMenu/LearningMenu.tscn" id="7_oq5aq"]
 
 [node name="UI" type="Control"]
 layout_mode = 3
@@ -36,4 +37,7 @@ layout_mode = 1
 
 [node name="LeaderboardPanel" parent="." instance=ExtResource("4_xu64i")]
 visible = false
+layout_mode = 1
+
+[node name="LearningMenu" parent="." instance=ExtResource("7_oq5aq")]
 layout_mode = 1

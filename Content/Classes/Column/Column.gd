@@ -12,6 +12,8 @@ var canShake : bool = true
 
 @onready var rdGoalEffect: Node3D = $GoalEffect
 @onready var rdMesh: MeshInstance3D = $CollisionShape3D/Mesh
+@onready var rdLabel: Label = $NumberEffect/NumberEffect/SubViewport/Label
+@onready var rdNumberEffect: Sprite3D = $NumberEffect/NumberEffect
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -30,6 +32,8 @@ func reload():
 
 func _on_goal_area_body_entered(body: Node3D) -> void:
 	if body is Player and canShake:
+		Global.GoalScore += 1
+		Global.CountTouchesCollumn += 1
 		_shake()
 		for i in range(0, rdGoalEffect.get_children().size()):
 			rdGoalEffect.get_children()[i].setVisible()
@@ -56,3 +60,25 @@ func _shake():
 	tweenX.tween_property(rdMesh, "position:x", 0, 0.05)
 	tweenY = create_tween()
 	tweenY.tween_property(rdMesh, "position:z", 0, 0.071)
+	
+func _show_number():
+	await Global.GettedScores
+	rdNumberEffect.get_parent().position.x = randf_range(-1, 1)
+	rdNumberEffect.get_parent().position.z = randf_range(-1, 1)
+	rdLabel.text = str(1 + Global.GoalScore)
+	rdNumberEffect.visible = true
+	
+	var number_tween : Tween = create_tween()
+	number_tween.tween_method(_anim_number_effect_on, 0.0, 1.0, 0.5).set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_OUT)
+	await number_tween.finished
+	await get_tree().create_timer(1).timeout
+	
+	number_tween = create_tween()
+	number_tween.tween_method(_anim_number_effect_on, 1.0, 0.0, 0.5).set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_IN_OUT)
+	await number_tween.finished
+	
+	rdNumberEffect.visible = false
+	
+func _anim_number_effect_on(alpha : float):
+	rdNumberEffect.scale = lerp(Vector3.ZERO, Vector3(1, 1, 1), alpha)
+	rdNumberEffect.position = lerp(Vector3.ZERO, Vector3(0, 2, 0), alpha)
