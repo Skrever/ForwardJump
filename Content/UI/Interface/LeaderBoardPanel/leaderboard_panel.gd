@@ -60,4 +60,8 @@ func _on_no_button_pressed() -> void:
 	
 	await setInvisible()
 	UI.OpenMainMenu.emit()
+	
+	if !Global.UserKnowHowToPlay:
+		UI.OpenLearningMenu.emit()
+	
 	SDKBridge.ShowAdd()

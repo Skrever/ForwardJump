@@ -24,13 +24,26 @@ func _ready():
 func _process(delta):
 	pass
 	
-func reload():
+func reload(ReloadLocation : Vector3 = Vector3(0, 30, 0)):
+	await delete_collumn()
 	Use = false
+	canShake = true
+	position = ReloadLocation
 	NextCollumnAt = Global.DIRECTION.LEFT
 	DistanceToNextCollumn = 0
-	
 
+func delete_collumn():
+	var tween := create_tween().tween_property(rdMesh, "position", Vector3(0, -5, 0), 0.05)
+	create_tween().tween_property(rdMesh, "scale", Vector3(0, 0, 0), 0.05)
+	await tween.finished
+	
+func put_collumn():
+	var tween := create_tween().tween_property(rdMesh, "position", Vector3.ZERO, 0.05)
+	create_tween().tween_property(rdMesh, "scale", Vector3(1, 1, 1), 0.05)
+	await tween.finished
+	
 func _on_goal_area_body_entered(body: Node3D) -> void:
+	if Global.player.CountJump == 0 or Global.recentlyResumed: return
 	if body is Player and canShake:
 		Global.GoalScore += 1
 		Global.CountTouchesCollumn += 1
@@ -62,10 +75,11 @@ func _shake():
 	tweenY.tween_property(rdMesh, "position:z", 0, 0.071)
 	
 func _show_number():
+	if Global.player.CountJump == 0 or Global.recentlyResumed: return
 	await Global.GettedScores
 	rdNumberEffect.get_parent().position.x = randf_range(-1, 1)
 	rdNumberEffect.get_parent().position.z = randf_range(-1, 1)
-	rdLabel.text = str(1 + Global.GoalScore)
+	rdLabel.text = "+" + str(1 + Global.GoalScore)
 	rdNumberEffect.visible = true
 	
 	var number_tween : Tween = create_tween()

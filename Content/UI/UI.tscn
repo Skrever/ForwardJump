@@ -16,7 +16,12 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="LearningMenu" parent="." instance=ExtResource("7_oq5aq")]
+visible = false
+layout_mode = 1
+
 [node name="HUD" parent="." instance=ExtResource("1_5dpc1")]
+visible = false
 layout_mode = 1
 
 [node name="MainMenu" parent="." instance=ExtResource("1_tqbjm")]
@@ -37,7 +42,4 @@ layout_mode = 1
 
 [node name="LeaderboardPanel" parent="." instance=ExtResource("4_xu64i")]
 visible = false
-layout_mode = 1
-
-[node name="LearningMenu" parent="." instance=ExtResource("7_oq5aq")]
 layout_mode = 1

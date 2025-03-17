@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://xni5iwv0wqj2"]
+[gd_scene load_steps=3 format=3 uid="uid://xni5iwv0wqj2"]
 
 [ext_resource type="Script" path="res://Content/UI/Interface/LearningMenu/learning_menu.gd" id="1_e6do4"]
+[ext_resource type="Script" path="res://Content/UI/local.gd" id="2_rmwhe"]
 
 [node name="LearningMenu" type="Control"]
 layout_mode = 3
@@ -24,6 +25,7 @@ offset_right = 243.0
 offset_bottom = -213.45
 grow_horizontal = 2
 grow_vertical = 0
+mouse_filter = 1
 
 [node name="Label" type="Label" parent="LearningGroupBox"]
 custom_minimum_size = Vector2(300, 150)
@@ -40,10 +42,13 @@ offset_bottom = 75.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(150, 75)
+mouse_filter = 1
 theme_override_colors/font_outline_color = Color(0.473976, 0.473976, 0.473976, 1)
 theme_override_constants/outline_size = 7
 theme_override_font_sizes/font_size = 25
-text = "Нажми на экран и проведи вниз чтобы прыгнуть!"
+text = "Нажми на экран и проведи вниз чтобы регулировать прыжок!"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
+script = ExtResource("2_rmwhe")
+Name_Text = "learning"

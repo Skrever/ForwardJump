@@ -15,6 +15,9 @@ func _ready() -> void:
 	UI.CloseMainMenu.connect(setInvisible)
 
 func setVisible():
+	
+	if UI.focus != UI.FOCUS_IN.NONE: return
+	
 	visible = true
 	UI.focus = UI.FOCUS_IN.MAIN_MENU
 	mouse_filter = MouseFilter.MOUSE_FILTER_STOP
@@ -45,9 +48,11 @@ func setInvisible():
 
 func _on_settings_button_pressed() -> void:
 	await setInvisible()
+	UI.CloseLearningMenu.emit()
 	UI.OpenSettingsMenu.emit()
 
 
 func _on_crown_button_pressed() -> void:
 	await setInvisible()
+	UI.CloseLearningMenu.emit()
 	UI.OpenLeaderboardMenu.emit()

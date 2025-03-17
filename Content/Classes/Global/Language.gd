@@ -23,5 +23,15 @@ var Localisation : Dictionary = {
 		{
 			"ru": "Игрок невидим",
 			"en": "Noname player"
+		},
+	"continueforadd" : 
+		{
+			"ru": "Продолжить за рекламу",
+			"en": "Continue for advertising"
+		},
+	"learning" :
+		{
+			"ru": "Нажми на экран и проведи вниз чтобы регулировать прыжок!",
+			"en": "Tap the screen and swipe down to adjust the jump!"
 		}
 }

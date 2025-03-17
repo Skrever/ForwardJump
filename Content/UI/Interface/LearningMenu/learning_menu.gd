@@ -18,7 +18,7 @@ func _physics_process(delta: float) -> void:
 
 func setVisible():
 	visible = true
-	mouse_filter = MouseFilter.MOUSE_FILTER_STOP
+	mouse_filter = MouseFilter.MOUSE_FILTER_PASS
 	create_tween().tween_property(rdLabel, "scale", Vector2(1, 1), 0.1)
 	await get_tree().create_timer(0.1).timeout
 	

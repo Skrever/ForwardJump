@@ -15,8 +15,16 @@ func _ready() -> void:
 
 func setVisible():
 	
-	UI.focus = UI.FOCUS_IN.PAUSE_MENU
+	if UI.focus == UI.FOCUS_IN.MAIN_MENU: await UI.MainMenuClosed
+	if UI.focus == UI.FOCUS_IN.GAME: await UI.HUDClosed
+	if UI.focus == UI.FOCUS_IN.DEAD_MENU: await UI.DeadMenuClosed
+	#if UI.focus == UI.FOCUS_IN.PAUSE_MENU: await UI.PauseMenuClosed
+	if UI.focus == UI.FOCUS_IN.SETTINGS_MENU: await UI.SettingsMenuClosed
+	if UI.focus == UI.FOCUS_IN.LEADERBOARD_MENU: await UI.LeaderboardMenuClosed
 	
+	
+	UI.focus = UI.FOCUS_IN.PAUSE_MENU
+	print("Paused Menu")
 	visible = true
 	mouse_filter = MouseFilter.MOUSE_FILTER_STOP
 	create_tween().tween_property(rdBackSidePanel, "scale", Vector2(1, 1), 0.1)
@@ -28,6 +36,7 @@ func setVisible():
 	UI.PauseMenuOpened.emit()
 
 func setInvisible():
+	mouse_filter = MouseFilter.MOUSE_FILTER_IGNORE
 	create_tween().tween_property(rdBackSidePanel, "scale", Vector2.ZERO, 0.1)
 	create_tween().tween_property(rdNoButton, "scale", Vector2.ZERO, 0.1)
 	create_tween().tween_property(rdRestartButton, "scale", Vector2.ZERO, 0.1)
@@ -36,7 +45,6 @@ func setInvisible():
 	visible = false
 	UI.focus = UI.FOCUS_IN.NONE
 	UI.PauseMenuClosed.emit()
-	mouse_filter = MouseFilter.MOUSE_FILTER_PASS
 
 
 func _on_next_button_pressed() -> void:

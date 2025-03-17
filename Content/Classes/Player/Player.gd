@@ -8,6 +8,7 @@ signal MovingFinished
 var StartTouch
 var RelativeTouch
 var IsPressed : bool = false
+var CountJump : int = 0
 
 #Сжатия игрока
 @export_category("Player Settings")
@@ -41,6 +42,9 @@ var Force : float = 1.4
 func _ready():
 	Global.player = self
 	Global.GameReload.connect(_on_game_reload)
+	Global.GameStart.connect(_on_game_start)
+	Global.GameStop.connect(_on_game_stop)
+	Global.GameResumed.connect(_on_game_resumed)
 	StartPosition = position
 
 
@@ -93,6 +97,7 @@ func _input(event):
 
 func move():
 	moving = true
+	
 	set_physics_process(false)
 	MovingStarted.emit()
 	lastPosition = position
@@ -109,6 +114,7 @@ func move():
 	lastRotation = rdMesh.rotation
 	var movingTween := create_tween().tween_method(_curve_move, 0.0, 1.0, JumpTime * (1 - CompressinRatio))
 	await movingTween.finished
+	CountJump += 1
 	set_physics_process(true)
 	MovingFinished.emit()
 	CompressinRatio = 0
@@ -120,24 +126,43 @@ func _curve_move(alpha : float):
 	rdMesh.rotation = lerp(lastRotation, nexRotation, alpha)
 
 func dead():
-	isDead = true
-	Global.GameStop.emit()
+	if CountJump < 2:
+		await get_tree().create_timer(1).timeout
+		_on_game_reload()
+	else:
+		isDead = true
+		Global.GameStop.emit()
+
+func _on_game_start():
+	pass
+
+func _on_game_resumed():
+	position = lastPosition + Vector3(0, 1, 0)
+	isDead = false
+	
 
 func _on_game_reload():
+	create_tween().tween_property(rdRoot, "scale", Vector3.ZERO, 0.1)
+	await get_tree().create_timer(0.1).timeout
 	position = StartPosition
 	isDead = false
+	CountJump = 0
+	create_tween().tween_property(rdRoot, "scale", Vector3(1, 1, 1), 0.2)
+	await get_tree().create_timer(0.2).timeout 
+
+func _on_game_stop():
+	pass
 
 
 func _on_area_body_entered(body: Node3D) -> void:
 	if body is Collumn:
 		Floor = body
-		if Global.GameState == Global.GAMESTATS.GOING:
+		if CountJump >= 1:
 			body._show_number()
 			Global.CountTouchesCollumn += 1
 			Global.PlayerOnCollumn.emit()
 	else:
 		Floor = null
-
 
 func _on_area_body_exited(body: Node3D) -> void:
 	if body is Collumn: Floor = null

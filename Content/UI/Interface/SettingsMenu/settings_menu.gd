@@ -53,6 +53,10 @@ func _on_no_button_pressed() -> void:
 		UI.OpenPauseMenu.emit()
 	else:
 		UI.OpenMainMenu.emit()
+		
+	if !Global.UserKnowHowToPlay:
+		UI.OpenLearningMenu.emit()
+	
 	SDKBridge.ShowAdd()
 
 func _on_yes_button_pressed() -> void:
@@ -64,3 +68,6 @@ func _on_yes_button_pressed() -> void:
 		UI.OpenPauseMenu.emit()
 	else:
 		UI.OpenMainMenu.emit()
+		
+	if !Global.UserKnowHowToPlay:
+		UI.OpenLearningMenu.emit()

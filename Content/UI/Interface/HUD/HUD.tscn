@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://dkoo4tqq6dyyn"]
+[gd_scene load_steps=6 format=3 uid="uid://dkoo4tqq6dyyn"]
 
 [ext_resource type="PackedScene" uid="uid://du2lmuf8dr5e5" path="res://Content/UI/Buttons/Pause/PauseButton.tscn" id="1_3qrsj"]
 [ext_resource type="Script" path="res://Content/UI/Interface/HUD/hud.gd" id="1_wv6h0"]
+[ext_resource type="StyleBox" uid="uid://bftp76pqmv3oi" path="res://Content/UI/Panels/DefaultPanelWithoutBorders.tres" id="2_5sa4i"]
 [ext_resource type="PackedScene" uid="uid://cbgmtt1j3p262" path="res://Content/UI/Panels/Scores/ScorePanel.tscn" id="3_vatvb"]
+[ext_resource type="PackedScene" uid="uid://cgqnsua7egu01" path="res://Content/UI/Panels/Gems/Gems.tscn" id="5_tocbb"]
 
 [node name="HUD" type="Control"]
 layout_mode = 3
@@ -24,20 +26,38 @@ offset_bottom = 100.0
 grow_horizontal = 2
 pivot_offset = Vector2(243, 0)
 
-[node name="PauseButton" parent="GroupBox" instance=ExtResource("1_3qrsj")]
+[node name="Panel" type="Panel" parent="GroupBox"]
+custom_minimum_size = Vector2(300, 54)
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_top = 27.0
-offset_bottom = 81.0
+offset_left = -150.0
+offset_top = 30.0
+offset_right = 150.0
+offset_bottom = 84.0
 grow_horizontal = 2
+pivot_offset = Vector2(150, 27)
+theme_override_styles/panel = ExtResource("2_5sa4i")
 
-[node name="ScorePanel" parent="GroupBox" instance=ExtResource("3_vatvb")]
+[node name="GemsPanel" parent="GroupBox/Panel" instance=ExtResource("5_tocbb")]
 layout_mode = 1
-offset_left = 107.0
-offset_top = -23.0
-offset_right = 225.0
-offset_bottom = 31.0
+offset_left = -150.0
+offset_right = -32.0
 
-[connection signal="pressed" from="GroupBox/PauseButton" to="." method="_on_pause_button_pressed"]
+[node name="ScorePanel" parent="GroupBox/Panel" instance=ExtResource("3_vatvb")]
+layout_mode = 1
+offset_left = 31.0
+offset_right = 149.0
+
+[node name="PauseButton" parent="GroupBox/Panel" instance=ExtResource("1_3qrsj")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[connection signal="pressed" from="GroupBox/Panel/PauseButton" to="." method="_on_pause_button_pressed"]

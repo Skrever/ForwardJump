@@ -1,6 +1,7 @@
 extends Node
 
 signal CollumnGenerated()
+signal GenerateNextCollumn()
 
 signal SetMusicVolume()
 
@@ -15,6 +16,7 @@ signal GameStop()
 signal GamePaused()
 signal GameContinued()
 signal GameResumed()
+var recentlyResumed : bool = false
 
 
 
@@ -35,6 +37,8 @@ enum GAMESTATS
 }
 
 var GameState : GAMESTATS = GAMESTATS.NONE
+var MaxTimesGameResumed : int = 2
+var CurTimesGameResumed : int = 0
 
 # Сторона и длинна, куда должен двигаться игрок и спавниться колоннки
 var Direction : DIRECTION = DIRECTION.LEFT
@@ -48,18 +52,21 @@ var player : Player:
 		return player
 	set(value):
 		player = value as Player
-		player.MovingStarted.connect(func(): CountTouchesCollumn = 0)
+		player.MovingStarted.connect(func(): CountTouchesCollumn = 0; recentlyResumed = false)
 		
 var generator : Generator = null
 
 var Music : float = 40
 var Sounds : float = 40
 
-var GoalScore : int
+var UserKnowHowToPlay : bool = false
+
+var GoalScore : int = 0
 var Score : int:
 	get:
-		return Score
+		return Score 
 	set(value):
+		if !UserKnowHowToPlay: UserKnowHowToPlay = true 
 		Score = int(value)
 		PlayerScoresChanged.emit(Score)
 		GettedScores.emit(Score)
@@ -84,6 +91,10 @@ func _ready() -> void:
 	GameResumed.connect(_on_game_resumed)
 	
 	PlayerOnCollumn.connect(playerOnCollumn)
+	PlayerOnCollumn.connect(func(): GenerateNextCollumn.emit())
+	
+	
+	
 	
 	SDKBridge.loadUserData()
 	
@@ -95,6 +106,7 @@ func _on_game_ready():
 	print("Game Ready")
 	
 func _on_game_reload():
+	CurTimesGameResumed = 0
 	GameState = GAMESTATS.NONE
 	print("Game Reload")
 	
@@ -119,6 +131,8 @@ func _on_game_stopped():
 	
 func _on_game_resumed():
 	GameState = GAMESTATS.GOING
+	CurTimesGameResumed += 1
+	recentlyResumed = true
 	print("Game Resumed")
 
 func lost_focus():

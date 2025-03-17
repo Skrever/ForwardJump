@@ -34,7 +34,8 @@ func _ready() :
 	device = Bridge.device.type
 	Bridge.advertisement.set_minimum_delay_between_interstitial(10)
 	
-	Bridge.advertisement.connect("interstitial_state_changed", Callable(self, "_on_interstitial_state_changed"))
+	Bridge.advertisement.connect("interstitial_state_changed", Callable(self, "_on_ad_state_changed"))
+	Bridge.advertisement.connect("rewarded_state_changed", Callable(self, "_on_rewarded_ad_state_changed"))
 	
 	Global.GameReady.connect(_game_ready)
 	#Global.SavePlayerData.connect(saveData)
@@ -93,8 +94,11 @@ func ShowAdd():
 		#print("Can't show ad!")
 		CloseAdd.emit()
 		
+func ShowRewordedAdd():
+	Bridge.advertisement.show_rewarded()
+		
 	
-func _on_interstitial_state_changed(state):
+func _on_ad_state_changed(state):
 	match state:
 		"loading":
 			print("Ad loading...")
@@ -109,6 +113,29 @@ func _on_interstitial_state_changed(state):
 			print("Ad closed...")
 			#Global.SetMusicVolume.emit(Global.Music)
 			CloseAdd.emit()
+		"failed":
+			print("Ad failed...")
+			#Global.SetMusicVolume.emit(Global.Music)
+			CloseAdd.emit()
+			
+func _on_rewarded_ad_state_changed(state):
+	match state:
+		"loading":
+			print("Ad loading...")
+			#Global.SetMusicVolume.emit(0)
+		"opened" :
+			print("Ad opened...")
+			#Global.SetMusicVolume.emit(0)
+			#if Global.GameState == Global.GAMESTATS.GOING:
+				#Global.GamePaused.emit()
+				#Global.PauseMenuOpen.emit()
+		"closed":
+			print("Ad closed...")
+			#Global.SetMusicVolume.emit(Global.Music)
+			CloseAdd.emit()
+		"rewarded":
+			print("Ad rewarded...")
+			
 		"failed":
 			print("Ad failed...")
 			#Global.SetMusicVolume.emit(Global.Music)
@@ -130,6 +157,7 @@ func _get_raw_leaderboard(success, entries):
 		match Bridge.platform.id:
 			"yandex":
 				for entry in entries:
+					print(entry)
 					var usr := false
 					if str(entry.name) == Bridge.player.name:
 						usr = true

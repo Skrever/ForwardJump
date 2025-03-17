@@ -82,8 +82,10 @@ func _on_game_continued():
 	
 func _on_game_stopped():
 	CloseHUD.emit()
-	await get_tree().create_timer(1).timeout
+	ClosePauseMenu.emit()
+	CloseSettingsMenu.emit()
+	CloseMainMenu.emit()
 	OpenDeadMenu.emit()
 	
 func _on_game_resumed():
-	pass
+	OpenHUD.emit()
