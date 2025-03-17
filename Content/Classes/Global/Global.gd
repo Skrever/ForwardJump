@@ -106,6 +106,8 @@ func _on_game_ready():
 	print("Game Ready")
 	
 func _on_game_reload():
+	MaxScore = max(Score, MaxScore)
+	Score = 0
 	CurTimesGameResumed = 0
 	GameState = GAMESTATS.NONE
 	print("Game Reload")
@@ -124,8 +126,6 @@ func _on_game_continued():
 	print("Game Continued")
 	
 func _on_game_stopped():
-	MaxScore = max(Score, MaxScore)
-	Score = 0
 	GameState = GAMESTATS.NONE
 	print("Game Stopped")
 	
@@ -147,4 +147,5 @@ func playerOnCollumn():
 	await get_tree().create_timer(0.1).timeout
 	if CountTouchesCollumn == 1: GoalScore = 0
 	if GoalScore > 4 : GoalScore = 4
-	Score += (1 + GoalScore)
+	if !recentlyResumed:
+		Score += (1 + GoalScore)

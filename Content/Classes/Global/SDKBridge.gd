@@ -2,7 +2,11 @@ extends Node
 
 signal UserAuthCorrectly
 signal SDKinited
+
 signal CloseAdd
+signal RewardedAdShowed
+var canReward : bool = false
+
 signal DataDeleted
 signal DataLoaded
 signal DataSaved
@@ -111,14 +115,17 @@ func _on_ad_state_changed(state):
 				#Global.PauseMenuOpen.emit()
 		"closed":
 			print("Ad closed...")
-			#Global.SetMusicVolume.emit(Global.Music)
 			CloseAdd.emit()
+			#Global.SetMusicVolume.emit(Global.Music)
 		"failed":
 			print("Ad failed...")
-			#Global.SetMusicVolume.emit(Global.Music)
 			CloseAdd.emit()
+			#Global.SetMusicVolume.emit(Global.Music)
+			
+	
 			
 func _on_rewarded_ad_state_changed(state):
+	canReward = false
 	match state:
 		"loading":
 			print("Ad loading...")
@@ -132,14 +139,16 @@ func _on_rewarded_ad_state_changed(state):
 		"closed":
 			print("Ad closed...")
 			#Global.SetMusicVolume.emit(Global.Music)
-			CloseAdd.emit()
 		"rewarded":
+			canReward = true
+			RewardedAdShowed.emit()
 			print("Ad rewarded...")
 			
 		"failed":
 			print("Ad failed...")
+			RewardedAdShowed.emit()
 			#Global.SetMusicVolume.emit(Global.Music)
-			CloseAdd.emit()
+	
 
 func _game_ready():
 	Bridge.platform.send_message(Bridge.PlatformMessage.GAME_READY)

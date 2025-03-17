@@ -76,6 +76,9 @@ func _on_restart_button_pressed() -> void:
 
 
 func _on_reworded_button_pressed() -> void:
-	await setInvisible()
-	Global.GameResumed.emit()
 	SDKBridge.ShowRewordedAdd()
+	await SDKBridge.RewardedAdShowed
+	if SDKBridge.canReward:
+		await setInvisible()
+		Global.GameResumed.emit()
+	
