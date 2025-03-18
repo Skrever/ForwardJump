@@ -77,6 +77,7 @@ func _shake():
 func _show_number():
 	if Global.player.CountJump == 0 or Global.recentlyResumed: return
 	await Global.GettedScores
+	if Global.player.Floor != self : return
 	rdNumberEffect.get_parent().position.x = randf_range(-1, 1)
 	rdNumberEffect.get_parent().position.z = randf_range(-1, 1)
 	rdLabel.text = "+" + str(1 + Global.GoalScore)

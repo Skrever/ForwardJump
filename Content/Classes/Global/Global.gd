@@ -108,6 +108,7 @@ func _on_game_ready():
 func _on_game_reload():
 	MaxScore = max(Score, MaxScore)
 	Score = 0
+	GoalScore = 0
 	CurTimesGameResumed = 0
 	GameState = GAMESTATS.NONE
 	print("Game Reload")
