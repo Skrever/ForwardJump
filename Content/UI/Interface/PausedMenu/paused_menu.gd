@@ -17,11 +17,11 @@ func setVisible():
 	
 	if UI.focus == UI.FOCUS_IN.MAIN_MENU: await UI.MainMenuClosed
 	if UI.focus == UI.FOCUS_IN.GAME: await UI.HUDClosed
-	if UI.focus == UI.FOCUS_IN.DEAD_MENU: await UI.DeadMenuClosed
+	if UI.focus == UI.FOCUS_IN.DEAD_MENU: return 
 	#if UI.focus == UI.FOCUS_IN.PAUSE_MENU: await UI.PauseMenuClosed
 	if UI.focus == UI.FOCUS_IN.SETTINGS_MENU: await UI.SettingsMenuClosed
 	if UI.focus == UI.FOCUS_IN.LEADERBOARD_MENU: await UI.LeaderboardMenuClosed
-	
+		
 	
 	UI.focus = UI.FOCUS_IN.PAUSE_MENU
 	print("Paused Menu")

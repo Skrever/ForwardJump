@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://skyapf40d7lg"]
+[gd_scene load_steps=8 format=3 uid="uid://skyapf40d7lg"]
 
 [ext_resource type="PackedScene" uid="uid://ccba8a6xdtcd7" path="res://Content/Classes/Camera/tracking_camera.tscn" id="1_555a4"]
 [ext_resource type="PackedScene" uid="uid://0o5jeu8n6e6x" path="res://Content/Classes/Generator/Generator.tscn" id="1_plau4"]
@@ -14,10 +14,20 @@ ambient_light_color = Color(0.851769, 0.851769, 0.851769, 1)
 reflected_light_source = 1
 tonemap_white = 7.77
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vojgy"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_dox1w"]
+material = SubResource("StandardMaterial3D_vojgy")
+radius = 0.2
+height = 0.4
+radial_segments = 32
+rings = 16
+
 [node name="MainScene" type="Node3D"]
 
-[node name="Player" parent="." instance=ExtResource("2_4u52e")]
+[node name="Player" parent="." node_paths=PackedStringArray("CastingObj") instance=ExtResource("2_4u52e")]
 transform = Transform3D(1, 0, -1.77636e-15, 0, 1, 1.77636e-15, 0, -1.77636e-15, 1, 0, 10, 0)
+CastingObj = NodePath("../PlayerCastingLine")
 
 [node name="CameraCenter" parent="." node_paths=PackedStringArray("tracking_object") instance=ExtResource("1_555a4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 20)
@@ -33,3 +43,47 @@ environment = SubResource("Environment_p0hts")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
 transform = Transform3D(0.652971, 0.604299, -0.456564, 0, 0.602818, 0.797879, 0.757383, -0.520992, 0.393623, 0, 8.34102, 0)
+
+[node name="PlayerCastingLine" type="Node3D" parent="."]
+visible = false
+
+[node name="Sphere" type="MeshInstance3D" parent="PlayerCastingLine"]
+layers = 2
+cast_shadow = 0
+mesh = SubResource("SphereMesh_dox1w")
+
+[node name="Sphere2" type="MeshInstance3D" parent="PlayerCastingLine"]
+cast_shadow = 0
+mesh = SubResource("SphereMesh_dox1w")
+
+[node name="Sphere3" type="MeshInstance3D" parent="PlayerCastingLine"]
+cast_shadow = 0
+mesh = SubResource("SphereMesh_dox1w")
+
+[node name="Sphere4" type="MeshInstance3D" parent="PlayerCastingLine"]
+cast_shadow = 0
+mesh = SubResource("SphereMesh_dox1w")
+
+[node name="Sphere5" type="MeshInstance3D" parent="PlayerCastingLine"]
+cast_shadow = 0
+mesh = SubResource("SphereMesh_dox1w")
+
+[node name="Sphere6" type="MeshInstance3D" parent="PlayerCastingLine"]
+cast_shadow = 0
+mesh = SubResource("SphereMesh_dox1w")
+
+[node name="Sphere7" type="MeshInstance3D" parent="PlayerCastingLine"]
+cast_shadow = 0
+mesh = SubResource("SphereMesh_dox1w")
+
+[node name="Sphere8" type="MeshInstance3D" parent="PlayerCastingLine"]
+cast_shadow = 0
+mesh = SubResource("SphereMesh_dox1w")
+
+[node name="Sphere9" type="MeshInstance3D" parent="PlayerCastingLine"]
+cast_shadow = 0
+mesh = SubResource("SphereMesh_dox1w")
+
+[node name="Sphere10" type="MeshInstance3D" parent="PlayerCastingLine"]
+cast_shadow = 0
+mesh = SubResource("SphereMesh_dox1w")

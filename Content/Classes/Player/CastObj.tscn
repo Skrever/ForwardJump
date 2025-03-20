@@ -1,0 +1,26 @@
+[gd_scene load_steps=2 format=3 uid="uid://bbf3nuyk1278e"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_pgsc6"]
+viewport_path = NodePath("SubViewport")
+
+[node name="CastObj" type="Sprite3D"]
+billboard = 1
+texture = SubResource("ViewportTexture_pgsc6")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+disable_3d = true
+transparent_bg = true
+
+[node name="Panel" type="Panel" parent="SubViewport"]
+custom_minimum_size = Vector2(40, 40)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2

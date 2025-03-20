@@ -25,4 +25,7 @@ theme_override_styles/pressed = ExtResource("1_k5cc3")
 theme_override_styles/normal = ExtResource("3_r5b2m")
 script = ExtResource("4_gfa8w")
 
+[connection signal="button_down" from="." to="." method="_on_button_down"]
+[connection signal="button_up" from="." to="." method="_on_button_up"]
+[connection signal="focus_entered" from="." to="." method="_on_focus_entered"]
 [connection signal="pressed" from="." to="." method="_on_pressed"]

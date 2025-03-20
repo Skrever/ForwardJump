@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://cgqnsua7egu01"]
+[gd_scene load_steps=4 format=3 uid="uid://cgqnsua7egu01"]
 
 [ext_resource type="StyleBox" uid="uid://bftp76pqmv3oi" path="res://Content/UI/Panels/DefaultPanelWithoutBorders.tres" id="1_fip31"]
+[ext_resource type="Script" path="res://Content/UI/Panels/Gems/gems.gd" id="2_fywak"]
 [ext_resource type="Texture2D" uid="uid://djrm6gc2dpl45" path="res://Content/UI/Textures/Кристаллики.png" id="3_upr73"]
 
 [node name="GemsPanel" type="Panel"]
@@ -26,12 +27,14 @@ anchor_bottom = 1.0
 offset_left = 48.0
 grow_horizontal = 2
 grow_vertical = 2
+pivot_offset = Vector2(35, 27)
 theme_override_colors/font_outline_color = Color(0.351563, 0.351563, 0.351563, 1)
 theme_override_constants/outline_size = 5
 theme_override_font_sizes/font_size = 35
-text = "999"
+text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
+script = ExtResource("2_fywak")
 
 [node name="ColorRect" type="TextureRect" parent="."]
 layout_mode = 1

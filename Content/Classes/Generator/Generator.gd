@@ -11,15 +11,22 @@ var NextCollumnLocation = Vector3.ZERO
 var Collumns: Array[Collumn]
 var CollumnSpawnPosition := Vector3(0, 30, 0)
 
+#Буффер гемов
+var Gems: Array[Gem]
+var SpawnGemsLocation : Vector3 = Vector3(0, 30, 0)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	NextCollumnLocation = StartCollumnLocation
 	Global.generator = self
 	Global.GameReload.connect(_on_game_reload)
+	
+	for i in Global.MaxCountGems : _create_gem()
+	
 	#Инициализация буферного массива
 	for i in Global.MaxCountCollumns + 3: _create_collumn()
 	_cooking_columns()
+	
 	
 	Global.GenerateNextCollumn.connect(_spawn_next)
 
@@ -28,6 +35,10 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
+	
+func _physics_process(delta: float) -> void:
+	for gem in Gems:
+		gem.rotation_degrees.y += 50 * delta
 
 func _on_game_resume():
 	var collumn = Collumns.front()
@@ -44,6 +55,9 @@ func _on_game_reload():
 			CountUsageCollumns += 1
 	
 	if ((CountUsageCollumns < 5)): return
+	
+	for gem in Gems:
+		gem.reload(SpawnGemsLocation)
 	
 	for collumn in Collumns:
 		collumn.delete_collumn()
@@ -90,15 +104,19 @@ func _spawn_column(direction_ : Global.DIRECTION):
 			ReplacedCollumn = it
 			break
 	
+	var rand_direction_next_collumn = randf_range(Global.MinDistance, Global.MaxDistance)
+	
 	match direction_:
 		Global.DIRECTION.LEFT:
-			NextCollumnLocation.x -= randf_range(Global.MinDistance, Global.MaxDistance)
+			_spawn_gem(NextCollumnLocation + Vector3(-rand_direction_next_collumn/2, 6, 0))
+			NextCollumnLocation.x -= rand_direction_next_collumn
 		Global.DIRECTION.FORWARD:
-			NextCollumnLocation.z -= randf_range(Global.MinDistance, Global.MaxDistance)
+			_spawn_gem(NextCollumnLocation + Vector3(0, 6, -rand_direction_next_collumn/2))
+			NextCollumnLocation.z -= rand_direction_next_collumn
 		Global.DIRECTION.RIGHT:
-			NextCollumnLocation.x += randf_range(Global.MinDistance, Global.MaxDistance)
+			NextCollumnLocation.x += rand_direction_next_collumn
 		Global.DIRECTION.BACK:
-			NextCollumnLocation.z += randf_range(Global.MinDistance, Global.MaxDistance)
+			NextCollumnLocation.z += rand_direction_next_collumn
 			
 	ReplacedCollumn.position = NextCollumnLocation
 	ReplacedCollumn.Use = true 
@@ -110,3 +128,19 @@ func _spawn_column(direction_ : Global.DIRECTION):
 		
 func delete_column():
 	Collumns.back().reload(NextCollumnLocation)
+
+
+func _create_gem():
+	var gem : Gem = preload("uid://d3qfqt2oemnbr").instantiate()
+	add_child(gem)
+	gem.position = SpawnGemsLocation
+	Gems.append(gem)
+
+func _spawn_gem(pos_ : Vector3):
+	
+	if randi_range(0, 5) == 1:
+		for it in Gems:
+			if !it.Use:
+				it.spawn(pos_)
+				it.Use = true
+				break

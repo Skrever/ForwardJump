@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=3 uid="uid://d3qfqt2oemnbr"]
+
+[ext_resource type="Script" path="res://Content/Classes/Gems/gem.gd" id="1_dsmec"]
+[ext_resource type="ArrayMesh" uid="uid://bxqpa55gerqc4" path="res://Content/Classes/Gems/Gem.res" id="1_sjhip"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_myh2k"]
+radius = 2.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_owc4r"]
+albedo_color = Color(0, 0.522169, 0.19818, 1)
+rim_enabled = true
+rim = 0.13
+rim_tint = 0.12
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_obb7i"]
+cull_mode = 1
+depth_draw_mode = 1
+shading_mode = 0
+albedo_color = Color(0.134585, 0.0950241, 0.107625, 1)
+
+[node name="Gem" type="Area3D"]
+collision_layer = 0
+script = ExtResource("1_dsmec")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0119101, 0)
+shape = SubResource("SphereShape3D_myh2k")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D"]
+transform = Transform3D(0.375, 0, 0, 0, 0.375, 0, 0, 0, 0.375, 0, -0.300328, 0)
+cast_shadow = 0
+mesh = ExtResource("1_sjhip")
+surface_material_override/0 = SubResource("StandardMaterial3D_owc4r")
+
+[node name="MeshInstance3DOutline" type="MeshInstance3D" parent="CollisionShape3D/MeshInstance3D"]
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, -0.165851, 0)
+mesh = ExtResource("1_sjhip")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_obb7i")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

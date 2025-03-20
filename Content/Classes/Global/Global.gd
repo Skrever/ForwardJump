@@ -9,6 +9,9 @@ signal PlayerOnCollumn()
 signal PlayerScoresChanged(scores : int)
 signal GettedScores(scores : int)
 
+signal PlayerGemsChanged(gems : int)
+signal GettedGems(gems : int)
+
 signal GameReady()
 signal GameReload()
 signal GameStart()
@@ -39,6 +42,7 @@ enum GAMESTATS
 var GameState : GAMESTATS = GAMESTATS.NONE
 var MaxTimesGameResumed : int = 2
 var CurTimesGameResumed : int = 0
+var ButtonPressed : bool = false
 
 # Сторона и длинна, куда должен двигаться игрок и спавниться колоннки
 var Direction : DIRECTION = DIRECTION.LEFT
@@ -46,6 +50,9 @@ var MaxDistance : float = 10
 var MinDistance : float = 7
 var MaxCountCollumns : int = 10
 var RandomSpawn : bool = true
+
+# Количество спавна гемов
+var MaxCountGems : int = 3
 
 var player : Player: 
 	get:
@@ -77,6 +84,14 @@ var MaxScore : int:
 	set(value):
 		MaxScore = int(value)
 		SDKBridge.setUserRecord(MaxScore)
+		
+var Gems : int:
+	get:
+		return Gems
+	set(value):
+		Gems = int(value)
+		print("Add gems")
+		PlayerGemsChanged.emit(Gems)
 
 var CountTouchesCollumn : int = 0
 
@@ -100,6 +115,7 @@ func _ready() -> void:
 	
 	await CollumnGenerated
 	GameReady.emit()
+	PlayerGemsChanged.emit(Global.Gems)
 	
 func _on_game_ready():
 	GameState = GAMESTATS.NONE
@@ -109,6 +125,7 @@ func _on_game_reload():
 	MaxScore = max(Score, MaxScore)
 	Score = 0
 	GoalScore = 0
+	CountTouchesCollumn = 0
 	CurTimesGameResumed = 0
 	GameState = GAMESTATS.NONE
 	print("Game Reload")

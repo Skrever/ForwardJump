@@ -10,6 +10,8 @@ var RelativeTouch
 var IsPressed : bool = false
 var CountJump : int = 0
 
+var CanCastTraectory : bool = true
+
 #Сжатия игрока
 @export_category("Player Settings")
 @export var MinCompression : float = 0.3
@@ -23,6 +25,7 @@ var CountJump : int = 0
 @onready var rdMesh : MeshInstance3D = $Collision/Root/Mesh
 @onready var rdCheckFloor: RayCast3D = $Collision/CheckFloor
 @onready var rdRoot: Node3D = $Collision/Root
+@onready var rdCollision: CollisionShape3D = $Collision
 
 
 var moving : bool = false
@@ -33,13 +36,17 @@ var StartPosition : Vector3
 var lastPosition : Vector3
 var nextPosition : Vector3
 var lastRotation : Vector3
-var nexRotation : Vector3
+var nextRotation : Vector3
 var CompressinRatio : float = 1
 var Floor : Node3D
 var Force : float = 1.4
 
+@export var CastingObj : Node3D
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	UI.MainMenuOpened.connect(func() : CanCastTraectory = true)
+	
 	Global.player = self
 	Global.GameReload.connect(_on_game_reload)
 	Global.GameStart.connect(_on_game_start)
@@ -48,9 +55,12 @@ func _ready():
 	StartPosition = position
 
 
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	if CanCastTraectory and IsPressed and !Global.ButtonPressed and (CountJump < 3):
+		CastingObj.visible = true
+	else: CastingObj.visible = false
 
 var time_passed : float = 0
 func _physics_process(delta):
@@ -64,12 +74,16 @@ func _physics_process(delta):
 	move_and_slide()
 
 func _input(event):
-	
+
 	if !moving and !isDead and (Floor != null):
 			#Касание экрана
 		if event is InputEventScreenTouch and event.is_pressed() and !IsPressed:
 			StartTouch = event.position
 			IsPressed = true
+			
+			if CountJump < 3 and CanCastTraectory:
+				CastingObj.position = position
+			else: CanCastTraectory = false
 			
 
 		#Конец касания экрана
@@ -83,9 +97,11 @@ func _input(event):
 							Global.GameStart.emit()
 							move()
 					Global.GAMESTATS.GOING: move()
+			for obj in CastingObj.get_children(): obj.position = Vector3.ZERO
+			CastingObj.visible = false
 				
 		#Положение текущего касания
-		if IsPressed :
+		if IsPressed and !Global.ButtonPressed:
 			if event is not InputEventKey:
 				RelativeTouch = event.position
 				var alpha = -(StartTouch.y - RelativeTouch.y) / MaxLengthTouch
@@ -94,6 +110,19 @@ func _input(event):
 				scale.y = (1 - alpha) if MinCompression < (1 - alpha) else MinCompression
 				if scale.y > MaxCompression:  scale.y = MaxCompression
 				CompressinRatio = scale.y
+				
+				var countChildrensCastingObj : int = CastingObj.get_children().size()
+				for i in range(1, countChildrensCastingObj):
+					CastingObj.get_children()[i].position.y = JumpCurve.sample((1.0 / countChildrensCastingObj) * i) * MaxJump - 0.5
+					CastingObj.get_children()[i].scale = Vector3((1.5 - 0.1 * i), (1.5 - 0.1 * i), (1.5 - 0.1 * i))
+					match Floor.NextCollumnAt:
+						Global.DIRECTION.LEFT: CastingObj.get_children()[i].position.x = (-Floor.DistanceToNextCollumn * (Force - CompressinRatio) / countChildrensCastingObj) * (i) * 1.1
+						Global.DIRECTION.FORWARD: CastingObj.get_children()[i].position.z = (-Floor.DistanceToNextCollumn * (Force - CompressinRatio) / countChildrensCastingObj) * (i) * 1.1
+		else:
+			#for obj in CastingObj.get_children(): obj.position = Vector3.ZERO
+			CastingObj.visible = false
+				
+				
 
 func move():
 	moving = true
@@ -104,13 +133,13 @@ func move():
 	match Floor.NextCollumnAt:
 		Global.DIRECTION.LEFT:
 			nextPosition = position + Vector3(-Floor.DistanceToNextCollumn, 0, 0) * (Force - CompressinRatio)
-			nexRotation = rdMesh.rotation + Vector3(0,0,deg_to_rad(180))
+			nextRotation = rdMesh.rotation + Vector3(0,0,deg_to_rad(180))
 		Global.DIRECTION.FORWARD:
 			nextPosition = position + Vector3(0, 0, -Floor.DistanceToNextCollumn) * (Force - CompressinRatio)
-			nexRotation = rdMesh.rotation + Vector3(deg_to_rad(-180),0,0)
+			nextRotation = rdMesh.rotation + Vector3(deg_to_rad(-180),0,0)
 		Global.DIRECTION.RIGHT:
 			nextPosition = position + Vector3(Floor.DistanceToNextCollumn, 0, 0) * (Force - CompressinRatio)
-			nexRotation = rdMesh.rotation + Vector3(0,0,deg_to_rad(-180))
+			nextRotation = rdMesh.rotation + Vector3(0,0,deg_to_rad(-180))
 	lastRotation = rdMesh.rotation
 	var movingTween := create_tween().tween_method(_curve_move, 0.0, 1.0, JumpTime * (1 - CompressinRatio))
 	await movingTween.finished
@@ -123,7 +152,7 @@ func move():
 func _curve_move(alpha : float):
 	position = lerp(lastPosition, nextPosition, alpha)
 	position.y = lastPosition.y + JumpCurve.sample(alpha) * MaxJump * (1 - CompressinRatio)
-	rdMesh.rotation = lerp(lastRotation, nexRotation, alpha)
+	rdMesh.rotation = lerp(lastRotation, nextRotation, alpha)
 
 func dead():
 	if CountJump < 2:
@@ -134,7 +163,7 @@ func dead():
 		Global.GameStop.emit()
 
 func _on_game_start():
-	pass
+	CanCastTraectory = true
 
 func _on_game_resumed():
 	position = lastPosition + Vector3(0, 1, 0)
