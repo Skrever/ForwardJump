@@ -12,6 +12,8 @@ signal GettedScores(scores : int)
 signal PlayerGemsChanged(gems : int)
 signal GettedGems(gems : int)
 
+signal ChangePlayerSkin(skin : SKINS)
+
 signal GameReady()
 signal GameReload()
 signal GameStart()
@@ -20,8 +22,6 @@ signal GamePaused()
 signal GameContinued()
 signal GameResumed()
 var recentlyResumed : bool = false
-
-
 
 enum DIRECTION 
 {
@@ -37,6 +37,12 @@ enum GAMESTATS
 	READY,
 	GOING,
 	PAUSED
+}
+
+enum SKINS
+{
+	DEFAULT,
+	MINECRAFT
 }
 
 var GameState : GAMESTATS = GAMESTATS.NONE
@@ -95,7 +101,19 @@ var Gems : int:
 
 var CountTouchesCollumn : int = 0
 
+var SkinsDict : Dictionary
+var TakedSkin : SKINS = SKINS.MINECRAFT
+func getSkinByEnum(skin : SKINS) -> String:
+	var key : String = "default"
+	match skin:
+		SKINS.MINECRAFT:
+			key = "minecraft"
+	return key
+
+
 func _ready() -> void:
+	
+	SkinsDict = _read_from_json("res://Content/Classes/Player/Skins/Skins.json")
 	
 	GameReady.connect(_on_game_ready)
 	GameReload.connect(_on_game_reload)
@@ -116,7 +134,22 @@ func _ready() -> void:
 	await CollumnGenerated
 	GameReady.emit()
 	PlayerGemsChanged.emit(Global.Gems)
-	
+
+func _read_from_json(path : String):
+	if FileAccess.file_exists(path):
+		var file = FileAccess.open(path, FileAccess.READ)
+		var data = JSON.parse_string(file.get_as_text())
+		file.close()
+		return data
+	else:
+		print("file in ", path, " doesn't exist")
+
+func get_skin_by_key(key : String):
+	if SkinsDict and SkinsDict.has(key):
+		return SkinsDict[key]
+	else:
+		printerr("can't find this skin: ", key)
+
 func _on_game_ready():
 	GameState = GAMESTATS.NONE
 	print("Game Ready")

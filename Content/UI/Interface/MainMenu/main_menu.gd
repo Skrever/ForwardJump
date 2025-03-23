@@ -56,3 +56,9 @@ func _on_crown_button_pressed() -> void:
 	await setInvisible()
 	UI.CloseLearningMenu.emit()
 	UI.OpenLeaderboardMenu.emit()
+
+
+func _on_store_button_pressed() -> void:
+	await setInvisible()
+	UI.CloseLearningMenu.emit()
+	UI.OpenStoreMenu.emit()

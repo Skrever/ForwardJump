@@ -1,0 +1,119 @@
+[gd_scene load_steps=6 format=3 uid="uid://cobanmdf3y1w"]
+
+[ext_resource type="StyleBox" uid="uid://bftp76pqmv3oi" path="res://Content/UI/Panels/DefaultPanelWithoutBorders.tres" id="1_lrt7p"]
+[ext_resource type="Script" path="res://Content/UI/Interface/StoreMenu/store_menu.gd" id="1_vgipp"]
+[ext_resource type="PackedScene" uid="uid://bhiiuk1ug31lq" path="res://Content/UI/Buttons/No/NoButton.tscn" id="2_oi6cj"]
+[ext_resource type="PackedScene" uid="uid://bnbfy4p6y1u42" path="res://Content/UI/Buttons/Yes/YesButton.tscn" id="3_qcjgo"]
+[ext_resource type="PackedScene" uid="uid://d3mbfd8rb4fm2" path="res://Content/UI/Buttons/ArrowSkip/ArrowButton.tscn" id="5_ev0h2"]
+
+[node name="StoreMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_vgipp")
+
+[node name="GroupBox" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -110.0
+offset_top = -144.0
+offset_right = 110.0
+offset_bottom = -30.0
+grow_horizontal = 2
+grow_vertical = 0
+pivot_offset = Vector2(110, 57)
+
+[node name="BackSidePanel" type="Panel" parent="GroupBox"]
+texture_filter = 6
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(110, 0)
+theme_override_styles/panel = ExtResource("1_lrt7p")
+
+[node name="NoButton" parent="GroupBox" instance=ExtResource("2_oi6cj")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -99.0
+offset_top = -47.0
+offset_right = -4.0
+offset_bottom = 48.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="YesButton" parent="GroupBox" instance=ExtResource("3_qcjgo")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 5.0
+offset_top = -48.0
+offset_right = 100.0
+offset_bottom = 47.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ArrowsGroupBox" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(20, 20)
+
+[node name="ArrowButtonRight" parent="ArrowsGroupBox" instance=ExtResource("5_ev0h2")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 102.5
+offset_right = 192.5
+offset_bottom = 42.5
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(45, 45)
+
+[node name="ArrowButtonLeft" parent="ArrowsGroupBox" instance=ExtResource("5_ev0h2")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -197.5
+offset_right = -107.5
+offset_bottom = 42.5
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 3.14159
+pivot_offset = Vector2(45, 45)
+
+[connection signal="pressed" from="GroupBox/NoButton" to="." method="_on_no_button_pressed"]
+[connection signal="pressed" from="GroupBox/YesButton" to="." method="_on_yes_button_pressed"]
+[connection signal="pressed" from="ArrowsGroupBox/ArrowButtonRight" to="." method="_on_arrow_button_right_pressed"]
+[connection signal="pressed" from="ArrowsGroupBox/ArrowButtonLeft" to="." method="_on_arrow_button_left_pressed"]

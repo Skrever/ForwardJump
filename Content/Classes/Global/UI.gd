@@ -35,6 +35,11 @@ signal CloseHUD()
 signal HUDOpened()
 signal HUDClosed()
 
+signal OpenStoreMenu()
+signal CloseStoreMenu()
+signal StoreMenuOpened()
+signal StoreMenuClosed()
+
 enum FOCUS_IN
 {
 	NONE,
@@ -43,7 +48,8 @@ enum FOCUS_IN
 	DEAD_MENU,
 	PAUSE_MENU,
 	SETTINGS_MENU,
-	LEADERBOARD_MENU
+	LEADERBOARD_MENU,
+	STORE_MENU
 }
 
 var focus : FOCUS_IN = FOCUS_IN.NONE

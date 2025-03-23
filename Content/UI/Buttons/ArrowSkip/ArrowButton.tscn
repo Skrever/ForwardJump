@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=3 uid="uid://d3mbfd8rb4fm2"]
+
+[ext_resource type="StyleBox" uid="uid://b4n74euqtlhnk" path="res://Content/UI/Buttons/ArrowSkip/ArrowButtonNormal.tres" id="1_b64mi"]
+[ext_resource type="StyleBox" uid="uid://dylytqyvhfyhh" path="res://Content/UI/Buttons/ArrowSkip/ArrowButtonPressed.tres" id="2_pa3g3"]
+[ext_resource type="StyleBox" uid="uid://bqjquyau3l1p8" path="res://Content/UI/Buttons/ArrowSkip/ArrowButtonHower.tres" id="3_pkkta"]
+[ext_resource type="Script" path="res://Content/UI/Buttons/button.gd" id="4_30n0x"]
+[ext_resource type="Texture2D" uid="uid://dtqlkfvr5sa7l" path="res://Content/UI/Textures/СтрелкаВыбора.png" id="5_2h0ww"]
+
+[node name="ArrowButton" type="Button"]
+offset_left = -47.5
+offset_top = -47.5
+offset_right = 47.5
+offset_bottom = 47.5
+pivot_offset = Vector2(47.5, 47.5)
+theme_override_styles/focus = ExtResource("1_b64mi")
+theme_override_styles/hover_pressed = ExtResource("2_pa3g3")
+theme_override_styles/hover = ExtResource("3_pkkta")
+theme_override_styles/pressed = ExtResource("2_pa3g3")
+theme_override_styles/normal = ExtResource("1_b64mi")
+script = ExtResource("4_30n0x")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.5
+offset_top = -32.5
+offset_right = 32.5
+offset_bottom = 32.5
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(32.5, 32.5)
+texture = ExtResource("5_2h0ww")
+expand_mode = 1
+
+[connection signal="button_down" from="." to="." method="_on_button_down"]
+[connection signal="button_up" from="." to="." method="_on_button_up"]
+[connection signal="focus_entered" from="." to="." method="_on_focus_entered"]
+[connection signal="pressed" from="." to="." method="_on_pressed"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://waqdjnmtb8sl"]
+[gd_scene load_steps=6 format=3 uid="uid://waqdjnmtb8sl"]
 
 [ext_resource type="Script" path="res://Content/Classes/Player/Player.gd" id="1_kswa7"]
 [ext_resource type="PackedScene" uid="uid://c8jwf3341lg6s" path="res://Content/UI/UI.tscn" id="2_qpora"]
@@ -8,11 +8,6 @@ _data = [Vector2(0, 0), 0.0, 5.7487, 0, 0, Vector2(0.355805, 1), 0.252326, 0.252
 point_count = 3
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_8udbd"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_hyoxq"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fjfkj"]
-albedo_color = Color(0.338395, 0.530045, 0.773421, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_o6ohr"]
 size = Vector3(1, 0.0168457, 1)
@@ -29,11 +24,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.513805, 0)
 shape = SubResource("BoxShape3D_8udbd")
 
 [node name="Root" type="Node3D" parent="Collision"]
-
-[node name="Mesh" type="MeshInstance3D" parent="Collision/Root"]
-mesh = SubResource("BoxMesh_hyoxq")
-skeleton = NodePath("../..")
-surface_material_override/0 = SubResource("StandardMaterial3D_fjfkj")
 
 [node name="Area" type="Area3D" parent="."]
 collision_layer = 0

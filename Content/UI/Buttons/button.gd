@@ -22,12 +22,14 @@ func _on_pressed() -> void:
 
 func _on_button_up() -> void:
 	print("Button up")
+	scale = Vector2(1, 1)
 	Global.ButtonPressed = false
 	focus_mode = FocusMode.FOCUS_NONE
 
 
 func _on_button_down() -> void:
 	print("Button down")
+	scale = Vector2(0.95, 0.95)
 	Global.ButtonPressed = true
 
 

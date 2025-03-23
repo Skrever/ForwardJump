@@ -26,7 +26,7 @@ var Localisation : Dictionary = {
 		},
 	"continueforadd" : 
 		{
-			"ru": "Продолжить за рекламу",
+			"ru": "Продолжить после рекламы",
 			"en": "Watch ad to continue"
 		},
 	"learning" :

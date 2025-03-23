@@ -22,7 +22,7 @@ var CanCastTraectory : bool = true
 @export var MaxLengthTouch : float = 300
 
 #Компоненты игрока
-@onready var rdMesh : MeshInstance3D = $Collision/Root/Mesh
+var rdMesh : MeshInstance3D
 @onready var rdCheckFloor: RayCast3D = $Collision/CheckFloor
 @onready var rdRoot: Node3D = $Collision/Root
 @onready var rdCollision: CollisionShape3D = $Collision
@@ -45,8 +45,11 @@ var Force : float = 1.4
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	setSkin(Global.TakedSkin)
+	
 	UI.MainMenuOpened.connect(func() : CanCastTraectory = true)
 	
+	Global.ChangePlayerSkin.connect(setSkin)
 	Global.player = self
 	Global.GameReload.connect(_on_game_reload)
 	Global.GameStart.connect(_on_game_start)
@@ -72,6 +75,18 @@ func _physics_process(delta):
 		rdRoot.scale = Vector3(_tmp_scale,_tmp_scale,_tmp_scale)
 	
 	move_and_slide()
+
+func setSkin(TakedSkin : Global.SKINS = Global.SKINS.DEFAULT):
+	var tween : Tween
+	if rdMesh != null: 
+		tween = create_tween()
+		tween.tween_property(rdMesh, "scale", Vector3(0.7, 0.7, 0.7), 0.05)
+		await tween.finished
+		rdMesh.queue_free()
+	var skin : MeshInstance3D = load(Global.get_skin_by_key(Global.getSkinByEnum(TakedSkin))).instantiate()
+	rdMesh = skin
+	rdRoot.add_child(rdMesh)
+	create_tween().tween_property(rdMesh, "scale", Vector3(1, 1, 1), 0.1)
 
 func _input(event):
 
