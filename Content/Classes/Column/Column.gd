@@ -54,6 +54,11 @@ func _on_goal_area_body_entered(body: Node3D) -> void:
 			await get_tree().create_timer(0.1).timeout
 			#rdGoalEffect.get_children()[i].visible = false
 
+func _vertical_shake():
+	var tween := create_tween().tween_property(rdMesh, "position", Vector3(0,-0.1, 0), 0.1)
+	await tween.finished
+	create_tween().tween_property(rdMesh, "position", Vector3(0, 0, 0), 0.1)
+
 func _shake():
 	var tweenX : Tween = create_tween()
 	tweenX.tween_property(rdMesh, "position:x", shakeX, 0.05)

@@ -3,7 +3,7 @@ extends Control
 @onready var rdBacksidePanel: Panel = $GroupBox/BackSidePanel
 @onready var rdNoButton: Button = $GroupBox/NoButton
 @onready var rdYesButton: Button = $GroupBox/YesButton
-
+@onready var rdGemsPanel: Panel = $GemsGroupBox/GemsPanel
 @onready var rdArrowButtonRight: Button = $ArrowsGroupBox/ArrowButtonRight
 @onready var rdArrowButtonLeft: Button = $ArrowsGroupBox/ArrowButtonLeft
 
@@ -29,6 +29,7 @@ func setVisible():
 	create_tween().tween_property(rdArrowButtonRight, "scale", Vector2(1, 1), 0.1)
 	create_tween().tween_property(rdArrowButtonRight, "position", Vector2(122.5, -27.5), 0.1)
 	
+	create_tween().tween_property(rdGemsPanel, "position", Vector2(-39, 30), 0.1)
 	var BacksidePanel := create_tween().tween_property(rdBacksidePanel, "scale", Vector2(1, 1), 0.1)
 	await BacksidePanel.finished
 	create_tween().tween_property(rdNoButton, "scale", Vector2(1, 1), 0.1)
@@ -45,6 +46,7 @@ func setInvisible():
 	create_tween().tween_property(rdArrowButtonRight, "scale", Vector2.ZERO, 0.1)
 	create_tween().tween_property(rdArrowButtonRight, "position", Vector2(-27.5, -27.5), 0.1)
 	
+	create_tween().tween_property(rdGemsPanel, "position", Vector2(-39, -60), 0.1)
 	create_tween().tween_property(rdBacksidePanel, "scale", Vector2.ZERO, 0.1)
 	create_tween().tween_property(rdNoButton, "scale", Vector2.ZERO, 0.1)
 	create_tween().tween_property(rdYesButton, "scale", Vector2.ZERO, 0.1)

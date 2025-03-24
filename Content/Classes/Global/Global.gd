@@ -103,6 +103,7 @@ var CountTouchesCollumn : int = 0
 
 var SkinsDict : Dictionary
 var TakedSkin : SKINS = SKINS.MINECRAFT
+var boughtSkins : Array[bool] = [true, false]
 func getSkinByEnum(skin : SKINS) -> String:
 	var key : String = "default"
 	match skin:
@@ -132,6 +133,7 @@ func _ready() -> void:
 	SDKBridge.loadUserData()
 	
 	await CollumnGenerated
+	await get_tree().create_timer(1).timeout
 	GameReady.emit()
 	PlayerGemsChanged.emit(Global.Gems)
 
@@ -146,7 +148,7 @@ func _read_from_json(path : String):
 
 func get_skin_by_key(key : String):
 	if SkinsDict and SkinsDict.has(key):
-		return SkinsDict[key]
+		return SkinsDict[key].duplicate(true)
 	else:
 		printerr("can't find this skin: ", key)
 

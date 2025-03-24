@@ -83,14 +83,14 @@ func setSkin(TakedSkin : Global.SKINS = Global.SKINS.DEFAULT):
 		tween.tween_property(rdMesh, "scale", Vector3(0.7, 0.7, 0.7), 0.05)
 		await tween.finished
 		rdMesh.queue_free()
-	var skin : MeshInstance3D = load(Global.get_skin_by_key(Global.getSkinByEnum(TakedSkin))).instantiate()
+	var skin : MeshInstance3D = load(Global.get_skin_by_key(Global.getSkinByEnum(TakedSkin))["scene"]).instantiate()
 	rdMesh = skin
 	rdRoot.add_child(rdMesh)
 	create_tween().tween_property(rdMesh, "scale", Vector3(1, 1, 1), 0.1)
 
 func _input(event):
 
-	if !moving and !isDead and (Floor != null):
+	if !moving and !isDead and (Floor != null) and (UI.focus == UI.FOCUS_IN.GAME or UI.focus == UI.FOCUS_IN.MAIN_MENU):
 			#Касание экрана
 		if event is InputEventScreenTouch and event.is_pressed() and !IsPressed:
 			StartTouch = event.position
@@ -203,6 +203,7 @@ func _on_area_body_entered(body: Node3D) -> void:
 		Floor = body
 		if CountJump >= 1:
 			body._show_number()
+			body._vertical_shake()
 			Global.CountTouchesCollumn += 1
 			Global.PlayerOnCollumn.emit()
 	else:

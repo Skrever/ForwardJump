@@ -13,7 +13,11 @@ func local(key : String) -> String:
 	return Localisation[key][lang]
 
 var Localisation : Dictionary = {
-	
+	"auth":
+		{
+		"ru": "Авторизуйтесь, чтобы можно было видеть вас в списках лучших!",
+		"en": "Log in to be visible on the leaderboards!"
+		},
 	"best" : 
 		{
 			"ru": "Топ 5",

@@ -40,6 +40,11 @@ signal CloseStoreMenu()
 signal StoreMenuOpened()
 signal StoreMenuClosed()
 
+signal OpenAuthMenu()
+signal CloseAuthMenu()
+signal AuthMenuOpened()
+signal AuthMenuClosed()
+
 enum FOCUS_IN
 {
 	NONE,
@@ -49,17 +54,13 @@ enum FOCUS_IN
 	PAUSE_MENU,
 	SETTINGS_MENU,
 	LEADERBOARD_MENU,
-	STORE_MENU
+	STORE_MENU,
+	AUTH_MENU
 }
 
 var focus : FOCUS_IN = FOCUS_IN.NONE
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	# Дебаг
-	await get_tree().create_timer(2).timeout
-	OpenMainMenu.emit()
-	OpenLearningMenu.emit()
-	
 	Global.GameReady.connect(_on_game_ready)
 	Global.GameStart.connect(_on_game_going)
 	Global.GameStop.connect(_on_game_stopped)

@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://cobanmdf3y1w"]
+[gd_scene load_steps=7 format=3 uid="uid://cobanmdf3y1w"]
 
 [ext_resource type="StyleBox" uid="uid://bftp76pqmv3oi" path="res://Content/UI/Panels/DefaultPanelWithoutBorders.tres" id="1_lrt7p"]
 [ext_resource type="Script" path="res://Content/UI/Interface/StoreMenu/store_menu.gd" id="1_vgipp"]
 [ext_resource type="PackedScene" uid="uid://bhiiuk1ug31lq" path="res://Content/UI/Buttons/No/NoButton.tscn" id="2_oi6cj"]
 [ext_resource type="PackedScene" uid="uid://bnbfy4p6y1u42" path="res://Content/UI/Buttons/Yes/YesButton.tscn" id="3_qcjgo"]
 [ext_resource type="PackedScene" uid="uid://d3mbfd8rb4fm2" path="res://Content/UI/Buttons/ArrowSkip/ArrowButton.tscn" id="5_ev0h2"]
+[ext_resource type="PackedScene" uid="uid://cgqnsua7egu01" path="res://Content/UI/Panels/Gems/Gems.tscn" id="6_ca2mt"]
 
 [node name="StoreMenu" type="Control"]
 layout_mode = 3
@@ -112,6 +113,26 @@ grow_horizontal = 2
 grow_vertical = 2
 rotation = 3.14159
 pivot_offset = Vector2(45, 45)
+
+[node name="GemsGroupBox" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 40.0
+grow_horizontal = 2
+pivot_offset = Vector2(20, 0)
+
+[node name="GemsPanel" parent="GemsGroupBox" instance=ExtResource("6_ca2mt")]
+layout_mode = 1
+anchors_preset = 5
+anchor_top = 0.0
+anchor_bottom = 0.0
+offset_top = 30.0
+offset_bottom = 84.0
+grow_vertical = 1
 
 [connection signal="pressed" from="GroupBox/NoButton" to="." method="_on_no_button_pressed"]
 [connection signal="pressed" from="GroupBox/YesButton" to="." method="_on_yes_button_pressed"]

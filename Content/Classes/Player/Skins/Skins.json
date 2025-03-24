@@ -1,4 +1,12 @@
 {
-	"default": "uid://ctry6evki203u",
-	"minecraft": "uid://b8o36fr1rihbx"
+	"default": 
+		{
+			"scene" : "uid://ctry6evki203u",
+			"price" : "0"
+		},
+	"minecraft": 
+		{
+			"scene" : "uid://b8o36fr1rihbx",
+			"price" : "100"
+		}
 }

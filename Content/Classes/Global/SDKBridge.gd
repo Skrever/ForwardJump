@@ -1,6 +1,6 @@
 extends Node
 
-signal UserAuthCorrectly
+signal UserTryToAuth
 signal SDKinited
 
 signal CloseAdd
@@ -46,10 +46,10 @@ func _ready() :
 	Global.GamePaused.connect(saveData)
 	Global.GameStop.connect(saveData)
 	
-	#Global.GameStart.connect(GameIsOn)
-	#Global.GameContinued.connect(GameIsOn)
-	#Global.GameReload.connect(GameIsOff)
-	#Global.GamePaused.connect(GameIsOff)
+	Global.GameStart.connect(GameIsOn)
+	Global.GameContinued.connect(GameIsOn)
+	Global.GameReload.connect(GameIsOff)
+	Global.GamePaused.connect(GameIsOff)
 	
 	#Global.PlayerLevelChanged.connect(func(x) : saveData())
 	
@@ -153,12 +153,13 @@ func _on_rewarded_ad_state_changed(state):
 func _game_ready():
 	Bridge.platform.send_message(Bridge.PlatformMessage.GAME_READY)
 	if !Bridge.player.is_authorized:
-		pass
-		#Global.AuthorizePlayer.emit()
+		UI.OpenAuthMenu.emit()
+		await UserTryToAuth
+		if Bridge.player.is_authorized: _update_leaderboard_timer()
 	else:
-		pass
-		#Global.MainMenuOpen.emit()
-	_update_leaderboard_timer()
+		_update_leaderboard_timer()
+		UI.OpenMainMenu.emit()
+		UI.OpenLearningMenu.emit()
 
 func _get_raw_leaderboard(success, entries):
 	if success:
@@ -185,7 +186,6 @@ func _get_raw_leaderboard(success, entries):
 func authUser():
 	var options = {"scopes" : true}
 	Bridge.player.authorize(options, Callable(self, "_on_player_authorize_completed"))
-	UserAuthCorrectly.emit()
 	
 func _on_player_authorize_completed(success): 
 	UserAuth = success
@@ -193,7 +193,8 @@ func _on_player_authorize_completed(success):
 		print("Authorized")
 	else:
 		print("Authorization error")
-	UserAuthCorrectly.emit()
+	UserTryToAuth.emit()
+	
 
 func _update_leaderboard_timer():
 	print("Leaderboard init")
@@ -289,11 +290,11 @@ func _on_storage_get_completed(success, data):
 	DataLoaded.emit()
 	isDataLoading = false
 		
-#func GameIsOn():
-	#Bridge.platform.send_message(Bridge.PlatformMessage.GAMEPLAY_STARTED)
+func GameIsOn():
+	Bridge.platform.send_message(Bridge.PlatformMessage.GAMEPLAY_STARTED)
 #
-#func GameIsOff():
-	#Bridge.platform.send_message(Bridge.PlatformMessage.GAMEPLAY_STOPPED)
+func GameIsOff():
+	Bridge.platform.send_message(Bridge.PlatformMessage.GAMEPLAY_STOPPED)
 
 func _on_visibility_state_changed(state):
 	print(state)
