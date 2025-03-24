@@ -102,7 +102,7 @@ var Gems : int:
 var CountTouchesCollumn : int = 0
 
 var SkinsDict : Dictionary
-var TakedSkin : SKINS = SKINS.MINECRAFT
+var TakedSkin : SKINS = SKINS.DEFAULT
 var boughtSkins : Array[bool] = [true, false]
 func getSkinByEnum(skin : SKINS) -> String:
 	var key : String = "default"

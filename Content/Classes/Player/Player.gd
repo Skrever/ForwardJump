@@ -10,7 +10,11 @@ var RelativeTouch
 var IsPressed : bool = false
 var CountJump : int = 0
 
-var CanCastTraectory : bool = true
+var CanCastTraectory : bool = true:
+	get: return CanCastTraectory
+	set(value):
+		CanCastTraectory = value as bool
+		CastingObj.visible = CanCastTraectory
 
 #Сжатия игрока
 @export_category("Player Settings")
@@ -60,20 +64,23 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	if CanCastTraectory and IsPressed and !Global.ButtonPressed and (CountJump < 3):
-		CastingObj.visible = true
-	else: CastingObj.visible = false
-
 var time_passed : float = 0
+func _process(delta):
+	if CanCastTraectory:
+		if IsPressed and !Global.ButtonPressed and (CountJump < 3):
+			CastingObj.visible = true
+		else: CastingObj.visible = false
+	else: CastingObj.visible = false
+	
+	time_passed += delta
+	var _tmp_scale : float = 1 +  sin(time_passed * 4) / 40
+	rdRoot.scale = Vector3(_tmp_scale,_tmp_scale,_tmp_scale)
+	
+
 func _physics_process(delta):
 
 	if (!moving and !isDead):
 		velocity.y = -500 * delta
-		time_passed += delta
-		var _tmp_scale : float = 1 +  sin(time_passed * 4) / 40
-		rdRoot.scale = Vector3(_tmp_scale,_tmp_scale,_tmp_scale)
-	
 	move_and_slide()
 
 func setSkin(TakedSkin : Global.SKINS = Global.SKINS.DEFAULT):
@@ -90,7 +97,7 @@ func setSkin(TakedSkin : Global.SKINS = Global.SKINS.DEFAULT):
 
 func _input(event):
 
-	if !moving and !isDead and (Floor != null) and (UI.focus == UI.FOCUS_IN.GAME or UI.focus == UI.FOCUS_IN.MAIN_MENU):
+	if !moving and !isDead and (Floor != null):
 			#Касание экрана
 		if event is InputEventScreenTouch and event.is_pressed() and !IsPressed:
 			StartTouch = event.position

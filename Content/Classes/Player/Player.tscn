@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://waqdjnmtb8sl"]
+[gd_scene load_steps=8 format=3 uid="uid://waqdjnmtb8sl"]
 
 [ext_resource type="Script" path="res://Content/Classes/Player/Player.gd" id="1_kswa7"]
 [ext_resource type="PackedScene" uid="uid://c8jwf3341lg6s" path="res://Content/UI/UI.tscn" id="2_qpora"]
+[ext_resource type="PackedScene" uid="uid://bmmlb1dougd5v" path="res://Content/Classes/BunnerAboutPrice/BannerOfSkinPrice.tscn" id="3_2fct4"]
 
 [sub_resource type="Curve" id="Curve_4g42k"]
 _data = [Vector2(0, 0), 0.0, 5.7487, 0, 0, Vector2(0.355805, 1), 0.252326, 0.252326, 0, 0, Vector2(1, 0), -2.64296, 0.0, 0, 0]
@@ -11,6 +12,9 @@ point_count = 3
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_o6ohr"]
 size = Vector3(1, 0.0168457, 1)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_glsm0"]
+viewport_path = NodePath("SubViewport")
 
 [node name="Player" type="CharacterBody3D"]
 disable_mode = 2
@@ -34,6 +38,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.00231934, 0)
 shape = SubResource("BoxShape3D_o6ohr")
 
 [node name="UI" parent="." instance=ExtResource("2_qpora")]
+
+[node name="BannerOfSkinPrice" parent="." instance=ExtResource("3_2fct4")]
+texture = SubResource("ViewportTexture_glsm0")
 
 [connection signal="body_entered" from="Area" to="." method="_on_area_body_entered"]
 [connection signal="body_exited" from="Area" to="." method="_on_area_body_exited"]

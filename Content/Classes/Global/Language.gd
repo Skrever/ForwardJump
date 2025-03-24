@@ -33,9 +33,20 @@ var Localisation : Dictionary = {
 			"ru": "Продолжить после рекламы",
 			"en": "Watch ad to continue"
 		},
+	"cost" : 
+		{
+			"ru": "Стоимость: ",
+			"en": "Cost: "
+		},
+	"bought" : 
+		{
+			"ru": "Куплен",
+			"en": "bought"
+		},
 	"learning" :
 		{
 			"ru": "Нажми на экран и проведи вниз чтобы регулировать прыжок!",
 			"en": "Tap the screen and swipe down to adjust the jump!"
 		}
+	
 }

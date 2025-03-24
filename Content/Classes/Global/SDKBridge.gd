@@ -241,8 +241,11 @@ func saveData():
 	print("Попытка сохранить...")
 	var MaxScore = Global.MaxScore
 	var Gems = Global.Gems
+	var boughtSkins : String = ""
+	for skin in Global.boughtSkins: boughtSkins += "1" if skin else "0"
+		
 	
-	Bridge.storage.set(["MaxScore", "Gems"], [MaxScore, Gems], Callable(self, "_on_storage_set_completed"), Bridge.StorageType.LOCAL_STORAGE)
+	Bridge.storage.set(["MaxScore", "Gems", "boughtSkins"], [MaxScore, Gems, boughtSkins], Callable(self, "_on_storage_set_completed"), Bridge.StorageType.LOCAL_STORAGE)
 	
 func _on_get_score_completed(success, score):
 	if success:
@@ -264,7 +267,7 @@ func loadUserData():
 	if isDataSaving: await DataSaved
 	isDataLoading = true
 	
-	Bridge.storage.get(["MaxScore", "Gems"], Callable(self, "_on_storage_get_completed"), Bridge.StorageType.LOCAL_STORAGE)
+	Bridge.storage.get(["MaxScore", "Gems", "boughtSkins"], Callable(self, "_on_storage_get_completed"), Bridge.StorageType.LOCAL_STORAGE)
 	Bridge.leaderboard.get_score({ "leaderboardName": "Best" }, Callable(self, "_on_get_score_completed"))
 	
 	#if Bridge.storage.is_supported(Bridge.StorageType.PLATFORM_INTERNAL):
@@ -282,6 +285,14 @@ func _on_storage_get_completed(success, data):
 		
 		Global.MaxScore = int(data[0]) if data[0] != null else 0
 		Global.Gems = int(data[1]) if data[1] != null else 0
+		
+		if data[2] != null:
+			Global.boughtSkins.clear()
+			for let in str(data[2]): 
+				if let == "1": Global.boughtSkins.append(true)  
+				else: Global.boughtSkins.append(false)
+			Global.boughtSkins[0] = true
+				
 		
 	else:
 		print("Loading Data is insucces")

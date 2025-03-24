@@ -34,27 +34,19 @@ pivot_offset = Vector2(110, 57)
 [node name="BackSidePanel" type="Panel" parent="GroupBox"]
 texture_filter = 6
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-pivot_offset = Vector2(110, 0)
-theme_override_styles/panel = ExtResource("1_lrt7p")
-
-[node name="NoButton" parent="GroupBox" instance=ExtResource("2_oi6cj")]
-layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -99.0
-offset_top = -47.0
-offset_right = -4.0
-offset_bottom = 48.0
+offset_left = -110.0
+offset_top = -57.0
+offset_right = 110.0
+offset_bottom = 57.0
 grow_horizontal = 2
 grow_vertical = 2
+pivot_offset = Vector2(110, 0)
+theme_override_styles/panel = ExtResource("1_lrt7p")
 
 [node name="YesButton" parent="GroupBox" instance=ExtResource("3_qcjgo")]
 layout_mode = 1
@@ -66,6 +58,20 @@ anchor_bottom = 0.5
 offset_left = 5.0
 offset_top = -48.0
 offset_right = 100.0
+offset_bottom = 47.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="NoButton" parent="GroupBox" instance=ExtResource("2_oi6cj")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -99.0
+offset_top = -48.0
+offset_right = -4.0
 offset_bottom = 47.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -134,7 +140,7 @@ offset_top = 30.0
 offset_bottom = 84.0
 grow_vertical = 1
 
-[connection signal="pressed" from="GroupBox/NoButton" to="." method="_on_no_button_pressed"]
 [connection signal="pressed" from="GroupBox/YesButton" to="." method="_on_yes_button_pressed"]
+[connection signal="pressed" from="GroupBox/NoButton" to="." method="_on_no_button_pressed"]
 [connection signal="pressed" from="ArrowsGroupBox/ArrowButtonRight" to="." method="_on_arrow_button_right_pressed"]
 [connection signal="pressed" from="ArrowsGroupBox/ArrowButtonLeft" to="." method="_on_arrow_button_left_pressed"]
