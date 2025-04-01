@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://waqdjnmtb8sl"]
+[gd_scene load_steps=11 format=3 uid="uid://waqdjnmtb8sl"]
 
 [ext_resource type="Script" path="res://Content/Classes/Player/Player.gd" id="1_kswa7"]
 [ext_resource type="PackedScene" uid="uid://c8jwf3341lg6s" path="res://Content/UI/UI.tscn" id="2_qpora"]
@@ -15,6 +15,24 @@ size = Vector3(1, 0.0168457, 1)
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_glsm0"]
 viewport_path = NodePath("SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1w6ou"]
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="SphereMesh" id="SphereMesh_5mskc"]
+material = SubResource("StandardMaterial3D_1w6ou")
+radius = 0.25
+height = 0.5
+radial_segments = 8
+rings = 8
+
+[sub_resource type="Curve" id="Curve_3nm82"]
+_data = [Vector2(0.00923077, 0.0499392), 0.0, 0.989647, 0, 0, Vector2(0.495385, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.137028), -1.83791, 0.0, 0, 0]
+point_count = 3
 
 [node name="Player" type="CharacterBody3D"]
 disable_mode = 2
@@ -41,6 +59,16 @@ shape = SubResource("BoxShape3D_o6ohr")
 
 [node name="BannerOfSkinPrice" parent="." instance=ExtResource("3_2fct4")]
 texture = SubResource("ViewportTexture_glsm0")
+
+[node name="Particles" type="CPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.489034, 0)
+emitting = false
+amount = 4
+lifetime = 0.5
+lifetime_randomness = 0.06
+mesh = SubResource("SphereMesh_5mskc")
+gravity = Vector3(0, 0, 0)
+scale_amount_curve = SubResource("Curve_3nm82")
 
 [connection signal="body_entered" from="Area" to="." method="_on_area_body_entered"]
 [connection signal="body_exited" from="Area" to="." method="_on_area_body_exited"]

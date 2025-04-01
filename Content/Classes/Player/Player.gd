@@ -30,6 +30,8 @@ var rdMesh : MeshInstance3D
 @onready var rdCheckFloor: RayCast3D = $Collision/CheckFloor
 @onready var rdRoot: Node3D = $Collision/Root
 @onready var rdCollision: CollisionShape3D = $Collision
+@onready var rdParticles: CPUParticles3D = $Particles
+
 
 
 var moving : bool = false
@@ -160,7 +162,7 @@ func _input(event):
 
 func move():
 	moving = true
-	
+	rdParticles.emitting = true
 	set_physics_process(false)
 	MovingStarted.emit()
 	lastPosition = position
@@ -181,6 +183,7 @@ func move():
 	set_physics_process(true)
 	MovingFinished.emit()
 	CompressinRatio = 1
+	rdParticles.emitting = false
 	moving = false
 	
 func _curve_move(alpha : float):
