@@ -1,0 +1,196 @@
+[gd_scene load_steps=7 format=3 uid="uid://b8cataurp7tod"]
+
+[ext_resource type="Script" path="res://Content/UI/Interface/AboutDeveloper/developer_panel.gd" id="1_he4cn"]
+[ext_resource type="StyleBox" uid="uid://bftp76pqmv3oi" path="res://Content/UI/Panels/DefaultPanelWithoutBorders.tres" id="2_32jee"]
+[ext_resource type="StyleBox" uid="uid://tjhskm4tx1e1" path="res://Content/UI/Panels/DefaultPanel.tres" id="3_s6l5n"]
+[ext_resource type="Script" path="res://Content/UI/local.gd" id="4_v6axm"]
+[ext_resource type="PackedScene" uid="uid://bhiiuk1ug31lq" path="res://Content/UI/Buttons/No/NoButton.tscn" id="5_v01am"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ac3fb"]
+
+[node name="AboutDeveloper" type="Control"]
+layout_mode = 3
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -216.0
+offset_right = 216.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_he4cn")
+metadata/_edit_vertical_guides_ = [-59.0]
+
+[node name="SetterGroupBox" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -200.0
+offset_right = 150.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(150, 0)
+
+[node name="BackSidePanel" type="Panel" parent="SetterGroupBox"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -229.0
+offset_right = 150.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(150, 0)
+theme_override_styles/panel = ExtResource("2_32jee")
+
+[node name="Control" type="Control" parent="SetterGroupBox/BackSidePanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -200.0
+offset_right = 150.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VScrollBar" type="VScrollBar" parent="SetterGroupBox/BackSidePanel/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -127.0
+offset_top = -152.0
+offset_right = 127.0
+offset_bottom = 153.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(127, 152.5)
+theme_override_styles/grabber = SubResource("StyleBoxFlat_ac3fb")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="SetterGroupBox/BackSidePanel/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -117.0
+offset_top = -144.0
+offset_right = 118.0
+offset_bottom = 153.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(127, 152.5)
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SetterGroupBox/BackSidePanel/Control/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="SetterGroupBox/BackSidePanel/Control/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+text = "Создатель и разработчик этой игры - Skrever.
+.
+.
+Дизайнер и разработчик интерфейса - Skrever.
+.
+.
+Иконки были разработаны : 
+Miftahul Madani
+Grand Iconic
+Gregor Gresnar
+CapCool
+.
+Лицензия всех ассетов CC0. 
+.
+Спасибо что дочитал до конца. 
+.
+Получить НЕКО можно по промокоду"
+horizontal_alignment = 1
+autowrap_mode = 3
+script = ExtResource("4_v6axm")
+Name_Text = "aboutdevs"
+
+[node name="DeveloperBackSideModel" type="Panel" parent="SetterGroupBox/BackSidePanel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -114.5
+offset_top = 8.395
+offset_right = 114.5
+offset_bottom = 55.395
+grow_horizontal = 2
+theme_override_styles/panel = ExtResource("3_s6l5n")
+
+[node name="Label" type="Label" parent="SetterGroupBox/BackSidePanel/DeveloperBackSideModel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "About the Developer"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("4_v6axm")
+Name_Text = "devs"
+
+[node name="NoBackSideModel" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -57.0
+offset_top = -147.0
+offset_right = 57.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Panel" type="Panel" parent="NoBackSideModel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -57.0
+offset_top = -147.0
+offset_right = 57.0
+offset_bottom = -33.0
+grow_horizontal = 2
+grow_vertical = 0
+pivot_offset = Vector2(57, 57)
+theme_override_styles/panel = ExtResource("2_32jee")
+
+[node name="NoButton" parent="NoBackSideModel/Panel" instance=ExtResource("5_v01am")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[connection signal="pressed" from="NoBackSideModel/Panel/NoButton" to="." method="_on_no_button_pressed"]

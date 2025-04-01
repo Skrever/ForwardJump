@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://c8jwf3341lg6s"]
+[gd_scene load_steps=11 format=3 uid="uid://c8jwf3341lg6s"]
 
 [ext_resource type="PackedScene" uid="uid://dkoo4tqq6dyyn" path="res://Content/UI/Interface/HUD/HUD.tscn" id="1_5dpc1"]
 [ext_resource type="PackedScene" uid="uid://byuagjvh3bkib" path="res://Content/UI/Interface/MainMenu/MainMenu.tscn" id="1_tqbjm"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://xni5iwv0wqj2" path="res://Content/UI/Interface/LearningMenu/LearningMenu.tscn" id="7_oq5aq"]
 [ext_resource type="PackedScene" uid="uid://cobanmdf3y1w" path="res://Content/UI/Interface/StoreMenu/StoreMenu.tscn" id="8_q6ebj"]
 [ext_resource type="PackedScene" uid="uid://bk8xsyk3c03ub" path="res://Content/UI/Interface/YandexAuthMenu/YandexAuthMenu.tscn" id="9_hgwlf"]
+[ext_resource type="PackedScene" uid="uid://b8cataurp7tod" path="res://Content/UI/Interface/AboutDeveloper/DeveloperPanel.tscn" id="10_1hi1p"]
 
 [node name="UI" type="Control"]
 layout_mode = 3
@@ -52,4 +53,7 @@ layout_mode = 1
 
 [node name="YandexAuthMenu" parent="." instance=ExtResource("9_hgwlf")]
 visible = false
+layout_mode = 1
+
+[node name="AboutDeveloper" parent="." instance=ExtResource("10_1hi1p")]
 layout_mode = 1

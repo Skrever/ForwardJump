@@ -13,6 +13,7 @@ offset_right = 47.5
 offset_bottom = 47.5
 pivot_offset = Vector2(47.5, 47.5)
 theme_override_styles/focus = ExtResource("1_wagma")
+theme_override_styles/disabled = ExtResource("1_wagma")
 theme_override_styles/hover_pressed = ExtResource("1_wagma")
 theme_override_styles/hover = ExtResource("2_ljmr6")
 theme_override_styles/pressed = ExtResource("1_wagma")

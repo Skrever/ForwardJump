@@ -45,6 +45,11 @@ signal CloseAuthMenu()
 signal AuthMenuOpened()
 signal AuthMenuClosed()
 
+signal OpenAboutDeveloper()
+signal CloseAboutDeveloper()
+signal AboutDeveloperOpened()
+signal AboutDeveloperClosed()
+
 enum FOCUS_IN
 {
 	NONE,
@@ -55,7 +60,8 @@ enum FOCUS_IN
 	SETTINGS_MENU,
 	LEADERBOARD_MENU,
 	STORE_MENU,
-	AUTH_MENU
+	AUTH_MENU,
+	ABOUT_DEVELOPER
 }
 
 var focus : FOCUS_IN = FOCUS_IN.NONE

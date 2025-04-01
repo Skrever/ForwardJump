@@ -14,6 +14,7 @@ var canShake : bool = true
 @onready var rdMesh: MeshInstance3D = $CollisionShape3D/Mesh
 @onready var rdLabel: Label = $NumberEffect/NumberEffect/SubViewport/Label
 @onready var rdNumberEffect: Sprite3D = $NumberEffect/NumberEffect
+@onready var rdParticles: CPUParticles3D = $Particles
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -98,7 +99,12 @@ func _show_number():
 	await number_tween.finished
 	
 	rdNumberEffect.visible = false
+	rdLabel.text = " "
 	
 func _anim_number_effect_on(alpha : float):
 	rdNumberEffect.scale = lerp(Vector3.ZERO, Vector3(1, 1, 1), alpha)
 	rdNumberEffect.position = lerp(Vector3.ZERO, Vector3(0, 2, 0), alpha)
+
+func emitParticles(pos_ : Vector3 = Vector3(0, 4.031, 0)):
+	rdParticles.position = pos_ - Vector3(0, 0.2, 0)
+	rdParticles.emitting = true

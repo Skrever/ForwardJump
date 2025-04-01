@@ -1,0 +1,49 @@
+[gd_scene load_steps=6 format=3 uid="uid://bd0f7uots6sne"]
+
+[ext_resource type="StyleBox" uid="uid://dyplb7534rxje" path="res://Content/UI/Buttons/AboutDev/AboutDevsButtonNormal.tres" id="1_hjb0n"]
+[ext_resource type="StyleBox" uid="uid://dxldhyrjrff1i" path="res://Content/UI/Buttons/AboutDev/AboutDevsButtonPressed.tres" id="2_ktl5h"]
+[ext_resource type="Texture2D" uid="uid://cfy4sqw5av0nw" path="res://Content/UI/Textures/О разработчике.png" id="2_t332v"]
+[ext_resource type="StyleBox" uid="uid://drxpkcbjixr1v" path="res://Content/UI/Buttons/AboutDev/AboutDevsButtonHower.tres" id="3_6aeom"]
+[ext_resource type="Script" path="res://Content/UI/Buttons/button.gd" id="4_807pv"]
+
+[node name="AboutDev" type="Button"]
+custom_minimum_size = Vector2(40, 40)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -35.0
+offset_top = -35.0
+offset_right = 35.0
+offset_bottom = 35.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(35, 35)
+theme_override_styles/focus = ExtResource("1_hjb0n")
+theme_override_styles/hover_pressed = ExtResource("2_ktl5h")
+theme_override_styles/hover = ExtResource("3_6aeom")
+theme_override_styles/pressed = ExtResource("2_ktl5h")
+theme_override_styles/normal = ExtResource("1_hjb0n")
+script = ExtResource("4_807pv")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(25, 25)
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 15.0
+offset_top = 15.0
+offset_right = -15.0
+offset_bottom = -15.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(20, 20)
+texture = ExtResource("2_t332v")
+expand_mode = 1
+
+[connection signal="button_down" from="." to="." method="_on_button_down"]
+[connection signal="button_up" from="." to="." method="_on_button_up"]
+[connection signal="focus_entered" from="." to="." method="_on_focus_entered"]
+[connection signal="pressed" from="." to="." method="_on_pressed"]

@@ -23,9 +23,12 @@ func setVisible():
 	if UI.focus == UI.FOCUS_IN.LEADERBOARD_MENU: await UI.LeaderboardMenuClosed
 		
 	
-	UI.focus = UI.FOCUS_IN.PAUSE_MENU
 	print("Paused Menu")
+	rdSettingsButton.disabled = false
+	rdSettingsButton.disabled = false
+	rdNoButton.disabled = false
 	visible = true
+	UI.focus = UI.FOCUS_IN.PAUSE_MENU
 	mouse_filter = MouseFilter.MOUSE_FILTER_STOP
 	create_tween().tween_property(rdBackSidePanel, "scale", Vector2(1, 1), 0.1)
 	await get_tree().create_timer(0.1).timeout
@@ -37,6 +40,9 @@ func setVisible():
 
 func setInvisible():
 	mouse_filter = MouseFilter.MOUSE_FILTER_IGNORE
+	rdSettingsButton.disabled = true
+	rdSettingsButton.disabled = true
+	rdNoButton.disabled = true
 	create_tween().tween_property(rdBackSidePanel, "scale", Vector2.ZERO, 0.1)
 	create_tween().tween_property(rdNoButton, "scale", Vector2.ZERO, 0.1)
 	create_tween().tween_property(rdRestartButton, "scale", Vector2.ZERO, 0.1)

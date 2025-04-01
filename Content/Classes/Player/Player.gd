@@ -97,7 +97,16 @@ func setSkin(TakedSkin : Global.SKINS = Global.SKINS.DEFAULT):
 
 func _input(event):
 
+	#if UI.focus != UI.FOCUS_IN.MAIN_MENU and  UI.focus != UI.FOCUS_IN.GAME and UI.focus != UI.FOCUS_IN.NONE : return
+	
+	match UI.focus:
+		UI.FOCUS_IN.STORE_MENU: return
+		UI.FOCUS_IN.ABOUT_DEVELOPER: return
+		UI.FOCUS_IN.LEADERBOARD_MENU: return
+		UI.FOCUS_IN.SETTINGS_MENU: return
+		
 	if !moving and !isDead and (Floor != null):
+		#print(UI.focus)
 			#Касание экрана
 		if event is InputEventScreenTouch and event.is_pressed() and !IsPressed:
 			StartTouch = event.position
@@ -119,27 +128,30 @@ func _input(event):
 							Global.GameStart.emit()
 							move()
 					Global.GAMESTATS.GOING: move()
-			for obj in CastingObj.get_children(): obj.position = Vector3.ZERO
-			CastingObj.visible = false
+			if CastingObj.visible != false:
+				for obj in CastingObj.get_children(): obj.position = Vector3.ZERO
+				CastingObj.visible = false
 				
 		#Положение текущего касания
 		if IsPressed and !Global.ButtonPressed:
 			if event is not InputEventKey:
 				RelativeTouch = event.position
+				if (StartTouch - RelativeTouch).length() < 2.0: return
 				var alpha = -(StartTouch.y - RelativeTouch.y) / MaxLengthTouch
-				if alpha > 1: alpha = 1
+				if alpha > 1: alpha = 1 
 				elif alpha < -1 : alpha = -1
 				scale.y = (1 - alpha) if MinCompression < (1 - alpha) else MinCompression
 				if scale.y > MaxCompression:  scale.y = MaxCompression
 				CompressinRatio = scale.y
-				
-				var countChildrensCastingObj : int = CastingObj.get_children().size()
-				for i in range(1, countChildrensCastingObj):
-					CastingObj.get_children()[i].position.y = JumpCurve.sample((1.0 / countChildrensCastingObj) * i) * MaxJump - 0.5
-					CastingObj.get_children()[i].scale = Vector3((1.5 - 0.1 * i), (1.5 - 0.1 * i), (1.5 - 0.1 * i))
-					match Floor.NextCollumnAt:
-						Global.DIRECTION.LEFT: CastingObj.get_children()[i].position.x = (-Floor.DistanceToNextCollumn * (Force - CompressinRatio) / countChildrensCastingObj) * (i) * 1.1
-						Global.DIRECTION.FORWARD: CastingObj.get_children()[i].position.z = (-Floor.DistanceToNextCollumn * (Force - CompressinRatio) / countChildrensCastingObj) * (i) * 1.1
+				if CastingObj.visible:
+					#CastingObj.position = position
+					var countChildrensCastingObj : int = CastingObj.get_children().size()
+					for i in range(1, countChildrensCastingObj):
+						CastingObj.get_children()[i].position.y = JumpCurve.sample((1.0 / countChildrensCastingObj) * i) * MaxJump - 0.5
+						CastingObj.get_children()[i].scale = Vector3((1.5 - 0.1 * i), (1.5 - 0.1 * i), (1.5 - 0.1 * i))
+						match Floor.NextCollumnAt:
+							Global.DIRECTION.LEFT: CastingObj.get_children()[i].position.x = (-Floor.DistanceToNextCollumn * (Force - CompressinRatio) / countChildrensCastingObj) * (i) * 1.1
+							Global.DIRECTION.FORWARD: CastingObj.get_children()[i].position.z = (-Floor.DistanceToNextCollumn * (Force - CompressinRatio) / countChildrensCastingObj) * (i) * 1.1
 		else:
 			#for obj in CastingObj.get_children(): obj.position = Vector3.ZERO
 			CastingObj.visible = false
@@ -168,7 +180,7 @@ func move():
 	CountJump += 1
 	set_physics_process(true)
 	MovingFinished.emit()
-	CompressinRatio = 0
+	CompressinRatio = 1
 	moving = false
 	
 func _curve_move(alpha : float):
@@ -209,6 +221,8 @@ func _on_area_body_entered(body: Node3D) -> void:
 	if body is Collumn:
 		Floor = body
 		if CountJump >= 1:
+			body.emitParticles(position - body.position)
+		
 			body._show_number()
 			body._vertical_shake()
 			Global.CountTouchesCollumn += 1

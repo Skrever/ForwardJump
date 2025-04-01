@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://pvbtwtmqm74r"]
+[gd_scene load_steps=15 format=3 uid="uid://pvbtwtmqm74r"]
 
 [ext_resource type="Script" path="res://Content/Classes/Column/Column.gd" id="1_i2q6p"]
 [ext_resource type="PackedScene" uid="uid://cqv4goxnlhwlg" path="res://Content/Classes/Column/DropEffect3D.tscn" id="2_0mkec"]
@@ -26,6 +26,25 @@ viewport_path = NodePath("SubViewport")
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_wt10y"]
 viewport_path = NodePath("NumberEffect/NumberEffect/SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kfcaf"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_a1ebc"]
+material = SubResource("StandardMaterial3D_kfcaf")
+radius = 0.167
+height = 0.333
+radial_segments = 5
+rings = 3
+
+[sub_resource type="Curve" id="Curve_mb7sn"]
+min_value = -200.0
+max_value = 200.0
+_data = [Vector2(0, -85.0183), 0.0, 0.0, 0, 0, Vector2(1, 117.661), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_yvsyu"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.2162), -1.00064, 0.0, 0, 0]
+point_count = 2
 
 [node name="Column" type="StaticBody3D"]
 collision_layer = 5
@@ -87,5 +106,26 @@ theme_override_font_sizes/font_size = 140
 text = "123"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Particles" type="CPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00775123, 4.03115, 0)
+emitting = false
+amount = 15
+lifetime = 1.5
+one_shot = true
+speed_scale = 7.0
+explosiveness = 1.0
+fixed_fps = 60
+mesh = SubResource("SphereMesh_a1ebc")
+direction = Vector3(0, -20, 0)
+spread = 180.0
+gravity = Vector3(0, -3, 0)
+initial_velocity_min = 2.0
+initial_velocity_max = 3.0
+angular_velocity_max = 2.0
+linear_accel_min = -3.0
+radial_accel_curve = SubResource("Curve_mb7sn")
+scale_amount_curve = SubResource("Curve_yvsyu")
+hue_variation_max = 0.36
 
 [connection signal="body_entered" from="GoalArea" to="." method="_on_goal_area_body_entered"]

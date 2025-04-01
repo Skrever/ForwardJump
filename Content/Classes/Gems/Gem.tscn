@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://d3qfqt2oemnbr"]
+[gd_scene load_steps=10 format=3 uid="uid://d3qfqt2oemnbr"]
 
 [ext_resource type="Script" path="res://Content/Classes/Gems/gem.gd" id="1_dsmec"]
 [ext_resource type="ArrayMesh" uid="uid://bxqpa55gerqc4" path="res://Content/Classes/Gems/Gem.res" id="1_sjhip"]
@@ -17,6 +17,31 @@ cull_mode = 1
 depth_draw_mode = 1
 shading_mode = 0
 albedo_color = Color(0.134585, 0.0950241, 0.107625, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5gc6o"]
+albedo_color = Color(0.286598, 0.632505, 0.227655, 1)
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="SphereMesh" id="SphereMesh_gcmce"]
+material = SubResource("StandardMaterial3D_5gc6o")
+radius = 0.125
+height = 0.25
+radial_segments = 5
+rings = 2
+
+[sub_resource type="Curve" id="Curve_myf72"]
+min_value = -200.0
+max_value = 200.0
+_data = [Vector2(0, -85.0183), 0.0, 0.0, 0, 0, Vector2(1, 117.661), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_mxmsr"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.2162), -1.00064, 0.0, 0, 0]
+point_count = 2
 
 [node name="Gem" type="Area3D"]
 collision_layer = 0
@@ -37,5 +62,24 @@ transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, -0.165851, 0)
 mesh = ExtResource("1_sjhip")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_obb7i")
+
+[node name="Particles" type="CPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.208347, 0)
+emitting = false
+amount = 12
+one_shot = true
+speed_scale = 7.0
+explosiveness = 1.0
+fixed_fps = 60
+mesh = SubResource("SphereMesh_gcmce")
+direction = Vector3(0, 0, 0)
+spread = 180.0
+gravity = Vector3(0, -2, 0)
+initial_velocity_min = 2.0
+initial_velocity_max = 3.0
+angular_velocity_max = 4.0
+radial_accel_curve = SubResource("Curve_myf72")
+scale_amount_curve = SubResource("Curve_mxmsr")
+hue_variation_max = 0.36
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
