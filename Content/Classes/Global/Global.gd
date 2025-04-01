@@ -110,11 +110,13 @@ func getSkinByEnum(skin : SKINS) -> String:
 		SKINS.MINECRAFT:
 			key = "minecraft"
 	return key
-
+	
+var CollumnsSkinsDict : Dictionary
 
 func _ready() -> void:
 	
 	SkinsDict = _read_from_json("res://Content/Classes/Player/Skins/Skins.json")
+	CollumnsSkinsDict = _read_from_json("res://Content/Classes/Column/Skins/collumns.json")
 	
 	GameReady.connect(_on_game_ready)
 	GameReload.connect(_on_game_reload)
@@ -151,6 +153,13 @@ func get_skin_by_key(key : String):
 		return SkinsDict[key].duplicate(true)
 	else:
 		printerr("can't find this skin: ", key)
+		
+func get_collumn_skin_by_key(key : String):
+	if CollumnsSkinsDict and CollumnsSkinsDict.has(key):
+		return CollumnsSkinsDict[key].duplicate(true)
+	else:
+		printerr("can't find this skin: ", key)
+
 
 func _on_game_ready():
 	GameState = GAMESTATS.NONE

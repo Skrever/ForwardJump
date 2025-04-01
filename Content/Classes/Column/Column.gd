@@ -11,19 +11,23 @@ var shakeZ : float = randf_range(0.1,0.15)
 var canShake : bool = true
 
 @onready var rdGoalEffect: Node3D = $GoalEffect
-@onready var rdMesh: MeshInstance3D = $CollisionShape3D/Mesh
+@onready var rdMesh: CollumnSkin
 @onready var rdLabel: Label = $NumberEffect/NumberEffect/SubViewport/Label
 @onready var rdNumberEffect: Sprite3D = $NumberEffect/NumberEffect
-@onready var rdParticles: CPUParticles3D = $Particles
+@onready var rdRoot: Node3D = $Root
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass
+	setSkin(true)
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+func setSkin(rand : bool):
+	if rand:
+		var key : String = Global.CollumnsSkinsDict.keys()[randi_range(0, Global.CollumnsSkinsDict.keys().size() - 1)]
+		print(key)
+		rdMesh = load(Global.get_collumn_skin_by_key(key)["scene"]).instantiate()
+	else:
+		rdMesh = load(Global.get_collumn_skin_by_key("default")["scene"]).instantiate()
+	rdRoot.add_child(rdMesh)
 	
 func reload(ReloadLocation : Vector3 = Vector3(0, 30, 0)):
 	await delete_collumn()
@@ -105,6 +109,6 @@ func _anim_number_effect_on(alpha : float):
 	rdNumberEffect.scale = lerp(Vector3.ZERO, Vector3(1, 1, 1), alpha)
 	rdNumberEffect.position = lerp(Vector3.ZERO, Vector3(0, 2, 0), alpha)
 
-func emitParticles(pos_ : Vector3 = Vector3(0, 4.031, 0)):
-	rdParticles.position = pos_ - Vector3(0, 0.2, 0)
-	rdParticles.emitting = true
+func emitParticles(pos_ : Vector3):
+	pos_.y /= 2.0
+	rdMesh.emitParticles(pos_ - Vector3(0, 0.2, 0))
