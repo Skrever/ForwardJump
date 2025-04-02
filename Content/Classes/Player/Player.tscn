@@ -31,8 +31,9 @@ radial_segments = 8
 rings = 8
 
 [sub_resource type="Curve" id="Curve_3nm82"]
-_data = [Vector2(0.00923077, 0.0499392), 0.0, 0.989647, 0, 0, Vector2(0.495385, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.137028), -1.83791, 0.0, 0, 0]
-point_count = 3
+max_value = 1.2
+_data = [Vector2(0, 0), 0.0, -0.073242, 0, 0, Vector2(0.26, 0), 0.0, 0.0, 0, 0, Vector2(0.608571, 1.2), 0.0, 0.0, 0, 0, Vector2(1, 0.0334822), 0.0, 0.0, 0, 0]
+point_count = 4
 
 [node name="Player" type="CharacterBody3D"]
 disable_mode = 2
@@ -64,7 +65,7 @@ texture = SubResource("ViewportTexture_glsm0")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.489034, 0)
 emitting = false
 amount = 4
-lifetime = 0.5
+lifetime = 0.6
 lifetime_randomness = 0.06
 mesh = SubResource("SphereMesh_5mskc")
 gravity = Vector3(0, 0, 0)
