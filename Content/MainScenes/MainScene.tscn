@@ -1,9 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://skyapf40d7lg"]
+[gd_scene load_steps=10 format=3 uid="uid://skyapf40d7lg"]
 
 [ext_resource type="PackedScene" uid="uid://ccba8a6xdtcd7" path="res://Content/Classes/Camera/tracking_camera.tscn" id="1_555a4"]
 [ext_resource type="PackedScene" uid="uid://0o5jeu8n6e6x" path="res://Content/Classes/Generator/Generator.tscn" id="1_plau4"]
 [ext_resource type="PackedScene" uid="uid://waqdjnmtb8sl" path="res://Content/Classes/Player/Player.tscn" id="2_4u52e"]
 [ext_resource type="PackedScene" uid="uid://djukxyj1v26ks" path="res://Content/Classes/DinamicFloor/DinamicFloor.tscn" id="4_vq4ek"]
+[ext_resource type="Script" path="res://Content/MainScenes/enviroment.gd" id="5_cuoxd"]
+[ext_resource type="Material" uid="uid://jdab3p6olubc" path="res://Content/Classes/Column/Skins/Default/Default.tres" id="6_rwldj"]
 
 [sub_resource type="Environment" id="Environment_p0hts"]
 background_mode = 1
@@ -40,6 +42,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0388284, 0)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_p0hts")
+script = ExtResource("5_cuoxd")
+ColumnMaterial = ExtResource("6_rwldj")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
 transform = Transform3D(0.652971, 0.604299, -0.456564, 0, 0.602818, 0.797879, 0.757383, -0.520992, 0.393623, 0, 8.34102, 0)

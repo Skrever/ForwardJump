@@ -243,9 +243,10 @@ func saveData():
 	var Gems = Global.Gems
 	var boughtSkins : String = ""
 	for skin in Global.boughtSkins: boughtSkins += "1" if skin else "0"
-		
-	
-	Bridge.storage.set(["MaxScore", "Gems", "boughtSkins"], [MaxScore, Gems, boughtSkins], Callable(self, "_on_storage_set_completed"), Bridge.StorageType.LOCAL_STORAGE)
+	var takedSkin : int = Global.TakedSkin
+	var backColor : String = Global.backColor.to_html(false)
+	var secondBackColor : String = Global.secondBackColor.to_html(false)
+	Bridge.storage.set(["MaxScore", "Gems", "boughtSkins", "takedSkin", "backColor", "secondBackColor"], [MaxScore, Gems, boughtSkins, takedSkin, backColor, secondBackColor], Callable(self, "_on_storage_set_completed"), Bridge.StorageType.LOCAL_STORAGE)
 	
 func _on_get_score_completed(success, score):
 	if success:
@@ -267,7 +268,7 @@ func loadUserData():
 	if isDataSaving: await DataSaved
 	isDataLoading = true
 	
-	Bridge.storage.get(["MaxScore", "Gems", "boughtSkins"], Callable(self, "_on_storage_get_completed"), Bridge.StorageType.LOCAL_STORAGE)
+	Bridge.storage.get(["MaxScore", "Gems", "boughtSkins", "takedSkin", "backColor", "secondBackColor"], Callable(self, "_on_storage_get_completed"), Bridge.StorageType.LOCAL_STORAGE)
 	Bridge.leaderboard.get_score({ "leaderboardName": "Best" }, Callable(self, "_on_get_score_completed"))
 	
 	#if Bridge.storage.is_supported(Bridge.StorageType.PLATFORM_INTERNAL):
@@ -283,16 +284,31 @@ func _on_storage_get_completed(success, data):
 		print(data)
 		print("Load user data is ", success)
 		
+		# Восстанавливаем максимальные очки
 		Global.MaxScore = int(data[0]) if data[0] != null else 0
+		
+		# Восстанавливаем гемы
 		Global.Gems = int(data[1]) if data[1] != null else 0
 		
+		# Восстанавливаем массив купленных скинов
 		if data[2] != null:
 			Global.boughtSkins.clear()
+			var countSkins : int = Global.SkinsDict.keys().size()
 			for let in str(data[2]): 
 				if let == "1": Global.boughtSkins.append(true)  
 				else: Global.boughtSkins.append(false)
+			if Global.boughtSkins.size() < countSkins:
+				for i in range(0, countSkins - Global.boughtSkins.size()):
+					Global.boughtSkins.append(false)
 			Global.boughtSkins[0] = true
-				
+			
+			
+		#Восстанавливаем выбранный индекс скина
+		Global.TakedSkin = int(data[3]) if data[3] != null else 0
+		
+		#Восстанавливаем цвет заднего фона
+		Global.backColor = Color(str(data[4])) if data[4] != null else "b87968"
+		Global.secondBackColor = Color(str(data[5])) if data[5] != null else "e65c48"
 		
 	else:
 		print("Loading Data is insucces")

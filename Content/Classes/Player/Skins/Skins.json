@@ -4,9 +4,14 @@
 			"scene" : "uid://ctry6evki203u",
 			"price" : "0"
 		},
-	"minecraft": 
+	"minecraft_ground": 
+		{
+			"scene" : "uid://nlx3myrtifrn",
+			"price" : "20"
+		},
+	"minecraft_steve": 
 		{
 			"scene" : "uid://b8o36fr1rihbx",
-			"price" : "10"
+			"price" : "40"
 		}
 }

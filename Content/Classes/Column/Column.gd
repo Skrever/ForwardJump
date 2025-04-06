@@ -52,38 +52,25 @@ func _on_goal_area_body_entered(body: Node3D) -> void:
 	if body is Player and canShake:
 		Global.GoalScore += 1
 		Global.CountTouchesCollumn += 1
-		_shake()
+		_double_shake()
 		for i in range(0, rdGoalEffect.get_children().size()):
 			rdGoalEffect.get_children()[i].setVisible()
-			rdGoalEffect.get_children()[i].setInvisible()
 			await get_tree().create_timer(0.1).timeout
+		for i in range(0, rdGoalEffect.get_children().size()):
+			rdGoalEffect.get_children()[i].setInvisible()
+			
 			#rdGoalEffect.get_children()[i].visible = false
 
 func _vertical_shake():
-	var tween := create_tween().tween_property(rdMesh, "position", Vector3(0,-0.1, 0), 0.1)
+	var tween := create_tween().tween_property(rdMesh, "position", Vector3(0,-0.2, 0), 0.1)
 	await tween.finished
 	create_tween().tween_property(rdMesh, "position", Vector3(0, 0, 0), 0.1)
 
-func _shake():
-	var tweenX : Tween = create_tween()
-	tweenX.tween_property(rdMesh, "position:x", shakeX, 0.05)
-	var tweenY : Tween = create_tween()
-	tweenY.tween_property(rdMesh, "position:z", -shakeZ, 0.071)
-	
-	await tweenX.finished
-	tweenX = create_tween()
-	tweenX.tween_property(rdMesh, "position:x", -shakeX, 0.05)
-	await tweenY.finished
-	tweenY = create_tween()
-	tweenY.tween_property(rdMesh, "position:z", shakeZ, 0.071)
-	
-	
-	await tweenY.finished
-	tweenX = create_tween()
-	tweenX.tween_property(rdMesh, "position:x", 0, 0.05)
-	tweenY = create_tween()
-	tweenY.tween_property(rdMesh, "position:z", 0, 0.071)
-	
+func _double_shake():
+	var tween := create_tween().tween_property(rdMesh, "position", Vector3(0,-0.4, 0), 0.1)
+	await tween.finished
+	create_tween().tween_property(rdMesh, "position", Vector3(0, 0, 0), 0.1)
+
 func _show_number():
 	if Global.player.CountJump == 0 or Global.recentlyResumed: return
 	await Global.GettedScores

@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://nlx3myrtifrn"]
+
+[ext_resource type="Material" uid="uid://t4bcgidhpwat" path="res://Content/Classes/Player/Skins/Minecraft/Ground/Ground.tres" id="1_t6qoh"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_u4ba6"]
+
+[node name="Cube" type="MeshInstance3D"]
+mesh = SubResource("BoxMesh_u4ba6")
+surface_material_override/0 = ExtResource("1_t6qoh")

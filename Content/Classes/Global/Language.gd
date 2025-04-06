@@ -35,13 +35,8 @@ var Localisation : Dictionary = {
 		},
 	"cost" : 
 		{
-			"ru": "Стоимость: ",
+			"ru": "Стоит: ",
 			"en": "Cost: "
-		},
-	"bought" : 
-		{
-			"ru": "Куплен",
-			"en": "bought"
 		},
 	"learning" :
 		{

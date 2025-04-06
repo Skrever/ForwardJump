@@ -42,7 +42,8 @@ enum GAMESTATS
 enum SKINS
 {
 	DEFAULT,
-	MINECRAFT
+	MINECRAFT_GROUND,
+	MINECRAFT_STEVE
 }
 
 var GameState : GAMESTATS = GAMESTATS.NONE
@@ -68,6 +69,8 @@ var player : Player:
 		player.MovingStarted.connect(func(): CountTouchesCollumn = 0; recentlyResumed = false)
 		
 var generator : Generator = null
+var backColor : Color = Color("b87968")
+var secondBackColor : Color = Color("e65c48")
 
 var Music : float = 40
 var Sounds : float = 40
@@ -103,12 +106,14 @@ var CountTouchesCollumn : int = 0
 
 var SkinsDict : Dictionary
 var TakedSkin : SKINS = SKINS.DEFAULT
-var boughtSkins : Array[bool] = [true, false]
+var boughtSkins : Array[bool]
 func getSkinByEnum(skin : SKINS) -> String:
 	var key : String = "default"
 	match skin:
-		SKINS.MINECRAFT:
-			key = "minecraft"
+		SKINS.MINECRAFT_STEVE:
+			key = "minecraft_steve"
+		SKINS.MINECRAFT_GROUND:
+			key = "minecraft_ground"
 	return key
 	
 var CollumnsSkinsDict : Dictionary
@@ -117,6 +122,9 @@ func _ready() -> void:
 	
 	SkinsDict = _read_from_json("res://Content/Classes/Player/Skins/Skins.json")
 	CollumnsSkinsDict = _read_from_json("res://Content/Classes/Column/Skins/collumns.json")
+	for key in SkinsDict.keys():
+		boughtSkins.append(false)
+		
 	
 	GameReady.connect(_on_game_ready)
 	GameReload.connect(_on_game_reload)

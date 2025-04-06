@@ -56,20 +56,20 @@ collision_mask = 4
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.00231934, 0)
 shape = SubResource("BoxShape3D_o6ohr")
 
-[node name="UI" parent="." instance=ExtResource("2_qpora")]
-
 [node name="BannerOfSkinPrice" parent="." instance=ExtResource("3_2fct4")]
 texture = SubResource("ViewportTexture_glsm0")
 
 [node name="Particles" type="CPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.489034, 0)
 emitting = false
-amount = 4
+amount = 5
 lifetime = 0.6
 lifetime_randomness = 0.06
 mesh = SubResource("SphereMesh_5mskc")
 gravity = Vector3(0, 0, 0)
 scale_amount_curve = SubResource("Curve_3nm82")
+
+[node name="UI" parent="." instance=ExtResource("2_qpora")]
 
 [connection signal="body_entered" from="Area" to="." method="_on_area_body_entered"]
 [connection signal="body_exited" from="Area" to="." method="_on_area_body_exited"]

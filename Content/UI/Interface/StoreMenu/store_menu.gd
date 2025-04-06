@@ -90,6 +90,7 @@ func _on_yes_button_pressed() -> void:
 		Global.boughtSkins[CurrentIndexOfSkins] = true
 	rdYesButton.disabled = true
 	Global.TakedSkin = CurrentIndexOfSkins
+	Global.ChangePlayerSkin.emit(Global.TakedSkin)
 	UI.OpenMainMenu.emit()
 
 

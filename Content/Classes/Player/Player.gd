@@ -106,6 +106,7 @@ func _input(event):
 		UI.FOCUS_IN.ABOUT_DEVELOPER: return
 		UI.FOCUS_IN.LEADERBOARD_MENU: return
 		UI.FOCUS_IN.SETTINGS_MENU: return
+		UI.FOCUS_IN.AUTH_MENU: return
 		
 	if !moving and !isDead and (Floor != null):
 		#print(UI.focus)
@@ -178,12 +179,13 @@ func move():
 			nextRotation = rdMesh.rotation + Vector3(0,0,deg_to_rad(-180))
 	lastRotation = rdMesh.rotation
 	var movingTween := create_tween().tween_method(_curve_move, 0.0, 1.0, JumpTime * (1 - CompressinRatio))
-	await movingTween.finished
+	await get_tree().create_timer(JumpTime * (1 - CompressinRatio) * 0.9).timeout
+	rdParticles.emitting = false
+	await get_tree().create_timer(JumpTime * (1 - CompressinRatio) * 0.1).timeout
 	CountJump += 1
 	set_physics_process(true)
 	MovingFinished.emit()
 	CompressinRatio = 1
-	rdParticles.emitting = false
 	moving = false
 	
 func _curve_move(alpha : float):

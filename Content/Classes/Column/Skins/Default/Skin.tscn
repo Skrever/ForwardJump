@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bha175p8plwjl"]
+[gd_scene load_steps=7 format=3 uid="uid://bha175p8plwjl"]
 
 [ext_resource type="Material" uid="uid://jdab3p6olubc" path="res://Content/Classes/Column/Skins/Default/Default.tres" id="1_8wxpo"]
 [ext_resource type="Script" path="res://Content/Classes/Column/Skins/collumn_skin.gd" id="1_cc3m2"]
@@ -6,11 +6,8 @@
 [sub_resource type="BoxMesh" id="BoxMesh_fk7sx"]
 size = Vector3(3, 4, 3)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ugajj"]
-albedo_color = Color(1, 0.529376, 0.430618, 1)
-
 [sub_resource type="SphereMesh" id="SphereMesh_u1l2p"]
-material = SubResource("StandardMaterial3D_ugajj")
+material = ExtResource("1_8wxpo")
 radius = 0.167
 height = 0.333
 radial_segments = 5
