@@ -6,6 +6,7 @@ var nextColor : Color = "#7a9e84"
 var nextCollumnColor : Color = "#7a9e84"
 var colorCounter : int = 1
 var NowInterpolateColor : bool = false
+var nomenclature : float
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	#environment.background_color = Global.BackColor 
@@ -13,16 +14,17 @@ func _ready() -> void:
 	ColumnMaterial.albedo_color = Global.secondBackColor
 	Global.PlayerScoresChanged.connect(func(x) : _lerp_background_color())
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-var _delta_counter : float = 0
-func _process(delta: float) -> void:
-	if NowInterpolateColor: 
-		_color_from_to(_delta_counter)
-		_delta_counter = clampf(_delta_counter + (0.000001), 0.0, 0.002) 
-		#print(_delta_counter)
-		if _delta_counter == 0.002:
-			NowInterpolateColor = false
-			_delta_counter = 0.0
-			print("Color changed")
+#var _delta_counter : float = 0
+#func _process(delta: float) -> void:
+	#if NowInterpolateColor: 
+		#_color_from_to(_delta_counter)
+		#_delta_counter = clampf(_delta_counter + (0.0000001), 0.0, 0.002) 
+		
+		##print(_delta_counter)
+		#if _delta_counter == 0.002:
+			#NowInterpolateColor = false
+			#_delta_counter = 0.0
+			#print("Color changed")
 
 	
 func _lerp_background_color():
@@ -59,6 +61,12 @@ func _lerp_background_color():
 			nextCollumnColor = "7e4d44"
 			NowInterpolateColor = true
 			colorCounter = 0
+	var tween := create_tween()
+	tween.tween_method(_color_from_to, 0.0, 0.002 * nomenclature, 5)
+	print(0.002 * nomenclature)
+	await tween.finished
+	nomenclature = 0 if nomenclature >= 1.0 else (nomenclature + 0.1)
+	NowInterpolateColor = false
 			
 func _color_from_to(alpha : float):
 	environment.background_color = lerp(environment.background_color, nextColor, alpha)
