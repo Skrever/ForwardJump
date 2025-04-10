@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://djukxyj1v26ks"]
+[gd_scene load_steps=5 format=3 uid="uid://djukxyj1v26ks"]
 
 [ext_resource type="Script" path="res://Content/Classes/DinamicFloor/dinamic_floor.gd" id="1_x5vjj"]
+[ext_resource type="AudioStream" uid="uid://ckvo1el01lvip" path="res://Content/Sounds/Enviroment/dead.ogg" id="2_qj581"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_vheul"]
 size = Vector3(100, 0.307281, 100)
@@ -24,5 +25,8 @@ shape = SubResource("BoxShape3D_vheul")
 [node name="Collision" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.377495, 0)
 shape = SubResource("BoxShape3D_rq7yk")
+
+[node name="Dead" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_qj581")
 
 [connection signal="body_entered" from="Area" to="." method="_on_area_body_entered"]

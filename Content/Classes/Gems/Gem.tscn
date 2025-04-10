@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://d3qfqt2oemnbr"]
+[gd_scene load_steps=11 format=3 uid="uid://d3qfqt2oemnbr"]
 
 [ext_resource type="Script" path="res://Content/Classes/Gems/gem.gd" id="1_dsmec"]
 [ext_resource type="ArrayMesh" uid="uid://bxqpa55gerqc4" path="res://Content/Classes/Gems/Gem.res" id="1_sjhip"]
+[ext_resource type="AudioStream" uid="uid://cj0e0utq8hwh" path="res://Content/Sounds/Enviroment/Gem.ogg" id="3_avnj4"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_myh2k"]
 radius = 2.0
@@ -81,5 +82,8 @@ angular_velocity_max = 4.0
 radial_accel_curve = SubResource("Curve_myf72")
 scale_amount_curve = SubResource("Curve_mxmsr")
 hue_variation_max = 0.36
+
+[node name="GemSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_avnj4")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

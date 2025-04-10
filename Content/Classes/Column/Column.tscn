@@ -1,7 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://pvbtwtmqm74r"]
+[gd_scene load_steps=13 format=3 uid="uid://pvbtwtmqm74r"]
 
 [ext_resource type="Script" path="res://Content/Classes/Column/Column.gd" id="1_i2q6p"]
 [ext_resource type="PackedScene" uid="uid://cqv4goxnlhwlg" path="res://Content/Classes/Column/DropEffect3D.tscn" id="2_0mkec"]
+[ext_resource type="AudioStream" uid="uid://bw1hnrbu44a37" path="res://Content/Sounds/Enviroment/Combo.ogg" id="3_jpki5"]
+[ext_resource type="AudioStream" uid="uid://beouhy6qe7gex" path="res://Content/Sounds/Enviroment/Combo1.ogg" id="4_r1npr"]
+[ext_resource type="AudioStream" uid="uid://cimggqv7p3khg" path="res://Content/Sounds/Enviroment/Combo2.ogg" id="5_fb0kt"]
+[ext_resource type="AudioStream" uid="uid://cle3hax7nsf32" path="res://Content/Sounds/Enviroment/Combo3.ogg" id="6_g4em1"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_riwsd"]
 size = Vector3(3, 3.977, 3)
@@ -80,5 +84,17 @@ theme_override_font_sizes/font_size = 140
 text = "123"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Combo" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_jpki5")
+
+[node name="Combo1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_r1npr")
+
+[node name="Combo2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_fb0kt")
+
+[node name="Combo3" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_g4em1")
 
 [connection signal="body_entered" from="GoalArea" to="." method="_on_goal_area_body_entered"]

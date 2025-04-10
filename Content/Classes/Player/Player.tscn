@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://waqdjnmtb8sl"]
+[gd_scene load_steps=12 format=3 uid="uid://waqdjnmtb8sl"]
 
 [ext_resource type="Script" path="res://Content/Classes/Player/Player.gd" id="1_kswa7"]
 [ext_resource type="PackedScene" uid="uid://c8jwf3341lg6s" path="res://Content/UI/UI.tscn" id="2_qpora"]
 [ext_resource type="PackedScene" uid="uid://bmmlb1dougd5v" path="res://Content/Classes/BunnerAboutPrice/BannerOfSkinPrice.tscn" id="3_2fct4"]
+[ext_resource type="AudioStream" uid="uid://ckpy2ht5v43ai" path="res://Content/Sounds/Enviroment/FallOnColumn.ogg" id="4_caept"]
 
 [sub_resource type="Curve" id="Curve_4g42k"]
 _data = [Vector2(0, 0), 0.0, 5.7487, 0, 0, Vector2(0.355805, 1), 0.252326, 0.252326, 0, 0, Vector2(1, 0), -2.64296, 0.0, 0, 0]
@@ -70,6 +71,9 @@ gravity = Vector3(0, 0, 0)
 scale_amount_curve = SubResource("Curve_3nm82")
 
 [node name="UI" parent="." instance=ExtResource("2_qpora")]
+
+[node name="FallOnTo" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_caept")
 
 [connection signal="body_entered" from="Area" to="." method="_on_area_body_entered"]
 [connection signal="body_exited" from="Area" to="." method="_on_area_body_exited"]

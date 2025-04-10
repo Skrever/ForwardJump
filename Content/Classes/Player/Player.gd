@@ -4,6 +4,8 @@ extends CharacterBody3D
 signal MovingStarted
 signal MovingFinished
 
+@onready var rdFallOnTo: AudioStreamPlayer = $FallOnTo
+
 #Детект движения по экрану
 var StartTouch
 var RelativeTouch
@@ -226,6 +228,8 @@ func _on_area_body_entered(body: Node3D) -> void:
 	if body is Collumn:
 		Floor = body
 		if CountJump >= 1:
+			rdFallOnTo.volume_db = -40 + Global.Sounds
+			rdFallOnTo.play()
 			body.emitParticles(position - body.position)
 		
 			body._show_number()

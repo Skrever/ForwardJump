@@ -14,6 +14,8 @@ signal GettedGems(gems : int)
 
 signal ChangePlayerSkin(skin : SKINS)
 
+signal SetBackSideColor()
+
 signal GameReady()
 signal GameReload()
 signal GameStart()
@@ -139,13 +141,17 @@ func _ready() -> void:
 	
 	
 	
-	
+	SDKBridge.DataLoaded.connect(_on_user_data_loaded)
 	SDKBridge.loadUserData()
-	
-	await CollumnGenerated
+
+
+func _on_user_data_loaded():
+	print("Data loaded.........")
 	await get_tree().create_timer(1).timeout
 	GameReady.emit()
 	PlayerGemsChanged.emit(Global.Gems)
+	ChangePlayerSkin.emit(Global.TakedSkin)
+	SetBackSideColor.emit()
 
 func _read_from_json(path : String):
 	if FileAccess.file_exists(path):
@@ -208,9 +214,10 @@ func _on_game_resumed():
 func lost_focus():
 	if GameState == GAMESTATS.GOING:
 		GamePaused.emit()
+	AudioServer.set_bus_mute(0, true)
 	
 func get_focus():
-	pass
+	AudioServer.set_bus_mute(0, false)
 	
 func playerOnCollumn():
 	if GameState != Global.GAMESTATS.GOING: return

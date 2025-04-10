@@ -9,22 +9,15 @@ var NowInterpolateColor : bool = false
 var nomenclature : float
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	#environment.background_color = Global.BackColor 
-	environment.background_color = Global.backColor
-	ColumnMaterial.albedo_color = Global.secondBackColor
+	Global.SetBackSideColor.connect(_set_color)
+	
+	
+func _set_color():
+	create_tween().tween_property(environment, "background_color", Global.backColor, 0.5)
+	create_tween().tween_property(ColumnMaterial, "albedo_color", Global.secondBackColor, 0.5)
+	#environment.background_color = Global.backColor
+	#ColumnMaterial.albedo_color = Global.secondBackColor
 	Global.PlayerScoresChanged.connect(func(x) : _lerp_background_color())
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#var _delta_counter : float = 0
-#func _process(delta: float) -> void:
-	#if NowInterpolateColor: 
-		#_color_from_to(_delta_counter)
-		#_delta_counter = clampf(_delta_counter + (0.0000001), 0.0, 0.002) 
-		
-		##print(_delta_counter)
-		#if _delta_counter == 0.002:
-			#NowInterpolateColor = false
-			#_delta_counter = 0.0
-			#print("Color changed")
 
 	
 func _lerp_background_color():

@@ -16,6 +16,11 @@ var canShake : bool = true
 @onready var rdNumberEffect: Sprite3D = $NumberEffect/NumberEffect
 @onready var rdRoot: Node3D = $Root
 
+@onready var rdCombo: AudioStreamPlayer = $Combo
+@onready var rdCombo1: AudioStreamPlayer = $Combo1
+@onready var rdCombo2: AudioStreamPlayer = $Combo2
+@onready var rdCombo3: AudioStreamPlayer = $Combo3
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	setSkin(true)
@@ -50,6 +55,20 @@ func put_collumn():
 func _on_goal_area_body_entered(body: Node3D) -> void:
 	if Global.player.CountJump == 0 or Global.recentlyResumed: return
 	if body is Player and canShake:
+		
+		match Global.GoalScore:
+			0:
+				rdCombo.volume_db = -40 + Global.Sounds
+				rdCombo.play()
+			1:
+				rdCombo1.volume_db = -40 + Global.Sounds
+				rdCombo1.play()
+			2:
+				rdCombo2.volume_db = -40 + Global.Sounds
+				rdCombo2.play()
+			_:
+				rdCombo3.volume_db = -40 + Global.Sounds
+				rdCombo3.play()
 		Global.GoalScore += 1
 		Global.CountTouchesCollumn += 1
 		_double_shake()

@@ -7,6 +7,7 @@ var _closePlayer : Player = null
 
 @onready var rdParticles: CPUParticles3D = $Particles
 @onready var rdGem: CollisionShape3D = $CollisionShape3D
+@onready var rdGemSound: AudioStreamPlayer = $GemSound
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -32,6 +33,8 @@ func _on_body_entered(body: Node3D) -> void:
 	if body is Player:
 		_closePlayer = body as Player
 		var tween := create_tween().tween_method(_interpolate_to_player, 0.0, 1.0, 0.1)
+		rdGemSound.volume_db = -40 + Global.Sounds
+		rdGemSound.play()
 		await  tween.finished
 		Global.Gems += 1
 		rdParticles.emitting = true

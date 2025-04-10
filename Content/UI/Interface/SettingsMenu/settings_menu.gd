@@ -62,12 +62,12 @@ func _on_no_button_pressed() -> void:
 func _on_yes_button_pressed() -> void:
 	Global.Music = rdMusicPanel.getNewMusic()
 	Global.Sounds = rdSoundsPanel.getNewSounds()
-	#await setInvisible()
-	#
-	#if Global.GameState == Global.GAMESTATS.PAUSED:
-		#UI.OpenPauseMenu.emit()
-	#else:
-		#UI.OpenMainMenu.emit()
-		#
-	#if !Global.UserKnowHowToPlay:
-		#UI.OpenLearningMenu.emit()
+	await setInvisible()
+	
+	if Global.GameState == Global.GAMESTATS.PAUSED:
+		UI.OpenPauseMenu.emit()
+	else:
+		UI.OpenMainMenu.emit()
+		
+	if !Global.UserKnowHowToPlay:
+		UI.OpenLearningMenu.emit()

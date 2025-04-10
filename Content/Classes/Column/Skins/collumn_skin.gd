@@ -14,4 +14,4 @@ func _process(delta: float) -> void:
 
 func emitParticles(pos_ : Vector3 = Vector3(0, 4.031, 0)):
 	rdParticles.position = pos_
-	rdParticles.emitting = true
+	rdParticles.emitting = true 
