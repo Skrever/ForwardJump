@@ -9,11 +9,11 @@ var NextCollumnLocation = Vector3.ZERO
 
 #Буфер колонн
 var Collumns: Array[Collumn]
-var CollumnSpawnPosition := Vector3(0, 30, 0)
+var CollumnSpawnPosition := Vector3(-10, -10, 0)
 
 #Буффер гемов
 var Gems: Array[Gem]
-var SpawnGemsLocation : Vector3 = Vector3(0, 30, 0)
+var SpawnGemsLocation : Vector3 = Vector3(-10, -10, 0)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

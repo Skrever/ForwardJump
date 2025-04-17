@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://btxoqu6ob3iad"]
+
+[ext_resource type="Texture2D" uid="uid://btxdhp4na0dho" path="res://Content/Classes/Column/Effects/СмайликССердцами.png" id="1_lxb3n"]
+
+[sub_resource type="Curve" id="Curve_wsw4b"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.279503, 0.847906), 0.985548, 0.985548, 0, 0, Vector2(0.645963, 0.959975), -0.417987, -0.417987, 0, 0, Vector2(1, 0), -7.07184, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_avldq"]
+curve = SubResource("Curve_wsw4b")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_phd7i"]
+particle_flag_disable_z = true
+orbit_velocity_min = -0.2
+orbit_velocity_max = 0.2
+gravity = Vector3(0, -1000, 0)
+linear_accel_min = -16.19
+linear_accel_max = 100.0
+scale_min = 0.7
+scale_curve = SubResource("CurveTexture_avldq")
+
+[node name="EmoutionParticles" type="Node2D"]
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+emitting = false
+process_material = SubResource("ParticleProcessMaterial_phd7i")
+texture = ExtResource("1_lxb3n")
+one_shot = true
+explosiveness = 0.8
+randomness = 0.36
