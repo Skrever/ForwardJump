@@ -9,11 +9,11 @@ var NextCollumnLocation = Vector3.ZERO
 
 #Буфер колонн
 var Collumns: Array[Collumn]
-var CollumnSpawnPosition := Vector3(-10, -10, 0)
+var CollumnSpawnPosition := Vector3(0, 30, 0)
 
 #Буффер гемов
 var Gems: Array[Gem]
-var SpawnGemsLocation : Vector3 = Vector3(-10, -10, 0)
+var SpawnGemsLocation : Vector3 = Vector3(0, 30, 0)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -24,12 +24,10 @@ func _ready():
 	for i in Global.MaxCountGems : _create_gem()
 	
 	#Инициализация буферного массива
-	for i in Global.MaxCountCollumns + 3: _create_collumn()
+	for i in (Global.MaxCountCollumns + 3): _create_collumn()
 	_cooking_columns()
-	
-	
-	Global.GenerateNextCollumn.connect(_spawn_next)
 
+	Global.GenerateNextCollumn.connect(_spawn_next)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -54,7 +52,7 @@ func _on_game_reload():
 		if collumn.Use: 
 			CountUsageCollumns += 1
 	
-	if ((CountUsageCollumns < 5)): return
+	#if (get_tree().get_first_node_in_group("Player").CountJump < 2): return
 	
 	for gem in Gems:
 		gem.reload(SpawnGemsLocation)
@@ -75,9 +73,23 @@ func _cooking_columns():
 	#Collumns[0].rdMesh.scale = Vector3(1, 1, 1)
 	Collumns[0].put_collumn()
 
-	_spawn_column(Global.DIRECTION.LEFT)
-	_spawn_column(Global.DIRECTION.LEFT)
-	_spawn_column(Global.DIRECTION.LEFT)
+	match randi_range(0, 2):
+		0:
+			await _spawn_column(Global.DIRECTION.LEFT)
+			await _spawn_column(Global.DIRECTION.LEFT)
+			await _spawn_column(Global.DIRECTION.FORWARD)
+			await _spawn_column(Global.DIRECTION.LEFT)
+		1:
+			await _spawn_column(Global.DIRECTION.LEFT)
+			await _spawn_column(Global.DIRECTION.FORWARD)
+			await _spawn_column(Global.DIRECTION.FORWARD)
+			await _spawn_column(Global.DIRECTION.LEFT)
+		2:
+			await _spawn_column(Global.DIRECTION.LEFT)
+			await _spawn_column(Global.DIRECTION.LEFT)
+			await _spawn_column(Global.DIRECTION.FORWARD)
+			await _spawn_column(Global.DIRECTION.FORWARD)
+
 
 	Global.CollumnGenerated.emit()
 	
@@ -85,8 +97,8 @@ func _spawn_next():
 	print("Spawning next")
 	if Global.RandomSpawn:
 		Global.Direction = randi_range(0,1)
-		_spawn_column(Global.Direction)
-		delete_column()
+		await _spawn_column(Global.Direction)
+		await delete_column()
 	else:
 		print("Random spawn disabled")
 
@@ -98,11 +110,13 @@ func _create_collumn():
 	Collumns.append(collumn)
 	
 func _spawn_column(direction_ : Global.DIRECTION):
-	var ReplacedCollumn : Collumn
+	var ReplacedCollumn : Collumn = null
 	for it in Collumns:
 		if (!it.Use):
 			ReplacedCollumn = it
 			break
+			
+	#print(" --------> Next Column is: ", ReplacedCollumn, " in pos: ", ReplacedCollumn.position)
 	
 	var rand_direction_next_collumn = randf_range(Global.MinDistance, Global.MaxDistance)
 	

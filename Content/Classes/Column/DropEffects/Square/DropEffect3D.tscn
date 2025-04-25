@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://cqv4goxnlhwlg"]
+
+[ext_resource type="Script" path="res://Content/Classes/Column/DropEffects/drop_effect_3d.gd" id="1_5srqk"]
+[ext_resource type="PackedScene" uid="uid://ddcskuhbx7c2u" path="res://Content/Classes/Column/DropEffects/Square/DropEffect.tscn" id="1_gimwi"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_cx1fm"]
+viewport_path = NodePath("SubViewport")
+
+[node name="Sprite3D" type="Sprite3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 4.00641, 0)
+texture = SubResource("ViewportTexture_cx1fm")
+script = ExtResource("1_5srqk")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+disable_3d = true
+transparent_bg = true
+size = Vector2i(200, 200)
+
+[node name="DropEffect" parent="SubViewport" instance=ExtResource("1_gimwi")]

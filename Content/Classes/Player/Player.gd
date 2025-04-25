@@ -24,7 +24,7 @@ var CanCastTraectory : bool = true:
 @export var MaxCompression : float = 1
 @export var JumpCurve : Curve
 @export var MaxJump : float = 3
-@export var JumpTime : float = 1
+@export var JumpTime : float = 1.1
 @export var MaxLengthTouch : float = 300
 
 #Компоненты игрока
@@ -46,7 +46,7 @@ var nextPosition : Vector3
 var lastRotation : Vector3
 var nextRotation : Vector3
 var CompressinRatio : float = 1
-var Floor : Node3D
+var Floor : Collumn
 var Force : float = 1.4
 
 @export var CastingObj : Node3D
@@ -54,7 +54,7 @@ var Force : float = 1.4
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	setSkin(Global.TakedSkin)
-	
+	add_to_group("Player")
 	UI.MainMenuOpened.connect(func() : CanCastTraectory = true)
 	
 	Global.ChangePlayerSkin.connect(setSkin)
@@ -84,8 +84,14 @@ func _process(delta):
 func _physics_process(delta):
 
 	if (!moving and !isDead):
-		velocity.y = -500 * delta
-	move_and_slide()
+		#velocity.y = -500 * delta
+		var collision = move_and_collide(Vector3(0, -10 * delta, 0))
+		if (collision != null) and (collision.get_collider() is Collumn) and (Floor != collision.get_collider()):
+			Floor = collision.get_collider()
+			print("Set New Floor")
+		
+	#move_and_slide()
+		
 
 func setSkin(TakedSkin : Global.SKINS = Global.SKINS.DEFAULT):
 	var tween : Tween
@@ -109,12 +115,16 @@ func _input(event):
 		UI.FOCUS_IN.LEADERBOARD_MENU: return
 		UI.FOCUS_IN.SETTINGS_MENU: return
 		UI.FOCUS_IN.AUTH_MENU: return
-		
+	#print("Floor is: ")
+
 	if !moving and !isDead and (Floor != null):
 		#print(UI.focus)
 			#Касание экрана
-		if event is InputEventScreenTouch and event.is_pressed() and !IsPressed:
+			
+		
+		if event is InputEventScreenTouch and event.is_pressed():
 			StartTouch = event.position
+			
 			IsPressed = true
 			
 			if CountJump < 3 and CanCastTraectory:
@@ -238,6 +248,7 @@ func _on_area_body_entered(body: Node3D) -> void:
 			Global.PlayerOnCollumn.emit()
 	else:
 		Floor = null
+	
 
 func _on_area_body_exited(body: Node3D) -> void:
-	if body is Collumn: Floor = null
+	if body == Floor: Floor = null

@@ -246,7 +246,10 @@ func saveData():
 	var takedSkin : int = Global.TakedSkin
 	var backColor : String = Global.backColor.to_html(false)
 	var secondBackColor : String = Global.secondBackColor.to_html(false)
-	Bridge.storage.set(["MaxScore", "Gems", "boughtSkins", "takedSkin", "backColor", "secondBackColor"], [MaxScore, Gems, boughtSkins, takedSkin, backColor, secondBackColor], Callable(self, "_on_storage_set_completed"), Bridge.StorageType.LOCAL_STORAGE)
+	var sounds : float = Global.Sounds
+	var music : float = Global.Music
+	
+	Bridge.storage.set(["MaxScore", "Gems", "boughtSkins", "takedSkin", "backColor", "secondBackColor", "sounds", "music"], [MaxScore, Gems, boughtSkins, takedSkin, backColor, secondBackColor, sounds, music], Callable(self, "_on_storage_set_completed"), Bridge.StorageType.LOCAL_STORAGE)
 	
 func _on_get_score_completed(success, score):
 	if success:
@@ -268,7 +271,7 @@ func loadUserData():
 	if isDataSaving: await DataSaved
 	isDataLoading = true
 	
-	Bridge.storage.get(["MaxScore", "Gems", "boughtSkins", "takedSkin", "backColor", "secondBackColor"], Callable(self, "_on_storage_get_completed"), Bridge.StorageType.LOCAL_STORAGE)
+	Bridge.storage.get(["MaxScore", "Gems", "boughtSkins", "takedSkin", "backColor", "secondBackColor", "sounds", "music"], Callable(self, "_on_storage_get_completed"), Bridge.StorageType.LOCAL_STORAGE)
 	Bridge.leaderboard.get_score({ "leaderboardName": "Best" }, Callable(self, "_on_get_score_completed"))
 	
 	#if Bridge.storage.is_supported(Bridge.StorageType.PLATFORM_INTERNAL):
@@ -309,6 +312,9 @@ func _on_storage_get_completed(success, data):
 		#Восстанавливаем цвет заднего фона
 		Global.backColor = Color(str(data[4])) if data[4] != null else "b87968"
 		Global.secondBackColor = Color(str(data[5])) if data[5] != null else "e65c48"
+		
+		Global.Sounds = float(data[6]) if data[6] != null else Global.Sounds
+		Global.Music = float(data[7]) if data[7] != null else Global.Music
 		
 	else:
 		print("Loading Data is insucces")

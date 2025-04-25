@@ -1,6 +1,19 @@
 class_name Collumn
 extends StaticBody3D
 
+enum FORM
+{
+	SQUARE,
+	CIRCLE
+}
+
+var form : FORM = FORM.SQUARE
+
+func string_to_enum_form(str: String) -> FORM: 
+	match str:
+		"circle": return FORM.CIRCLE
+		_: return FORM.SQUARE
+		
 var Use : bool = false
 var NextCollumnAt : Global.DIRECTION = Global.DIRECTION.LEFT
 var DistanceToNextCollumn : float = 0
@@ -11,6 +24,8 @@ var shakeZ : float = randf_range(0.1,0.15)
 var canShake : bool = true
 
 @onready var rdGoalEffect: Node3D = $GoalEffect
+@onready var rdCircleGoalEffect: Node3D = $CircleGoalEffect
+
 @onready var rdMesh: CollumnSkin
 @onready var rdLabel: Label = $NumberEffect/NumberEffect/SubViewport/Label
 @onready var rdNumberEffect: Sprite3D = $NumberEffect/NumberEffect
@@ -21,6 +36,18 @@ var canShake : bool = true
 @onready var rdCombo2: AudioStreamPlayer = $Combo2
 @onready var rdCombo3: AudioStreamPlayer = $Combo3
 
+@onready var rdParticles: CPUParticles3D = $Particles/PartyFace
+
+@onready var rdParticles1: CPUParticles3D = $Particles/StarsFace
+@onready var rdParticles1_1: CPUParticles3D = $Particles/SmileFace
+
+@onready var rdParticles2: CPUParticles3D = $Particles/HeartsFace
+@onready var rdParticles2_1: CPUParticles3D = $Particles/WowFace
+
+@onready var rdParticles3: CPUParticles3D = $Particles/FearFace
+@onready var rdParticles3_1: CPUParticles3D = $Particles/ExploutionFace
+@onready var rdParticles3_2: CPUParticles3D = $Particles/Steam
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	setSkin(true)
@@ -30,8 +57,10 @@ func setSkin(rand : bool):
 		var key : String = Global.CollumnsSkinsDict.keys()[randi_range(0, Global.CollumnsSkinsDict.keys().size() - 1)]
 		print(key)
 		rdMesh = load(Global.get_collumn_skin_by_key(key)["scene"]).instantiate()
+		form = string_to_enum_form(Global.get_collumn_skin_by_key(key)["form"])
 	else:
 		rdMesh = load(Global.get_collumn_skin_by_key("default")["scene"]).instantiate()
+		form = string_to_enum_form(Global.get_collumn_skin_by_key("default")["form"])
 	rdRoot.add_child(rdMesh)
 	
 func reload(ReloadLocation : Vector3 = Vector3(0, 30, 0)):
@@ -56,27 +85,49 @@ func _on_goal_area_body_entered(body: Node3D) -> void:
 	if Global.player.CountJump == 0 or Global.recentlyResumed: return
 	if body is Player and canShake:
 		
+		Global.GoalScore += 1
+		Global.CountTouchesCollumn += 1
+		
 		match Global.GoalScore:
 			0:
 				rdCombo.volume_db = -40 + Global.Sounds
 				rdCombo.play()
+				rdParticles.emitting = true
 			1:
 				rdCombo1.volume_db = -40 + Global.Sounds
 				rdCombo1.play()
+				rdParticles1.emitting = true
+				rdParticles1_1.emitting = true
 			2:
 				rdCombo2.volume_db = -40 + Global.Sounds
 				rdCombo2.play()
+				rdParticles2.emitting = true
+				rdParticles2_1.emitting = true
 			_:
 				rdCombo3.volume_db = -40 + Global.Sounds
 				rdCombo3.play()
-		Global.GoalScore += 1
-		Global.CountTouchesCollumn += 1
+				match randi_range(1,3):
+					1: rdParticles1.emitting = true
+					2: 
+						rdParticles2.emitting = true
+						rdParticles3_2.emitting = true
+					3: 
+						rdParticles3.emitting = true
+						rdParticles3_1.emitting = true
 		_double_shake()
-		for i in range(0, rdGoalEffect.get_children().size()):
-			rdGoalEffect.get_children()[i].setVisible()
-			await get_tree().create_timer(0.1).timeout
-		for i in range(0, rdGoalEffect.get_children().size()):
-			rdGoalEffect.get_children()[i].setInvisible()
+		match form:
+			FORM.SQUARE:
+				for i in range(0, rdGoalEffect.get_children().size()):
+					rdGoalEffect.get_children()[i].setVisible()
+					await get_tree().create_timer(0.1).timeout
+				for i in range(0, rdGoalEffect.get_children().size()):
+					rdGoalEffect.get_children()[i].setInvisible()
+			FORM.CIRCLE:
+				for i in range(0, rdCircleGoalEffect.get_children().size()):
+					rdCircleGoalEffect.get_children()[i].setVisible()
+					await get_tree().create_timer(0.1).timeout
+				for i in range(0, rdCircleGoalEffect.get_children().size()):
+					rdCircleGoalEffect.get_children()[i].setInvisible()
 			
 			#rdGoalEffect.get_children()[i].visible = false
 

@@ -3,7 +3,7 @@ extends Node
 signal CollumnGenerated()
 signal GenerateNextCollumn()
 
-signal SetMusicVolume()
+signal SetMusicVolume(float)
 
 signal PlayerOnCollumn()
 signal PlayerScoresChanged(scores : int)
@@ -147,11 +147,12 @@ func _ready() -> void:
 
 func _on_user_data_loaded():
 	print("Data loaded.........")
-	await get_tree().create_timer(1).timeout
+	await get_tree().create_timer(0.5).timeout
 	GameReady.emit()
 	PlayerGemsChanged.emit(Global.Gems)
 	ChangePlayerSkin.emit(Global.TakedSkin)
 	SetBackSideColor.emit()
+	SetMusicVolume.emit(Global.Music)
 
 func _read_from_json(path : String):
 	if FileAccess.file_exists(path):

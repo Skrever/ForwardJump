@@ -1,7 +1,15 @@
-[gd_scene load_steps=5 format=3 uid="uid://djukxyj1v26ks"]
+[gd_scene load_steps=20 format=3 uid="uid://djukxyj1v26ks"]
 
 [ext_resource type="Script" path="res://Content/Classes/DinamicFloor/dinamic_floor.gd" id="1_x5vjj"]
 [ext_resource type="AudioStream" uid="uid://ckvo1el01lvip" path="res://Content/Sounds/Enviroment/dead.ogg" id="2_qj581"]
+[ext_resource type="Material" uid="uid://ch14m5efxu80g" path="res://Content/Materials/EnviromentMaterial.tres" id="2_tcrx3"]
+[ext_resource type="Texture2D" uid="uid://b3bxq5yep46u7" path="res://Content/Classes/DinamicFloor/Effects/Confused Face.png" id="4_hvwsa"]
+[ext_resource type="Texture2D" uid="uid://bmfj71a7hmaef" path="res://Content/Classes/DinamicFloor/Effects/Crying Face.png" id="5_wrs8i"]
+[ext_resource type="Texture2D" uid="uid://cyikqpckd044e" path="res://Content/Classes/DinamicFloor/Effects/Disappointed Face.png" id="6_8ukkj"]
+[ext_resource type="Texture2D" uid="uid://tlir07kc32no" path="res://Content/Classes/DinamicFloor/Effects/Downcast Face with Sweat.png" id="7_jtse1"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_fyaw0"]
+size = Vector2(100, 100)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_vheul"]
 size = Vector3(100, 0.307281, 100)
@@ -9,10 +17,70 @@ size = Vector3(100, 0.307281, 100)
 [sub_resource type="BoxShape3D" id="BoxShape3D_rq7yk"]
 size = Vector3(100, 0.731354, 100)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lee56"]
+transparency = 1
+no_depth_test = true
+albedo_texture = ExtResource("4_hvwsa")
+emission_energy_multiplier = 0.44
+billboard_mode = 1
+billboard_keep_scale = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_0wc75"]
+lightmap_size_hint = Vector2i(12, 12)
+material = SubResource("StandardMaterial3D_lee56")
+orientation = 2
+
+[sub_resource type="Curve" id="Curve_ve006"]
+_data = [Vector2(0, 0), 0.0, 0.878906, 0, 0, Vector2(0.22, 0.332589), 3.89323, 3.89323, 0, 0, Vector2(0.431429, 0.72433), 0.0, 0.0, 0, 0, Vector2(0.677143, 0.72433), -0.400904, -0.400904, 0, 0, Vector2(1, 0), -5.13951, 0.0, 0, 0]
+point_count = 5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k8h57"]
+transparency = 1
+no_depth_test = true
+albedo_texture = ExtResource("5_wrs8i")
+emission_energy_multiplier = 0.44
+billboard_mode = 1
+billboard_keep_scale = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ce1do"]
+lightmap_size_hint = Vector2i(12, 12)
+material = SubResource("StandardMaterial3D_k8h57")
+orientation = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hklbv"]
+transparency = 1
+no_depth_test = true
+albedo_texture = ExtResource("6_8ukkj")
+emission_energy_multiplier = 0.44
+billboard_mode = 1
+billboard_keep_scale = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_vkg21"]
+lightmap_size_hint = Vector2i(12, 12)
+material = SubResource("StandardMaterial3D_hklbv")
+orientation = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6ekcq"]
+transparency = 1
+no_depth_test = true
+albedo_texture = ExtResource("7_jtse1")
+emission_energy_multiplier = 0.44
+billboard_mode = 1
+billboard_keep_scale = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_c47n5"]
+lightmap_size_hint = Vector2i(12, 12)
+material = SubResource("StandardMaterial3D_6ekcq")
+orientation = 2
+
 [node name="DinamicFloor" type="StaticBody3D"]
 collision_layer = 2
 collision_mask = 0
 script = ExtResource("1_x5vjj")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_fyaw0")
+surface_material_override/0 = ExtResource("2_tcrx3")
 
 [node name="Area" type="Area3D" parent="."]
 disable_mode = 2
@@ -28,5 +96,63 @@ shape = SubResource("BoxShape3D_rq7yk")
 
 [node name="Dead" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_qj581")
+
+[node name="Particles" type="Node3D" parent="."]
+
+[node name="ConfusedFace" type="CPUParticles3D" parent="Particles"]
+emitting = false
+amount = 3
+lifetime = 1.5
+one_shot = true
+explosiveness = 1.0
+local_coords = true
+mesh = SubResource("PlaneMesh_0wc75")
+direction = Vector3(0, 1, 0)
+spread = 35.0
+gravity = Vector3(0, 10, 0)
+initial_velocity_max = 10.0
+scale_amount_curve = SubResource("Curve_ve006")
+
+[node name="CryingFace" type="CPUParticles3D" parent="Particles"]
+emitting = false
+amount = 3
+lifetime = 1.5
+one_shot = true
+explosiveness = 1.0
+local_coords = true
+mesh = SubResource("PlaneMesh_ce1do")
+direction = Vector3(0, 1, 0)
+spread = 35.0
+gravity = Vector3(0, 10, 0)
+initial_velocity_max = 10.0
+scale_amount_curve = SubResource("Curve_ve006")
+
+[node name="DisapointedFace" type="CPUParticles3D" parent="Particles"]
+emitting = false
+amount = 3
+lifetime = 1.5
+one_shot = true
+explosiveness = 1.0
+local_coords = true
+mesh = SubResource("PlaneMesh_vkg21")
+direction = Vector3(0, 1, 0)
+spread = 35.0
+gravity = Vector3(0, 10, 0)
+initial_velocity_max = 10.0
+scale_amount_curve = SubResource("Curve_ve006")
+
+[node name="DowncastFace" type="CPUParticles3D" parent="Particles"]
+emitting = false
+amount = 3
+lifetime = 1.5
+one_shot = true
+explosiveness = 1.0
+local_coords = true
+mesh = SubResource("PlaneMesh_c47n5")
+direction = Vector3(0, 1, 0)
+spread = 35.0
+gravity = Vector3(0, 10, 0)
+initial_velocity_max = 10.0
+scale_amount_curve = SubResource("Curve_ve006")
 
 [connection signal="body_entered" from="Area" to="." method="_on_area_body_entered"]

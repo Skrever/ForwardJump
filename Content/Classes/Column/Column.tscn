@@ -1,14 +1,22 @@
-[gd_scene load_steps=13 format=3 uid="uid://pvbtwtmqm74r"]
+[gd_scene load_steps=42 format=3 uid="uid://pvbtwtmqm74r"]
 
 [ext_resource type="Script" path="res://Content/Classes/Column/Column.gd" id="1_i2q6p"]
-[ext_resource type="PackedScene" uid="uid://cqv4goxnlhwlg" path="res://Content/Classes/Column/DropEffect3D.tscn" id="2_0mkec"]
+[ext_resource type="PackedScene" uid="uid://cqv4goxnlhwlg" path="res://Content/Classes/Column/DropEffects/Square/DropEffect3D.tscn" id="2_0mkec"]
 [ext_resource type="AudioStream" uid="uid://bw1hnrbu44a37" path="res://Content/Sounds/Enviroment/Combo.ogg" id="3_jpki5"]
+[ext_resource type="PackedScene" uid="uid://bv1ceyak5qw2p" path="res://Content/Classes/Column/DropEffects/Circle/CircleDropEffect3D.tscn" id="3_xh86m"]
 [ext_resource type="AudioStream" uid="uid://beouhy6qe7gex" path="res://Content/Sounds/Enviroment/Combo1.ogg" id="4_r1npr"]
 [ext_resource type="AudioStream" uid="uid://cimggqv7p3khg" path="res://Content/Sounds/Enviroment/Combo2.ogg" id="5_fb0kt"]
 [ext_resource type="AudioStream" uid="uid://cle3hax7nsf32" path="res://Content/Sounds/Enviroment/Combo3.ogg" id="6_g4em1"]
+[ext_resource type="Texture2D" uid="uid://7ag7pxpaeg05" path="res://Content/Classes/Column/Effects/PartyFace.png" id="7_o7dyb"]
+[ext_resource type="Texture2D" uid="uid://c5pyjmysjg3te" path="res://Content/Classes/Column/Effects/StarsFace.png" id="8_ldren"]
+[ext_resource type="Texture2D" uid="uid://dn1jw0vtoimrn" path="res://Content/Classes/Column/Effects/HeartsFace.png" id="9_pghmy"]
+[ext_resource type="Texture2D" uid="uid://bsomi8sswx110" path="res://Content/Classes/Column/Effects/FearFace.png" id="10_16d1t"]
+[ext_resource type="Texture2D" uid="uid://ce3s1g3vwxk7q" path="res://Content/Classes/Column/Effects/ExplousionFace.png" id="11_esrd2"]
+[ext_resource type="Texture2D" uid="uid://c7ptk6i78on1g" path="res://Content/Classes/Column/Effects/WowFace.png" id="12_hsvpg"]
+[ext_resource type="Texture2D" uid="uid://b03xcchugi618" path="res://Content/Classes/Column/Effects/SmileFace.png" id="13_n6vbk"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_riwsd"]
-size = Vector3(3, 3.977, 3)
+size = Vector3(3, 4.01767, 3)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_mr1vl"]
 radius = 0.125635
@@ -22,8 +30,120 @@ viewport_path = NodePath("SubViewport")
 [sub_resource type="ViewportTexture" id="ViewportTexture_snijr"]
 viewport_path = NodePath("SubViewport")
 
+[sub_resource type="ViewportTexture" id="ViewportTexture_hx2ai"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_u653d"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_l031n"]
+viewport_path = NodePath("SubViewport")
+
 [sub_resource type="ViewportTexture" id="ViewportTexture_wt10y"]
 viewport_path = NodePath("NumberEffect/NumberEffect/SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k0pml"]
+transparency = 1
+albedo_texture = ExtResource("7_o7dyb")
+emission_energy_multiplier = 0.44
+billboard_mode = 1
+billboard_keep_scale = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_6h16f"]
+lightmap_size_hint = Vector2i(12, 12)
+material = SubResource("StandardMaterial3D_k0pml")
+orientation = 2
+
+[sub_resource type="Curve" id="Curve_l07cr"]
+_data = [Vector2(0, 0), 0.0, 0.878906, 0, 0, Vector2(0.22, 0.332589), 3.89323, 3.89323, 0, 0, Vector2(0.431429, 0.72433), 0.0, 0.0, 0, 0, Vector2(0.677143, 0.72433), -0.400904, -0.400904, 0, 0, Vector2(1, 0), -5.13951, 0.0, 0, 0]
+point_count = 5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_eh4k5"]
+transparency = 1
+albedo_texture = ExtResource("8_ldren")
+emission_energy_multiplier = 0.44
+billboard_mode = 1
+billboard_keep_scale = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_xj0uh"]
+lightmap_size_hint = Vector2i(12, 12)
+material = SubResource("StandardMaterial3D_eh4k5")
+orientation = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ow6dx"]
+transparency = 1
+albedo_texture = ExtResource("9_pghmy")
+emission_energy_multiplier = 0.44
+billboard_mode = 1
+billboard_keep_scale = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_775wc"]
+lightmap_size_hint = Vector2i(12, 12)
+material = SubResource("StandardMaterial3D_ow6dx")
+orientation = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oslxs"]
+transparency = 1
+albedo_texture = ExtResource("10_16d1t")
+emission_energy_multiplier = 0.44
+billboard_mode = 1
+billboard_keep_scale = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_slmhm"]
+lightmap_size_hint = Vector2i(12, 12)
+material = SubResource("StandardMaterial3D_oslxs")
+orientation = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dnk0q"]
+transparency = 1
+albedo_texture = ExtResource("11_esrd2")
+emission_energy_multiplier = 0.44
+billboard_mode = 1
+billboard_keep_scale = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_uqt6w"]
+lightmap_size_hint = Vector2i(12, 12)
+material = SubResource("StandardMaterial3D_dnk0q")
+orientation = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iuoj2"]
+transparency = 1
+albedo_texture = ExtResource("12_hsvpg")
+emission_energy_multiplier = 0.44
+billboard_mode = 1
+billboard_keep_scale = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_foh4f"]
+lightmap_size_hint = Vector2i(12, 12)
+material = SubResource("StandardMaterial3D_iuoj2")
+orientation = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ig410"]
+transparency = 1
+albedo_texture = ExtResource("13_n6vbk")
+emission_energy_multiplier = 0.44
+billboard_mode = 1
+billboard_keep_scale = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_1l7m7"]
+lightmap_size_hint = Vector2i(12, 12)
+material = SubResource("StandardMaterial3D_ig410")
+orientation = 2
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_cexwq"]
+load_path = "res://.godot/imported/Steam.png-098aa113e04e77afe772f562f6e7b4f2.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bhhrl"]
+transparency = 1
+albedo_texture = SubResource("CompressedTexture2D_cexwq")
+emission_energy_multiplier = 0.44
+billboard_mode = 1
+billboard_keep_scale = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_tacdo"]
+lightmap_size_hint = Vector2i(12, 12)
+material = SubResource("StandardMaterial3D_bhhrl")
+orientation = 2
 
 [node name="Column" type="StaticBody3D"]
 collision_layer = 5
@@ -34,16 +154,18 @@ script = ExtResource("1_i2q6p")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.98366, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.98366, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.004, 0)
 shape = SubResource("BoxShape3D_riwsd")
 
 [node name="GoalArea" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.93744, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.94174, 0)
 
 [node name="Trigger" type="CollisionShape3D" parent="GoalArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0350695, 0)
 shape = SubResource("SphereShape3D_mr1vl")
 
 [node name="GoalEffect" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0294371, 0)
 
 [node name="DropEffect1" parent="GoalEffect" instance=ExtResource("2_0mkec")]
 transform = Transform3D(0.1, 0, 0, 0, -4.37114e-09, -0.1, 0, 0.1, -4.37114e-09, 0, 4.00641, 0)
@@ -59,6 +181,24 @@ texture = SubResource("ViewportTexture_hh40d")
 transform = Transform3D(0.1, 0, 0, 0, -4.37114e-09, -0.1, 0, 0.1, -4.37114e-09, 0, 4.00641, 0)
 visible = false
 texture = SubResource("ViewportTexture_snijr")
+
+[node name="CircleGoalEffect" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0294371, 0)
+
+[node name="DropEffect1" parent="CircleGoalEffect" instance=ExtResource("3_xh86m")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 3.97697, 0)
+visible = false
+texture = SubResource("ViewportTexture_hx2ai")
+
+[node name="DropEffect2" parent="CircleGoalEffect" instance=ExtResource("3_xh86m")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 3.97697, 0)
+visible = false
+texture = SubResource("ViewportTexture_u653d")
+
+[node name="DropEffect3" parent="CircleGoalEffect" instance=ExtResource("3_xh86m")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 3.97697, 0)
+visible = false
+texture = SubResource("ViewportTexture_l031n")
 
 [node name="NumberEffect" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.22616, 0)
@@ -96,5 +236,117 @@ stream = ExtResource("5_fb0kt")
 
 [node name="Combo3" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_g4em1")
+
+[node name="Particles" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 1, -2)
+
+[node name="PartyFace" type="CPUParticles3D" parent="Particles"]
+emitting = false
+amount = 5
+one_shot = true
+explosiveness = 1.0
+local_coords = true
+mesh = SubResource("PlaneMesh_6h16f")
+direction = Vector3(0, 1, 0)
+spread = 16.55
+gravity = Vector3(0, 10, 0)
+initial_velocity_max = 10.0
+scale_amount_curve = SubResource("Curve_l07cr")
+
+[node name="StarsFace" type="CPUParticles3D" parent="Particles"]
+emitting = false
+amount = 5
+one_shot = true
+explosiveness = 1.0
+local_coords = true
+mesh = SubResource("PlaneMesh_xj0uh")
+direction = Vector3(0, 1, 0)
+spread = 16.55
+gravity = Vector3(0, 10, 0)
+initial_velocity_max = 10.0
+scale_amount_curve = SubResource("Curve_l07cr")
+
+[node name="HeartsFace" type="CPUParticles3D" parent="Particles"]
+emitting = false
+amount = 5
+one_shot = true
+explosiveness = 1.0
+local_coords = true
+mesh = SubResource("PlaneMesh_775wc")
+direction = Vector3(0, 1, 0)
+spread = 16.55
+gravity = Vector3(0, 10, 0)
+initial_velocity_max = 10.0
+scale_amount_curve = SubResource("Curve_l07cr")
+
+[node name="FearFace" type="CPUParticles3D" parent="Particles"]
+emitting = false
+amount = 3
+lifetime = 1.5
+one_shot = true
+explosiveness = 1.0
+local_coords = true
+mesh = SubResource("PlaneMesh_slmhm")
+direction = Vector3(0, 1, 0)
+spread = 35.0
+gravity = Vector3(0, 10, 0)
+initial_velocity_max = 10.0
+scale_amount_curve = SubResource("Curve_l07cr")
+
+[node name="ExploutionFace" type="CPUParticles3D" parent="Particles"]
+emitting = false
+amount = 3
+lifetime = 1.5
+one_shot = true
+explosiveness = 1.0
+local_coords = true
+mesh = SubResource("PlaneMesh_uqt6w")
+direction = Vector3(0, 1, 0)
+spread = 35.0
+gravity = Vector3(0, 10, 0)
+initial_velocity_max = 10.0
+scale_amount_curve = SubResource("Curve_l07cr")
+
+[node name="WowFace" type="CPUParticles3D" parent="Particles"]
+emitting = false
+amount = 3
+lifetime = 1.5
+one_shot = true
+explosiveness = 1.0
+local_coords = true
+mesh = SubResource("PlaneMesh_foh4f")
+direction = Vector3(0, 1, 0)
+spread = 35.0
+gravity = Vector3(0, 10, 0)
+initial_velocity_max = 10.0
+scale_amount_curve = SubResource("Curve_l07cr")
+
+[node name="SmileFace" type="CPUParticles3D" parent="Particles"]
+emitting = false
+amount = 3
+lifetime = 1.5
+one_shot = true
+explosiveness = 1.0
+local_coords = true
+mesh = SubResource("PlaneMesh_1l7m7")
+direction = Vector3(0, 1, 0)
+spread = 35.0
+gravity = Vector3(0, 10, 0)
+initial_velocity_max = 10.0
+scale_amount_curve = SubResource("Curve_l07cr")
+
+[node name="Steam" type="CPUParticles3D" parent="Particles"]
+emitting = false
+amount = 3
+lifetime = 1.5
+one_shot = true
+explosiveness = 1.0
+local_coords = true
+mesh = SubResource("PlaneMesh_tacdo")
+direction = Vector3(0, 1, 0)
+spread = 35.0
+gravity = Vector3(0, 10, 0)
+initial_velocity_max = 10.0
+scale_amount_curve = SubResource("Curve_l07cr")
 
 [connection signal="body_entered" from="GoalArea" to="." method="_on_goal_area_body_entered"]
