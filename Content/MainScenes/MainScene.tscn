@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://skyapf40d7lg"]
+[gd_scene load_steps=12 format=3 uid="uid://skyapf40d7lg"]
 
 [ext_resource type="PackedScene" uid="uid://ccba8a6xdtcd7" path="res://Content/Classes/Camera/tracking_camera.tscn" id="1_555a4"]
 [ext_resource type="PackedScene" uid="uid://0o5jeu8n6e6x" path="res://Content/Classes/Generator/Generator.tscn" id="1_plau4"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://Content/MainScenes/enviroment.gd" id="5_cuoxd"]
 [ext_resource type="Material" uid="uid://jdab3p6olubc" path="res://Content/Classes/Column/Skins/Default/Default.tres" id="6_rwldj"]
 [ext_resource type="Material" uid="uid://ch14m5efxu80g" path="res://Content/Materials/EnviromentMaterial.tres" id="7_x1iqr"]
+[ext_resource type="PackedScene" uid="uid://df2fkpmsbqujf" path="res://Content/Classes/Crown/Crown.tscn" id="8_bifeu"]
 
 [sub_resource type="Environment" id="Environment_p0hts"]
 background_mode = 1
@@ -118,3 +119,5 @@ mesh = SubResource("SphereMesh_dox1w")
 [node name="Sphere10" type="MeshInstance3D" parent="PlayerCastingLine"]
 cast_shadow = 0
 mesh = SubResource("SphereMesh_dox1w")
+
+[node name="Crown" parent="." instance=ExtResource("8_bifeu")]

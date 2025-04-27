@@ -8,6 +8,7 @@ signal SetMusicVolume(float)
 signal PlayerOnCollumn()
 signal PlayerScoresChanged(scores : int)
 signal GettedScores(scores : int)
+signal PlayerLeadered(bool)
 
 signal PlayerGemsChanged(gems : int)
 signal GettedGems(gems : int)
@@ -78,6 +79,12 @@ var Music : float = 40
 var Sounds : float = 40
 
 var UserKnowHowToPlay : bool = false
+var PlayerIsFirst : bool = false:
+	get:
+		return PlayerIsFirst
+	set(value):
+		PlayerIsFirst = value
+		PlayerLeadered.emit(PlayerIsFirst)
 
 var GoalScore : int = 0
 var Score : int:
@@ -139,6 +146,8 @@ func _ready() -> void:
 	PlayerOnCollumn.connect(playerOnCollumn)
 	PlayerOnCollumn.connect(func(): GenerateNextCollumn.emit())
 	
+	SDKBridge.UpdateLeaderboard.connect(func(x): _analize_leaderboard())
+	PlayerScoresChanged.connect(func(x): _analize_leaderboard())
 	
 	
 	SDKBridge.DataLoaded.connect(_on_user_data_loaded)
@@ -227,3 +236,9 @@ func playerOnCollumn():
 	if GoalScore > 4 : GoalScore = 4
 	if !recentlyResumed:
 		Score += (1 + GoalScore)
+
+func _analize_leaderboard():
+	if int(SDKBridge.leaderboard["1"]["score"]) < Score or int(SDKBridge.leaderboard["1"]["score"]) < MaxScore:
+		PlayerIsFirst = true
+	else:
+		PlayerIsFirst = false

@@ -13,6 +13,8 @@ signal DataSaved
 
 signal PlayerLevelLoadFromIternal
 
+signal UpdateLeaderboard(Dictionary)
+
 var isDataLoading := false
 var isDataSaving := false
 var DataLoadedFully := false
@@ -22,7 +24,13 @@ var canSaiving := false
 
 var UserAuth : bool = false
 
-var leaderboard : Dictionary  #= { "1" : { "name" : "Огромный хуй", "score" : "10000", "usr" : true }, "2" : { "name" : "Большой член", "score" : "999", "usr" : false }, "3" : { "name" : "Синица съяйцами", "score" : "9999", "usr" : false }}
+var leaderboard : Dictionary  = { "1" : { "name" : "Абрикосовый сироп", "score" : "10", "usr" : true }, "2" : { "name" : "Кроккодило Бомбардиро", "score" : "5", "usr" : false }, "3" : { "name" : "Зубенко Михаил", "score" : "2", "usr" : false }}:
+	get:
+		return leaderboard
+	set(value):
+		leaderboard = value
+		UpdateLeaderboard.emit(leaderboard)
+
 var maxLeaderBoardScore : int
 var lang : String = "en"
 var device : String = "mobile"
@@ -78,7 +86,6 @@ func _ready() :
 	
 	Bridge.game.connect("visibility_state_changed", Callable(self, "_on_visibility_state_changed"))
 	SDKinited.emit()
-
 
 func _on_ad_timer_timeout():
 	#print("update ad")
