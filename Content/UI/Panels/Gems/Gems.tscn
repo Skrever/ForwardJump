@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://cgqnsua7egu01"]
 
 [ext_resource type="StyleBox" uid="uid://bftp76pqmv3oi" path="res://Content/UI/Panels/DefaultPanelWithoutBorders.tres" id="1_fip31"]
-[ext_resource type="Script" path="res://Content/UI/Panels/Gems/gems.gd" id="2_fywak"]
+[ext_resource type="Script" uid="uid://o1oj1g18x7k7" path="res://Content/UI/Panels/Gems/gems.gd" id="2_fywak"]
 [ext_resource type="Texture2D" uid="uid://djrm6gc2dpl45" path="res://Content/UI/Textures/Кристаллики.png" id="3_upr73"]
 
 [node name="GemsPanel" type="Panel"]

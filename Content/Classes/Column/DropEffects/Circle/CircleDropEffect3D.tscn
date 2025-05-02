@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://bv1ceyak5qw2p"]
 
-[ext_resource type="Script" path="res://Content/Classes/Column/DropEffects/drop_effect_3d.gd" id="1_nlekl"]
+[ext_resource type="Script" uid="uid://cfvmp8tqdue60" path="res://Content/Classes/Column/DropEffects/drop_effect_3d.gd" id="1_nlekl"]
 [ext_resource type="PackedScene" uid="uid://6muxsh6l4xof" path="res://Content/Classes/Column/DropEffects/Circle/CircleDropEffect.tscn" id="2_iihe7"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_cx1fm"]

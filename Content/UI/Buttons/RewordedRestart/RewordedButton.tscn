@@ -3,7 +3,7 @@
 [ext_resource type="StyleBox" uid="uid://bg4762lj1t8k1" path="res://Content/UI/Buttons/RewordedRestart/RewordedButtonPressed.tres" id="1_k5cc3"]
 [ext_resource type="StyleBox" uid="uid://bx8kxkfxl7bw3" path="res://Content/UI/Buttons/RewordedRestart/RewordedButtonHower.tres" id="2_tt8id"]
 [ext_resource type="StyleBox" uid="uid://m4la441xuk1e" path="res://Content/UI/Buttons/RewordedRestart/RewordedButtonNormal.tres" id="3_r5b2m"]
-[ext_resource type="Script" path="res://Content/UI/Buttons/button.gd" id="4_gfa8w"]
+[ext_resource type="Script" uid="uid://c8jteicvpm77r" path="res://Content/UI/Buttons/button.gd" id="4_gfa8w"]
 
 [node name="RewordedButton" type="Button"]
 custom_minimum_size = Vector2(204, 95)

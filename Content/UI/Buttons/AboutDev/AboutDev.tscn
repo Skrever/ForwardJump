@@ -4,7 +4,7 @@
 [ext_resource type="StyleBox" uid="uid://dxldhyrjrff1i" path="res://Content/UI/Buttons/AboutDev/AboutDevsButtonPressed.tres" id="2_ktl5h"]
 [ext_resource type="Texture2D" uid="uid://cfy4sqw5av0nw" path="res://Content/UI/Textures/О разработчике.png" id="2_t332v"]
 [ext_resource type="StyleBox" uid="uid://drxpkcbjixr1v" path="res://Content/UI/Buttons/AboutDev/AboutDevsButtonHower.tres" id="3_6aeom"]
-[ext_resource type="Script" path="res://Content/UI/Buttons/button.gd" id="4_807pv"]
+[ext_resource type="Script" uid="uid://c8jteicvpm77r" path="res://Content/UI/Buttons/button.gd" id="4_807pv"]
 
 [node name="AboutDev" type="Button"]
 custom_minimum_size = Vector2(40, 40)

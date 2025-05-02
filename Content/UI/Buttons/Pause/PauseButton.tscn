@@ -4,7 +4,7 @@
 [ext_resource type="StyleBox" uid="uid://duj6islc2hu34" path="res://Content/UI/Buttons/Pause/PauseButtonHower.tres" id="2_kaxke"]
 [ext_resource type="StyleBox" uid="uid://daxs5wnuxxikg" path="res://Content/UI/Buttons/Pause/PauseButtonNormal.tres" id="3_f57hk"]
 [ext_resource type="Texture2D" uid="uid://b6r75vduyrel7" path="res://Content/UI/Textures/Крестик.png" id="4_31bcd"]
-[ext_resource type="Script" path="res://Content/UI/Buttons/button.gd" id="4_rl4k7"]
+[ext_resource type="Script" uid="uid://c8jteicvpm77r" path="res://Content/UI/Buttons/button.gd" id="4_rl4k7"]
 
 [node name="PausedNoButton" type="Button"]
 offset_left = -27.0

@@ -2,6 +2,8 @@ extends Node
 
 signal UserTryToAuth
 signal SDKinited
+signal PhotoDownloaded
+var LoadedImage : Image
 
 signal CloseAdd
 signal RewardedAdShowed
@@ -24,7 +26,7 @@ var canSaiving := false
 
 var UserAuth : bool = false
 
-var leaderboard : Dictionary  = { "1" : { "name" : "Абрикосовый сироп", "score" : "10", "usr" : true }, "2" : { "name" : "Кроккодило Бомбардиро", "score" : "5", "usr" : false }, "3" : { "name" : "Зубенко Михаил", "score" : "2", "usr" : false }}:
+var leaderboard : Dictionary  = { "1" : {"rank": "1", "name" : "Абрикосовый сироп", "score" : "10", "usr" : true }, "2" : {"rank": "2", "name" : "Кроккодило Бомбардиро", "score" : "5", "usr" : false }, "3" : {"rank": "3", "name" : "Зубенко Михаил", "score" : "2", "usr" : false }}:
 	get:
 		return leaderboard
 	set(value):
@@ -41,6 +43,7 @@ var PlayerLevelInInternal : int
 
 var AdTimer : Timer
 var SaveTimer : Timer
+
 
 func _ready() :
 	device = Bridge.device.type
@@ -86,7 +89,7 @@ func _ready() :
 	
 	Bridge.game.connect("visibility_state_changed", Callable(self, "_on_visibility_state_changed"))
 	SDKinited.emit()
-
+	
 func _on_ad_timer_timeout():
 	#print("update ad")
 	AdTimer.stop()
@@ -174,22 +177,42 @@ func _get_raw_leaderboard(success, entries):
 		match Bridge.platform.id:
 			"yandex":
 				for entry in entries:
-					print(entry)
+					#print(entry)
 					var usr := false
 					if str(entry.name) == Bridge.player.name:
 						usr = true
-					print("Player: ", str(entry.name), " Scores: ", str(entry.score))
+					#print("Player: ", str(entry.name), " Scores: ", str(entry.score))
 					var name_ = str(entry.name)
 					if str(entry.name).is_empty():
-						name_ = ""
-					print("сырое имя игрока: ", entry.name, " После обработки: ", name_)
+						name_ = Language.local("noname")
+					#print("сырое имя игрока: ", entry.name, " После обработки: ", name_)
+					var HTTPImgRequest := HTTPRequest.new()
+					add_child(HTTPImgRequest)
+					HTTPImgRequest.request_completed.connect(_on_load_img)
+					print(entry.photo)
+					HTTPImgRequest.request(entry.photo)
+					await PhotoDownloaded
+					
 					var user = {
+							"rank" : str(leaderboard.keys().size() + 1), 
 							"name" : name_,
 							"score" : str(entry.score),
-							"usr" : usr
-							} 
+							"usr" : usr,
+							"img": LoadedImage.save_jpg_to_buffer(1)
+							}
 					leaderboard.get_or_add(str(entry.rank), user)
 
+
+func _on_load_img(result, response_code, headers, body):
+	if response_code == 200:
+		var img := Image.new()
+		img.load_jpg_from_buffer(body)
+		LoadedImage = img
+		#print(body)
+	else:
+		LoadedImage.load_from_file("res://Content/UI/Textures/testImg.jpg")
+	PhotoDownloaded.emit()
+	
 func authUser():
 	var options = {"scopes" : true}
 	Bridge.player.authorize(options, Callable(self, "_on_player_authorize_completed"))

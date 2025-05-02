@@ -2,7 +2,7 @@
 
 [ext_resource type="StyleBox" uid="uid://tjhskm4tx1e1" path="res://Content/UI/Panels/DefaultPanel.tres" id="1_vgl42"]
 [ext_resource type="Texture2D" uid="uid://m35i878hcsxn" path="res://Content/UI/Textures/Ноты.png" id="2_4guvs"]
-[ext_resource type="Script" path="res://Content/UI/Panels/Music/music_panel.gd" id="2_16dbi"]
+[ext_resource type="Script" uid="uid://csi34cd1pgm01" path="res://Content/UI/Panels/Music/music_panel.gd" id="2_16dbi"]
 [ext_resource type="StyleBox" uid="uid://ddajgfi25on0i" path="res://Content/UI/Panels/Music/MusicPanelSlider.tres" id="3_c5use"]
 [ext_resource type="Texture2D" uid="uid://xsv4o6kg7yvm" path="res://Content/UI/Textures/ИконкаСлайдера.png" id="3_wowok"]
 [ext_resource type="StyleBox" uid="uid://3s7uvxearxrp" path="res://Content/UI/Panels/Music/MusicPanelGrabberArea.tres" id="4_gbi4i"]

@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://bmmlb1dougd5v"]
 
 [ext_resource type="PackedScene" uid="uid://rnxsgkc14qcx" path="res://Content/Classes/BunnerAboutPrice/Message.tscn" id="1_6wm4l"]
-[ext_resource type="Script" path="res://Content/Classes/BunnerAboutPrice/banner_of_skin_price.gd" id="1_at7hf"]
+[ext_resource type="Script" uid="uid://c8kyvv622kc6o" path="res://Content/Classes/BunnerAboutPrice/banner_of_skin_price.gd" id="1_at7hf"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_e3ib8"]
 viewport_path = NodePath("SubViewport")

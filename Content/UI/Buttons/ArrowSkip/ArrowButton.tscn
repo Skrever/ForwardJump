@@ -3,7 +3,7 @@
 [ext_resource type="StyleBox" uid="uid://b4n74euqtlhnk" path="res://Content/UI/Buttons/ArrowSkip/ArrowButtonNormal.tres" id="1_b64mi"]
 [ext_resource type="StyleBox" uid="uid://dylytqyvhfyhh" path="res://Content/UI/Buttons/ArrowSkip/ArrowButtonPressed.tres" id="2_pa3g3"]
 [ext_resource type="StyleBox" uid="uid://bqjquyau3l1p8" path="res://Content/UI/Buttons/ArrowSkip/ArrowButtonHower.tres" id="3_pkkta"]
-[ext_resource type="Script" path="res://Content/UI/Buttons/button.gd" id="4_30n0x"]
+[ext_resource type="Script" uid="uid://c8jteicvpm77r" path="res://Content/UI/Buttons/button.gd" id="4_30n0x"]
 [ext_resource type="Texture2D" uid="uid://dtqlkfvr5sa7l" path="res://Content/UI/Textures/СтрелкаВыбора.png" id="5_2h0ww"]
 
 [node name="ArrowButton" type="Button"]

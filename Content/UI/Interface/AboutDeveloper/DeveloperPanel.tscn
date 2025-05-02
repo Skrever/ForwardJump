@@ -1,9 +1,9 @@
 [gd_scene load_steps=7 format=3 uid="uid://b8cataurp7tod"]
 
-[ext_resource type="Script" path="res://Content/UI/Interface/AboutDeveloper/developer_panel.gd" id="1_he4cn"]
+[ext_resource type="Script" uid="uid://dislhebpky62y" path="res://Content/UI/Interface/AboutDeveloper/developer_panel.gd" id="1_he4cn"]
 [ext_resource type="StyleBox" uid="uid://bftp76pqmv3oi" path="res://Content/UI/Panels/DefaultPanelWithoutBorders.tres" id="2_32jee"]
 [ext_resource type="StyleBox" uid="uid://tjhskm4tx1e1" path="res://Content/UI/Panels/DefaultPanel.tres" id="3_s6l5n"]
-[ext_resource type="Script" path="res://Content/UI/local.gd" id="4_v6axm"]
+[ext_resource type="Script" uid="uid://bgc1yn4eqmjxh" path="res://Content/UI/local.gd" id="4_v6axm"]
 [ext_resource type="PackedScene" uid="uid://bhiiuk1ug31lq" path="res://Content/UI/Buttons/No/NoButton.tscn" id="5_v01am"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ac3fb"]

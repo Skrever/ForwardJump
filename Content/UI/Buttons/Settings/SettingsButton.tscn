@@ -4,7 +4,7 @@
 [ext_resource type="StyleBox" uid="uid://703dd1as1w4h" path="res://Content/UI/Buttons/Settings/SettingsButtonHower.tres" id="2_sij1m"]
 [ext_resource type="StyleBox" uid="uid://olqthas7bwm" path="res://Content/UI/Buttons/Settings/SettingsButtonNormal.tres" id="3_x773i"]
 [ext_resource type="Texture2D" uid="uid://bk6eadv1555p7" path="res://Content/UI/Textures/Настройки.png" id="4_glyip"]
-[ext_resource type="Script" path="res://Content/UI/Buttons/button.gd" id="4_su4s3"]
+[ext_resource type="Script" uid="uid://c8jteicvpm77r" path="res://Content/UI/Buttons/button.gd" id="4_su4s3"]
 
 [node name="SettingsButton" type="Button"]
 offset_left = -47.5

@@ -5,7 +5,7 @@
 [ext_resource type="StyleBox" uid="uid://bmditldnsdwrb" path="res://Content/UI/Buttons/Yes/YesButtonHower.tres" id="2_wuvq1"]
 [ext_resource type="StyleBox" uid="uid://b8a3e2ruh10jo" path="res://Content/UI/Buttons/Yes/YesButtonNormal.tres" id="3_ck7my"]
 [ext_resource type="Texture2D" uid="uid://bht8tfpbghgeu" path="res://Content/UI/Textures/Начать игру.png" id="4_liaba"]
-[ext_resource type="Script" path="res://Content/UI/Buttons/button.gd" id="5_xn2x7"]
+[ext_resource type="Script" uid="uid://c8jteicvpm77r" path="res://Content/UI/Buttons/button.gd" id="5_xn2x7"]
 
 [node name="NextButton" type="Button"]
 offset_left = -47.5

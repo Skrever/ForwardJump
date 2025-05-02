@@ -61,6 +61,8 @@ var MinDistance : float = 7
 var MaxCountCollumns : int = 10
 var RandomSpawn : bool = true
 
+var lastShownRank : int = 100
+
 # Количество спавна гемов
 var MaxCountGems : int = 3
 
@@ -190,6 +192,7 @@ func _on_game_ready():
 	print("Game Ready")
 	
 func _on_game_reload():
+	lastShownRank = 100
 	MaxScore = max(Score, MaxScore)
 	Score = 0
 	GoalScore = 0

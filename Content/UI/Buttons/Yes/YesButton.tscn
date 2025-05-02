@@ -3,7 +3,7 @@
 [ext_resource type="StyleBox" uid="uid://b8a3e2ruh10jo" path="res://Content/UI/Buttons/Yes/YesButtonNormal.tres" id="1_53dx3"]
 [ext_resource type="StyleBox" uid="uid://bmditldnsdwrb" path="res://Content/UI/Buttons/Yes/YesButtonHower.tres" id="1_0714n"]
 [ext_resource type="StyleBox" uid="uid://b0d5wwieynkop" path="res://Content/UI/Buttons/Yes/YesButtonPressed.tres" id="2_njsto"]
-[ext_resource type="Script" path="res://Content/UI/Buttons/button.gd" id="4_5dned"]
+[ext_resource type="Script" uid="uid://c8jteicvpm77r" path="res://Content/UI/Buttons/button.gd" id="4_5dned"]
 [ext_resource type="Texture2D" uid="uid://dfd7pdj2qhu1j" path="res://Content/UI/Textures/Галочка.png" id="4_arvpc"]
 
 [node name="YesButton" type="Button"]

@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://rnxsgkc14qcx"]
 
 [ext_resource type="Texture2D" uid="uid://2rirdr8xn5ew" path="res://Content/UI/Textures/Сообщение.png" id="1_kplkw"]
-[ext_resource type="Script" path="res://Content/Classes/BunnerAboutPrice/message.gd" id="1_mnh1w"]
+[ext_resource type="Script" uid="uid://ee75pb4f7lrv" path="res://Content/Classes/BunnerAboutPrice/message.gd" id="1_mnh1w"]
 
 [node name="Message" type="Control"]
 layout_mode = 3

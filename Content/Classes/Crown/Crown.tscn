@@ -13,7 +13,6 @@ script = ExtResource("1_g3krd")
 transform = Transform3D(0.38, 0, 0, 0, 0.38, 0, 0, 0, 0.38, 0, 1.3633, 0)
 
 [node name="Mesh" type="MeshInstance3D" parent="Root"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 mesh = ExtResource("2_v6g7p")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_g1fgi")

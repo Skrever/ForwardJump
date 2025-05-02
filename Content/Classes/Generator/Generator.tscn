@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://0o5jeu8n6e6x"]
 
-[ext_resource type="Script" path="res://Content/Classes/Generator/Generator.gd" id="1_f6mlm"]
+[ext_resource type="Script" uid="uid://sngko77om2m1" path="res://Content/Classes/Generator/Generator.gd" id="1_f6mlm"]
 
 [node name="Generator" type="Node3D"]
 script = ExtResource("1_f6mlm")

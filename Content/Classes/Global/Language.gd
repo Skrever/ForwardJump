@@ -25,8 +25,8 @@ var Localisation : Dictionary = {
 		},
 	"noname" : 
 		{
-			"ru": "Игрок невидим",
-			"en": "Noname player"
+			"ru": "Игрок скрыт",
+			"en": "No name"
 		},
 	"continueforadd" : 
 		{

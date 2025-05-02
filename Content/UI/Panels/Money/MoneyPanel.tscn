@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://cnngwsatonfl4"]
 
 [ext_resource type="Texture2D" uid="uid://b85ftuwvlais3" path="res://Content/UI/Textures/Деньги.png" id="1_j60nf"]
-[ext_resource type="Script" path="res://Content/UI/Panels/Money/label.gd" id="2_cs3yk"]
+[ext_resource type="Script" uid="uid://6fiqamxy3tvc" path="res://Content/UI/Panels/Money/label.gd" id="2_cs3yk"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v2dnn"]
 bg_color = Color(0.466667, 0.466667, 0.466667, 1)

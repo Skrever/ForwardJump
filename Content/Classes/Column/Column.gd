@@ -48,9 +48,13 @@ var canShake : bool = true
 @onready var rdParticles3_1: CPUParticles3D = $Particles/ExploutionFace
 @onready var rdParticles3_2: CPUParticles3D = $Particles/Steam
 
+@onready var rdRatedPlayer: RatedPlayer = $Rating/SubViewport/RatedPlayer
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	setSkin(true)
+	
 
 func setSkin(rand : bool):
 	if rand:
@@ -72,6 +76,7 @@ func reload(ReloadLocation : Vector3 = Vector3(0, 30, 0)):
 	DistanceToNextCollumn = 0
 
 func delete_collumn():
+	rdRatedPlayer.setInvisible()
 	var tween := create_tween().tween_property(rdMesh, "position", Vector3(0, -5, 0), 0.05)
 	create_tween().tween_property(rdMesh, "scale", Vector3(0, 0, 0), 0.05)
 	await tween.finished
@@ -87,7 +92,7 @@ func _on_goal_area_body_entered(body: Node3D) -> void:
 		
 		Global.GoalScore += 1
 		Global.CountTouchesCollumn += 1
-		
+				
 		match Global.GoalScore:
 			0:
 				rdCombo.volume_db = -40 + Global.Sounds
@@ -145,6 +150,14 @@ func _show_number():
 	if Global.player.CountJump == 0 or Global.recentlyResumed: return
 	await Global.GettedScores
 	if Global.player.Floor != self : return
+	
+	for i in range(Global.lastShownRank):
+		if i + 1 > SDKBridge.leaderboard.keys().size() : break
+		if (Global.Score >= int(SDKBridge.leaderboard[SDKBridge.leaderboard.keys()[i]]["score"])):
+			rdRatedPlayer.setVisible(SDKBridge.leaderboard[SDKBridge.leaderboard.keys()[i]])
+			Global.lastShownRank = i
+			break
+	
 	rdNumberEffect.get_parent().position.x = randf_range(-1, 1)
 	rdNumberEffect.get_parent().position.z = randf_range(-1, 1)
 	rdLabel.text = "+" + str(1 + Global.GoalScore)

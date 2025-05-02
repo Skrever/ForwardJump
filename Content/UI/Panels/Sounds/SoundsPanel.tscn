@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://bhkqqcgex1iva"]
 
 [ext_resource type="StyleBox" uid="uid://tjhskm4tx1e1" path="res://Content/UI/Panels/DefaultPanel.tres" id="1_kjp8a"]
-[ext_resource type="Script" path="res://Content/UI/Panels/Sounds/sounds_panel.gd" id="2_k23r8"]
+[ext_resource type="Script" uid="uid://c2s6po62rw0s7" path="res://Content/UI/Panels/Sounds/sounds_panel.gd" id="2_k23r8"]
 [ext_resource type="Texture2D" uid="uid://ndrnftkxmqtm" path="res://Content/UI/Textures/Динамик.png" id="2_psraa"]
 [ext_resource type="Texture2D" uid="uid://xsv4o6kg7yvm" path="res://Content/UI/Textures/ИконкаСлайдера.png" id="3_phf7r"]
 [ext_resource type="StyleBox" uid="uid://ddajgfi25on0i" path="res://Content/UI/Panels/Music/MusicPanelSlider.tres" id="4_crj0m"]

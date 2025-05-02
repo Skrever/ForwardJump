@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://pvbtwtmqm74r"]
+[gd_scene load_steps=44 format=3 uid="uid://pvbtwtmqm74r"]
 
 [ext_resource type="Script" path="res://Content/Classes/Column/Column.gd" id="1_i2q6p"]
 [ext_resource type="PackedScene" uid="uid://cqv4goxnlhwlg" path="res://Content/Classes/Column/DropEffects/Square/DropEffect3D.tscn" id="2_0mkec"]
@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://ce3s1g3vwxk7q" path="res://Content/Classes/Column/Effects/ExplousionFace.png" id="11_esrd2"]
 [ext_resource type="Texture2D" uid="uid://c7ptk6i78on1g" path="res://Content/Classes/Column/Effects/WowFace.png" id="12_hsvpg"]
 [ext_resource type="Texture2D" uid="uid://b03xcchugi618" path="res://Content/Classes/Column/Effects/SmileFace.png" id="13_n6vbk"]
+[ext_resource type="PackedScene" uid="uid://cwjoyhywe7ari" path="res://Content/UI/Panels/RatedPlayer/RatedPlayer.tscn" id="15_krdx0"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_riwsd"]
 size = Vector3(3, 4.01767, 3)
@@ -144,6 +145,9 @@ billboard_keep_scale = true
 lightmap_size_hint = Vector2i(12, 12)
 material = SubResource("StandardMaterial3D_bhhrl")
 orientation = 2
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_017q0"]
+viewport_path = NodePath("Rating/SubViewport")
 
 [node name="Column" type="StaticBody3D"]
 collision_layer = 5
@@ -348,5 +352,18 @@ spread = 35.0
 gravity = Vector3(0, 10, 0)
 initial_velocity_max = 10.0
 scale_amount_curve = SubResource("Curve_l07cr")
+
+[node name="Rating" type="Sprite3D" parent="."]
+transform = Transform3D(-4.37114e-08, -1, -4.37114e-08, 0, -4.37114e-08, 1, -1, 4.37114e-08, 1.91069e-15, 0.0329579, 0.0847317, 2.77818)
+texture = SubResource("ViewportTexture_017q0")
+
+[node name="SubViewport" type="SubViewport" parent="Rating"]
+disable_3d = true
+transparent_bg = true
+size = Vector2i(250, 300)
+
+[node name="RatedPlayer" parent="Rating/SubViewport" instance=ExtResource("15_krdx0")]
+offset_right = 200.0
+offset_bottom = 100.0
 
 [connection signal="body_entered" from="GoalArea" to="." method="_on_goal_area_body_entered"]

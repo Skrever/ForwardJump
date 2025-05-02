@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://xni5iwv0wqj2"]
 
-[ext_resource type="Script" path="res://Content/UI/Interface/LearningMenu/learning_menu.gd" id="1_e6do4"]
-[ext_resource type="Script" path="res://Content/UI/local.gd" id="2_rmwhe"]
+[ext_resource type="Script" uid="uid://nffkle8hgnk3" path="res://Content/UI/Interface/LearningMenu/learning_menu.gd" id="1_e6do4"]
+[ext_resource type="Script" uid="uid://bgc1yn4eqmjxh" path="res://Content/UI/local.gd" id="2_rmwhe"]
 
 [node name="LearningMenu" type="Control"]
 layout_mode = 3

@@ -15,6 +15,8 @@ var CollumnSpawnPosition := Vector3(0, 30, 0)
 var Gems: Array[Gem]
 var SpawnGemsLocation : Vector3 = Vector3(0, 30, 0)
 
+var leaders : Dictionary
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	NextCollumnLocation = StartCollumnLocation
@@ -28,6 +30,8 @@ func _ready():
 	_cooking_columns()
 
 	Global.GenerateNextCollumn.connect(_spawn_next)
+	
+	SDKBridge.UpdateLeaderboard.connect(func(x) : leaders = x)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

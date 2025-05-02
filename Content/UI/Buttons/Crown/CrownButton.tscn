@@ -5,7 +5,7 @@
 [ext_resource type="StyleBox" uid="uid://ctdhnjb3tnhko" path="res://Content/UI/Buttons/No/NoButtonHower.tres" id="2_ctkkx"]
 [ext_resource type="StyleBox" uid="uid://rgfq8g6xuq0t" path="res://Content/UI/Buttons/No/NoButtonNormal.tres" id="3_6x2yu"]
 [ext_resource type="Texture2D" uid="uid://bnhtmeicrlhin" path="res://Content/UI/Textures/Корона.png" id="4_85jsq"]
-[ext_resource type="Script" path="res://Content/UI/Buttons/button.gd" id="5_7nqgx"]
+[ext_resource type="Script" uid="uid://c8jteicvpm77r" path="res://Content/UI/Buttons/button.gd" id="5_7nqgx"]
 
 [node name="CrownButton" type="Button"]
 offset_left = -47.5

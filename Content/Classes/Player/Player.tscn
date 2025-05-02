@@ -32,7 +32,6 @@ radial_segments = 8
 rings = 8
 
 [sub_resource type="Curve" id="Curve_3nm82"]
-max_value = 1.2
 _data = [Vector2(0, 0), 0.0, -0.073242, 0, 0, Vector2(0.26, 0), 0.0, 0.0, 0, 0, Vector2(0.608571, 1.2), 0.0, 0.0, 0, 0, Vector2(1, 0.0334822), 0.0, 0.0, 0, 0]
 point_count = 4
 

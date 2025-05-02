@@ -3,7 +3,7 @@
 [ext_resource type="StyleBox" uid="uid://faplfbbo0mfy" path="res://Content/UI/Buttons/Store/StoreButtonPressed.tres" id="1_5ypro"]
 [ext_resource type="StyleBox" uid="uid://bosejewh5hfdm" path="res://Content/UI/Buttons/Store/StoreButtonHower.tres" id="2_v27yx"]
 [ext_resource type="StyleBox" uid="uid://pxk4au4buu6" path="res://Content/UI/Buttons/Store/StoreButtonNormal.tres" id="3_en3uy"]
-[ext_resource type="Script" path="res://Content/UI/Buttons/button.gd" id="4_xqi1s"]
+[ext_resource type="Script" uid="uid://c8jteicvpm77r" path="res://Content/UI/Buttons/button.gd" id="4_xqi1s"]
 [ext_resource type="Texture2D" uid="uid://0yf2uq1fdam3" path="res://Content/UI/Textures/куб.png" id="5_7fgb1"]
 
 [node name="StoreButton" type="Button"]
