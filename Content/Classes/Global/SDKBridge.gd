@@ -26,7 +26,11 @@ var canSaiving := false
 
 var UserAuth : bool = false
 
-var leaderboard : Dictionary  = { "1" : {"rank": "1", "name" : "Абрикосовый сироп", "score" : "10", "usr" : true }, "2" : {"rank": "2", "name" : "Кроккодило Бомбардиро", "score" : "5", "usr" : false }, "3" : {"rank": "3", "name" : "Зубенко Михаил", "score" : "2", "usr" : false }}:
+var leaderboard : Dictionary  = { "1" : {"rank": "1", "name" : "Абрикосовый сироп", "score" : "20", "usr" : true, "img": [] },
+									 "2" : {"rank": "2", "name" : "Кроккодило Бомбардиро", "score" : "15", "usr" : false, "img": [] },
+										 "3" : {"rank": "3", "name" : "Зубенко Михаил", "score" : "12", "usr" : false, "img": [] },
+											"4" : {"rank": "4", "name" : "Летающее нечто", "score" : "7", "usr" : false, "img": [] },
+												"5" : {"rank": "5", "name" : "Очередной пингачок", "score" : "5", "usr" : false, "img": [] }}:
 	get:
 		return leaderboard
 	set(value):
@@ -198,7 +202,7 @@ func _get_raw_leaderboard(success, entries):
 							"name" : name_,
 							"score" : str(entry.score),
 							"usr" : usr,
-							"img": LoadedImage.save_jpg_to_buffer(1)
+							"img": LoadedImage.save_png_to_buffer()
 							}
 					leaderboard.get_or_add(str(entry.rank), user)
 
@@ -206,8 +210,12 @@ func _get_raw_leaderboard(success, entries):
 func _on_load_img(result, response_code, headers, body):
 	if response_code == 200:
 		var img := Image.new()
-		img.load_jpg_from_buffer(body)
+		if img.load_jpg_from_buffer(body) != OK:
+			if img.load_png_from_buffer(body) != OK:
+				if img.load_webp_from_buffer(body) != OK:
+					img.load_from_file("res://Content/UI/Textures/testImg.jpg")
 		LoadedImage = img
+		
 		#print(body)
 	else:
 		LoadedImage.load_from_file("res://Content/UI/Textures/testImg.jpg")

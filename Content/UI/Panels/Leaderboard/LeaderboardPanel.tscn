@@ -1,24 +1,25 @@
-[gd_scene load_steps=5 format=3 uid="uid://crhf23rxkmfqo"]
+[gd_scene load_steps=6 format=3 uid="uid://crhf23rxkmfqo"]
 
 [ext_resource type="StyleBox" uid="uid://tjhskm4tx1e1" path="res://Content/UI/Panels/DefaultPanel.tres" id="1_mtrjt"]
-[ext_resource type="Script" uid="uid://q8jtx2e62aoa" path="res://Content/UI/Panels/Leaderboard/leaderboard_panel.gd" id="2_f71m1"]
+[ext_resource type="Script" path="res://Content/UI/Panels/Leaderboard/leaderboard_panel.gd" id="2_f71m1"]
 [ext_resource type="StyleBox" uid="uid://cyxvmxxrmcxef" path="res://Content/UI/Panels/Leaderboard/UniversalBacksidePanel.tres" id="3_c16uk"]
 [ext_resource type="StyleBox" uid="uid://bsuq4enrw0pqf" path="res://Content/UI/Panels/Leaderboard/NumberBackSidePanel.tres" id="4_5geeq"]
+[ext_resource type="Texture2D" uid="uid://dsedtv74m6msy" path="res://Content/UI/Textures/testImg.jpg" id="4_xohof"]
 
 [node name="LeaderboardPanel" type="Panel"]
-custom_minimum_size = Vector2(254, 63)
+custom_minimum_size = Vector2(277, 63)
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -127.0
+offset_left = -138.5
 offset_top = -31.5
-offset_right = 127.0
+offset_right = 138.5
 offset_bottom = 31.5
 grow_horizontal = 2
 grow_vertical = 2
-pivot_offset = Vector2(127, 31.5)
+pivot_offset = Vector2(138.5, 31.5)
 mouse_filter = 1
 theme_override_styles/panel = ExtResource("1_mtrjt")
 script = ExtResource("2_f71m1")
@@ -29,10 +30,10 @@ layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = 41.415
-offset_top = -21.0
-offset_right = 164.415
-offset_bottom = 21.0
+offset_left = 58.0
+offset_top = -20.5
+offset_right = 181.0
+offset_bottom = 21.5
 grow_vertical = 2
 mouse_filter = 1
 theme_override_styles/panel = ExtResource("3_c16uk")
@@ -42,6 +43,10 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 7.0
+offset_top = 5.0
+offset_right = -7.0
+offset_bottom = -4.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
@@ -51,37 +56,11 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
 
-[node name="BackNumberPanel" type="Panel" parent="."]
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 8.0
-offset_top = -20.5
-offset_right = 38.0
-offset_bottom = 21.5
-grow_vertical = 2
-mouse_filter = 1
-theme_override_styles/panel = ExtResource("4_5geeq")
-
-[node name="Place" type="Label" parent="BackNumberPanel"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 1
-theme_override_font_sizes/font_size = 18
-text = "1"
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 0
-offset_left = 167.0
+offset_left = 187.0
 offset_top = 11.0
-offset_right = 246.0
+offset_right = 266.0
 offset_bottom = 53.0
 mouse_filter = 1
 theme_override_styles/panel = ExtResource("3_c16uk")
@@ -102,3 +81,36 @@ mouse_filter = 1
 theme_override_font_sizes/font_size = 18
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Avatar" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(39, 39)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -127.0
+offset_top = -19.5
+offset_right = -88.0
+offset_bottom = 19.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_xohof")
+expand_mode = 1
+
+[node name="Frame" type="Panel" parent="Avatar"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -21.5
+offset_top = -21.5
+offset_right = 21.5
+offset_bottom = 21.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+theme_override_styles/panel = ExtResource("4_5geeq")

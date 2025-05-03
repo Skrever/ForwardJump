@@ -7,6 +7,7 @@ func _ready() -> void:
 	Global.ChangePlayerSkin.connect(_change_price)
 	UI.OpenStoreMenu.connect(func(): _setVisible(true))
 	UI.StoreMenuClosed.connect(func(): _setVisible(false))
+	message.setInvisible()
 
 
 

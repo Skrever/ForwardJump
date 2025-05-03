@@ -354,7 +354,7 @@ initial_velocity_max = 10.0
 scale_amount_curve = SubResource("Curve_l07cr")
 
 [node name="Rating" type="Sprite3D" parent="."]
-transform = Transform3D(-4.37114e-08, -1, -4.37114e-08, 0, -4.37114e-08, 1, -1, 4.37114e-08, 1.91069e-15, 0.0329579, 0.0847317, 2.77818)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.6, 2.19, 0)
 texture = SubResource("ViewportTexture_017q0")
 
 [node name="SubViewport" type="SubViewport" parent="Rating"]

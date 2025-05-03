@@ -25,8 +25,7 @@ func setVisible(value : Dictionary):
 	rdFrame.add_theme_stylebox_override("panel", frameStyleBox)
 	if value.has("img"):
 		var avatar := Image.new()
-		avatar.load_jpg_from_buffer(value["img"])
-		print(value["name"]," - ", value["img"])
+		avatar.load_png_from_buffer(value["img"])
 		rdAvatar.texture = ImageTexture.create_from_image(avatar)
 	create_tween().tween_property(rdPanel, "scale", Vector2(1,1), 0.1)
 	

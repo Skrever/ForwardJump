@@ -26,7 +26,7 @@ func setVisible():
 			var name_ := str(SDKBridge.leaderboard[i]["name"])
 			if name_.is_empty():
 				name_ = Language.local("noname")
-			leaderboardPanel.setLeaderBoard(i, name_, SDKBridge.leaderboard[i]["score"], SDKBridge.leaderboard[i]["usr"])
+			leaderboardPanel.setLeaderBoard(i, name_, SDKBridge.leaderboard[i]["score"], SDKBridge.leaderboard[i]["usr"], SDKBridge.leaderboard[i]["img"])
 	
 	visible = true
 	mouse_filter = MouseFilter.MOUSE_FILTER_STOP
