@@ -12,6 +12,46 @@
 	"minecraft_steve": 
 		{
 			"scene" : "uid://b8o36fr1rihbx",
-			"price" : "40"
+			"price" : "60"
+		},
+	"minecraft_mita": 
+		{
+			"scene" : "uid://bi8f6mberjars",
+			"price" : "60"
+		},
+	"minecraft_tnt": 
+		{
+			"scene" : "uid://dfk1g2f82fs3v",
+			"price" : "60"
+		},
+	"minecraft_slime": 
+		{
+			"scene" : "uid://w787ptwg5bbs",
+			"price" : "60"
+		},
+	"minecraft_chest": 
+		{
+			"scene" : "uid://nfbaxbhu07ks",
+			"price" : "60"
+		},
+	"bread": 
+		{
+			"scene" : "uid://dj5qb3bn8ik3y",
+			"price" : "80"
+		},
+	"rubecube": 
+		{
+			"scene" : "uid://0jb0h7n8c30r",
+			"price" : "80"
+		},
+	"bone": 
+		{
+			"scene" : "uid://d0gjflca1ekgk",
+			"price" : "100"
+		},
+	"present": 
+		{
+			"scene" : "uid://dh28k1ysww2q8",
+			"price" : "100"
 		}
 }

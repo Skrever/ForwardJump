@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://w787ptwg5bbs"]
+
+[ext_resource type="Material" uid="uid://cj0ugokbxudl" path="res://Content/Classes/Player/Skins/Minecraft/Slime/Slime.tres" id="1_jcquf"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_u4ba6"]
+
+[node name="Cube" type="MeshInstance3D"]
+mesh = SubResource("BoxMesh_u4ba6")
+surface_material_override/0 = ExtResource("1_jcquf")

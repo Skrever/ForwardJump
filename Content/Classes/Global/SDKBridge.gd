@@ -177,7 +177,8 @@ func _game_ready():
 
 func _get_raw_leaderboard(success, entries):
 	if success:
-		leaderboard.clear()
+		
+		var new_leaderboard : Dictionary
 		match Bridge.platform.id:
 			"yandex":
 				for entry in entries:
@@ -198,13 +199,16 @@ func _get_raw_leaderboard(success, entries):
 					await PhotoDownloaded
 					
 					var user = {
-							"rank" : str(leaderboard.keys().size() + 1), 
+							"rank" : str(new_leaderboard.keys().size() + 1), 
 							"name" : name_,
 							"score" : str(entry.score),
 							"usr" : usr,
 							"img": LoadedImage.save_png_to_buffer()
 							}
-					leaderboard.get_or_add(str(entry.rank), user)
+					new_leaderboard.get_or_add(str(entry.rank), user)
+
+		leaderboard.clear()
+		leaderboard = new_leaderboard
 
 
 func _on_load_img(result, response_code, headers, body):
@@ -215,8 +219,7 @@ func _on_load_img(result, response_code, headers, body):
 				if img.load_webp_from_buffer(body) != OK:
 					img.load_from_file("res://Content/UI/Textures/testImg.jpg")
 		LoadedImage = img
-		
-		#print(body)
+
 	else:
 		LoadedImage.load_from_file("res://Content/UI/Textures/testImg.jpg")
 	PhotoDownloaded.emit()

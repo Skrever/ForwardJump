@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://bi8f6mberjars"]
+
+[ext_resource type="Material" uid="uid://dlrugg5a5oong" path="res://Content/Classes/Player/Skins/Minecraft/Mita/Mita.tres" id="1_sdqmv"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_5vcqp"]
+
+[node name="Cube" type="MeshInstance3D"]
+mesh = SubResource("BoxMesh_5vcqp")
+surface_material_override/0 = ExtResource("1_sdqmv")

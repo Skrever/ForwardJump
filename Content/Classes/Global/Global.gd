@@ -46,7 +46,15 @@ enum SKINS
 {
 	DEFAULT,
 	MINECRAFT_GROUND,
-	MINECRAFT_STEVE
+	MINECRAFT_STEVE,
+	MINECRAFT_MITA,
+	MINECRAFT_TNT,
+	MINECRAFT_SLIME,
+	MINECRAFT_CHEST,
+	BREAD,
+	RUBECUBE,
+	BONE,
+	PRESENT
 }
 
 var GameState : GAMESTATS = GAMESTATS.NONE
@@ -119,13 +127,7 @@ var SkinsDict : Dictionary
 var TakedSkin : SKINS = SKINS.DEFAULT
 var boughtSkins : Array[bool]
 func getSkinByEnum(skin : SKINS) -> String:
-	var key : String = "default"
-	match skin:
-		SKINS.MINECRAFT_STEVE:
-			key = "minecraft_steve"
-		SKINS.MINECRAFT_GROUND:
-			key = "minecraft_ground"
-	return key
+	return SkinsDict.keys()[skin]
 	
 var CollumnsSkinsDict : Dictionary
 
@@ -241,7 +243,7 @@ func playerOnCollumn():
 		Score += (1 + GoalScore)
 
 func _analize_leaderboard():
-	if int(SDKBridge.leaderboard["1"]["score"]) < Score or int(SDKBridge.leaderboard["1"]["score"]) < MaxScore:
+	if (int(SDKBridge.leaderboard["1"]["score"]) <= Score) or (int(SDKBridge.leaderboard["1"]["score"]) <= MaxScore):
 		PlayerIsFirst = true
 	else:
 		PlayerIsFirst = false

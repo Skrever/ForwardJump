@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://d0gjflca1ekgk"]
+
+[ext_resource type="Material" uid="uid://boranu3gtmps5" path="res://Content/Classes/Player/Skins/Bone/Bone.tres" id="1_q1wiq"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_u4ba6"]
+
+[node name="Cube" type="MeshInstance3D"]
+mesh = SubResource("BoxMesh_u4ba6")
+surface_material_override/0 = ExtResource("1_q1wiq")

@@ -22,8 +22,8 @@ func _keep_upping(val : bool):
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	rotation_degrees.y += 25 * delta
 	if KeepingUp:
+		rotation_degrees.y += 30 * delta
 		if Global.player != null and position.distance_to(Global.player.position) > 0.1:
 			rdRoot.look_at(Global.player.position)
 			rdMesh.rotation_degrees.x = 90

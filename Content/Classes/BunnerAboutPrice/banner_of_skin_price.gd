@@ -22,6 +22,7 @@ func _change_price(TakedSkin : Global.SKINS):
 		message.setInvisible()
 
 func _setVisible(visibility : bool):
+	visible = visibility
 	if visibility:
 		_change_price(Global.TakedSkin)
 	else:
