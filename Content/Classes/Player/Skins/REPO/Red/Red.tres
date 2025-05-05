@@ -1,0 +1,7 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://b68k0jckeie0n"]
+
+[ext_resource type="Texture2D" uid="uid://bhdpj0vywvq71" path="res://Content/Textures/UV-REPORED.png" id="1_2uklb"]
+
+[resource]
+albedo_texture = ExtResource("1_2uklb")
+texture_filter = 0

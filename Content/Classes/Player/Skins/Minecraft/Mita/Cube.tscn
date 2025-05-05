@@ -1,9 +1,8 @@
 [gd_scene load_steps=3 format=3 uid="uid://bi8f6mberjars"]
 
+[ext_resource type="ArrayMesh" uid="uid://bi2c5vimyx035" path="res://Content/Classes/Player/Skins/Cube.res" id="1_81krg"]
 [ext_resource type="Material" uid="uid://dlrugg5a5oong" path="res://Content/Classes/Player/Skins/Minecraft/Mita/Mita.tres" id="1_sdqmv"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_5vcqp"]
-
 [node name="Cube" type="MeshInstance3D"]
-mesh = SubResource("BoxMesh_5vcqp")
+mesh = ExtResource("1_81krg")
 surface_material_override/0 = ExtResource("1_sdqmv")

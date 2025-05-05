@@ -1,4 +1,7 @@
-[gd_resource type="StandardMaterial3D" format=3 uid="uid://b8or5e335ypeg"]
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://b8or5e335ypeg"]
+
+[ext_resource type="Texture2D" uid="uid://dt3h0c60cyxv7" path="res://Content/Textures/UV-CHEST.png" id="1_mcs20"]
 
 [resource]
-albedo_color = Color(0.6446, 0.497839, 0.115443, 1)
+albedo_texture = ExtResource("1_mcs20")
+texture_filter = 0

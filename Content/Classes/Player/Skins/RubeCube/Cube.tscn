@@ -1,9 +1,8 @@
 [gd_scene load_steps=3 format=3 uid="uid://0jb0h7n8c30r"]
 
+[ext_resource type="ArrayMesh" uid="uid://bi2c5vimyx035" path="res://Content/Classes/Player/Skins/Cube.res" id="1_6h3j6"]
 [ext_resource type="Material" uid="uid://shs83kohm7qh" path="res://Content/Classes/Player/Skins/RubeCube/RubeCube.tres" id="1_stj27"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_u4ba6"]
-
 [node name="Cube" type="MeshInstance3D"]
-mesh = SubResource("BoxMesh_u4ba6")
+mesh = ExtResource("1_6h3j6")
 surface_material_override/0 = ExtResource("1_stj27")

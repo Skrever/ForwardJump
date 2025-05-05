@@ -1,4 +1,8 @@
-[gd_resource type="StandardMaterial3D" format=3 uid="uid://boranu3gtmps5"]
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://boranu3gtmps5"]
+
+[ext_resource type="Texture2D" uid="uid://csmqjsiypuiac" path="res://Content/Textures/UV-BONE.png" id="1_0kw7i"]
 
 [resource]
 albedo_color = Color(0.838704, 0.838417, 0.795651, 1)
+albedo_texture = ExtResource("1_0kw7i")
+texture_filter = 0

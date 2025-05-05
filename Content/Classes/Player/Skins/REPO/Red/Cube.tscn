@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://by30wvj5no1mh"]
+
+[ext_resource type="ArrayMesh" uid="uid://bi2c5vimyx035" path="res://Content/Classes/Player/Skins/Cube.res" id="1_fk2ti"]
+[ext_resource type="Material" uid="uid://b68k0jckeie0n" path="res://Content/Classes/Player/Skins/REPO/Red/Red.tres" id="1_vwok1"]
+
+[node name="Cube" type="MeshInstance3D"]
+mesh = ExtResource("1_fk2ti")
+surface_material_override/0 = ExtResource("1_vwok1")

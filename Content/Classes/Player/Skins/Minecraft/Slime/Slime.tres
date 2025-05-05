@@ -1,4 +1,8 @@
-[gd_resource type="StandardMaterial3D" format=3 uid="uid://cj0ugokbxudl"]
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://cj0ugokbxudl"]
+
+[ext_resource type="Texture2D" uid="uid://bdg5q3ky2it1d" path="res://Content/Textures/UV-SLIME.png" id="1_sg7yr"]
 
 [resource]
-albedo_color = Color(0.445489, 0.569445, 0.290179, 1)
+albedo_color = Color(0.689552, 0.843325, 0.716149, 1)
+albedo_texture = ExtResource("1_sg7yr")
+texture_filter = 0

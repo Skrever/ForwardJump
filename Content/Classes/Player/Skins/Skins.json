@@ -34,6 +34,21 @@
 			"scene" : "uid://nfbaxbhu07ks",
 			"price" : "60"
 		},
+	"repo_red": 
+		{
+			"scene" : "uid://by30wvj5no1mh",
+			"price" : "60"
+		},
+	"repo_green": 
+		{
+			"scene" : "uid://b0usc0m23blt8",
+			"price" : "60"
+		},
+	"repo_blue": 
+		{
+			"scene" : "uid://dmqopf0lihkhp",
+			"price" : "60"
+		},
 	"bread": 
 		{
 			"scene" : "uid://dj5qb3bn8ik3y",

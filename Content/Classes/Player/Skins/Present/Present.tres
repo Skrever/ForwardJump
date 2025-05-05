@@ -1,4 +1,7 @@
-[gd_resource type="StandardMaterial3D" format=3 uid="uid://wbhs6fb8bxfv"]
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://wbhs6fb8bxfv"]
+
+[ext_resource type="Texture2D" uid="uid://ioxhulywixha" path="res://Content/Textures/UV-PRESENT.png" id="1_wxm4i"]
 
 [resource]
-albedo_color = Color(0.965537, 0, 0.263644, 1)
+albedo_texture = ExtResource("1_wxm4i")
+texture_filter = 0

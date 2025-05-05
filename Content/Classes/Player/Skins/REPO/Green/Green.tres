@@ -1,0 +1,7 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://bvstaq12xoep4"]
+
+[ext_resource type="Texture2D" uid="uid://qi64coelbo5w" path="res://Content/Textures/UV-REPOGREEN.png" id="1_f2l4r"]
+
+[resource]
+albedo_texture = ExtResource("1_f2l4r")
+texture_filter = 0

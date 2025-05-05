@@ -1,4 +1,8 @@
-[gd_resource type="StandardMaterial3D" format=3 uid="uid://dlrugg5a5oong"]
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://dlrugg5a5oong"]
+
+[ext_resource type="Texture2D" uid="uid://ccwxl631v6kq3" path="res://Content/Textures/UV-MITA.png" id="1_sioa0"]
 
 [resource]
-albedo_color = Color(0.544975, 0.421745, 0.88709, 1)
+albedo_color = Color(0.741385, 0.741385, 0.741385, 1)
+albedo_texture = ExtResource("1_sioa0")
+texture_filter = 0

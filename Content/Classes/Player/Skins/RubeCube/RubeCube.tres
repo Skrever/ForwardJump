@@ -1,4 +1,7 @@
-[gd_resource type="StandardMaterial3D" format=3 uid="uid://shs83kohm7qh"]
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://shs83kohm7qh"]
+
+[ext_resource type="Texture2D" uid="uid://dgm8ibu46sd0s" path="res://Content/Textures/UV-RUBECUBE.png" id="1_1e4sv"]
 
 [resource]
-albedo_color = Color(0.352615, 0.568009, 0.546758, 1)
+albedo_texture = ExtResource("1_1e4sv")
+texture_filter = 0

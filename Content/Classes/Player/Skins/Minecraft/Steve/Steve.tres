@@ -1,4 +1,8 @@
-[gd_resource type="StandardMaterial3D" format=3 uid="uid://csbnbptdsqett"]
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://csbnbptdsqett"]
+
+[ext_resource type="Texture2D" uid="uid://ciiyse07hf0r4" path="res://Content/Textures/UV-STEVE.png" id="1_i1j10"]
 
 [resource]
-albedo_color = Color(0.747671, 0.407465, 0.411455, 1)
+albedo_color = Color(0.783523, 0.783523, 0.783523, 1)
+albedo_texture = ExtResource("1_i1j10")
+texture_filter = 0
