@@ -99,7 +99,7 @@ func _on_about_dev_pressed() -> void:
 func _on_learning_timer_timeout() -> void:
 
 	for i in 3:
-		if !visible  or Global.player.IsPressed: return
+		if !visible  or (Global.GameState == Global.GAMESTATS.GOING): return
 		rdHintHand.scale = Vector2(1,1)
 		rdHintHand.texture = load("uid://crj54lrmiknvo")
 		rdHintHand.position = Vector2(0, 300)
