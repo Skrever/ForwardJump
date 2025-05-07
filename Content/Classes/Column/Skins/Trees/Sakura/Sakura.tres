@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://cxhe2g8w8kyaa"]
+
+[ext_resource type="Texture2D" uid="uid://dccwxtmymaops" path="res://Content/Textures/T_SAKURA.png" id="1_nthcq"]
+
+[resource]
+albedo_texture = ExtResource("1_nthcq")
+metallic = 0.36
+metallic_specular = 0.35
+roughness = 0.0
+texture_filter = 0

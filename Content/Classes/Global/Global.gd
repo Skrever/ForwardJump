@@ -45,12 +45,12 @@ enum GAMESTATS
 enum SKINS
 {
 	DEFAULT,
-	MINECRAFT_GROUND,
 	MINECRAFT_STEVE,
 	MINECRAFT_MITA,
 	MINECRAFT_TNT,
 	MINECRAFT_SLIME,
 	MINECRAFT_CHEST,
+	MINECRAFT_GROUND,
 	REPO_RED,
 	REPO_GREEN,
 	REPO_BLUE,
@@ -135,7 +135,6 @@ func getSkinByEnum(skin : SKINS) -> String:
 var CollumnsSkinsDict : Dictionary
 
 func _ready() -> void:
-	
 	SkinsDict = _read_from_json("res://Content/Classes/Player/Skins/Skins.json")
 	CollumnsSkinsDict = _read_from_json("res://Content/Classes/Column/Skins/collumns.json")
 	for key in SkinsDict.keys():
@@ -246,6 +245,7 @@ func playerOnCollumn():
 		Score += (1 + GoalScore)
 
 func _analize_leaderboard():
+	if (SDKBridge.leaderboard == null) or !(SDKBridge.leaderboard.has("1")) : return
 	if (int(SDKBridge.leaderboard["1"]["score"]) <= Score) or (int(SDKBridge.leaderboard["1"]["score"]) <= MaxScore):
 		PlayerIsFirst = true
 	else:

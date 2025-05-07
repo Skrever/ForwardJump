@@ -1,0 +1,60 @@
+[gd_scene load_steps=9 format=3 uid="uid://6yc8yn36qeot"]
+
+[ext_resource type="ArrayMesh" uid="uid://bmg71vkkh2evg" path="res://Columns/Anvil.res" id="1_i6nny"]
+[ext_resource type="Material" uid="uid://bigpcrrbl2cl5" path="res://Content/Classes/Column/Skins/Anvil/Anvil.tres" id="1_n0vrq"]
+[ext_resource type="Script" path="res://Content/Classes/Column/Skins/collumn_skin.gd" id="2_tiwm1"]
+[ext_resource type="Script" path="res://Content/UI/local_3d.gd" id="4_c7u12"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gkbkg"]
+albedo_color = Color(0.255659, 0.255659, 0.255659, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_hpm8l"]
+material = SubResource("StandardMaterial3D_gkbkg")
+radius = 0.167
+height = 0.333
+radial_segments = 5
+rings = 3
+
+[sub_resource type="Curve" id="Curve_18m86"]
+_data = [Vector2(0, -85.0183), 0.0, 0.0, 0, 0, Vector2(1, 117.661), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_uudfh"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.2162), -1.00064, 0.0, 0, 0]
+point_count = 2
+
+[node name="Skin" type="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+mesh = ExtResource("1_i6nny")
+surface_material_override/0 = ExtResource("1_n0vrq")
+script = ExtResource("2_tiwm1")
+
+[node name="Particles" type="CPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00775123, 4.03115, 0)
+emitting = false
+amount = 15
+lifetime = 1.5
+one_shot = true
+speed_scale = 7.0
+explosiveness = 1.0
+fixed_fps = 60
+mesh = SubResource("SphereMesh_hpm8l")
+direction = Vector3(0, -20, 0)
+spread = 180.0
+gravity = Vector3(0, -3, 0)
+initial_velocity_min = 2.0
+initial_velocity_max = 3.0
+angular_velocity_max = 2.0
+linear_accel_min = -3.0
+radial_accel_curve = SubResource("Curve_18m86")
+scale_amount_curve = SubResource("Curve_uudfh")
+hue_variation_max = 0.36
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(50.54, 0, 0, 0, 50.54, 0, 0, 0, 50.54, 0, -1.354, 1.445)
+pixel_size = 0.0001
+outline_modulate = Color(0.282505, 0.27446, 0.24397, 1)
+text = "20кг"
+font_size = 200
+script = ExtResource("4_c7u12")
+Name_Text = "anvil"

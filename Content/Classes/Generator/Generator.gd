@@ -19,6 +19,7 @@ var leaders : Dictionary
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	add_to_group("Generator")
 	NextCollumnLocation = StartCollumnLocation
 	Global.generator = self
 	Global.GameReload.connect(_on_game_reload)

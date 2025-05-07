@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://bqpxqyub0kv8w"]
+
+[ext_resource type="Texture2D" uid="uid://dnt4y8i70xgnc" path="res://Columns/T_OAK.png" id="1_v8kye"]
+
+[resource]
+albedo_texture = ExtResource("1_v8kye")
+metallic = 0.21
+texture_filter = 0

@@ -65,6 +65,7 @@ transform = Transform3D(0.642788, 0.754406, -0.133022, 0, 0.173648, 0.984808, 0.
 light_energy = 0.3
 light_cull_mask = 4293918721
 shadow_enabled = true
+shadow_normal_bias = 1.0
 shadow_transmittance_bias = 3.547
 shadow_blur = 1.429
 directional_shadow_mode = 0

@@ -1,10 +1,8 @@
 [gd_scene load_steps=8 format=3 uid="uid://d13d6pd138bca"]
 
-[ext_resource type="Material" uid="uid://8ouwetdv6irc" path="res://Content/Classes/Column/Skins/Minecraft/Minecraft.tres" id="1_iykec"]
-[ext_resource type="Script" uid="uid://b1ld3jiaugdk1" path="res://Content/Classes/Column/Skins/collumn_skin.gd" id="2_b5gm4"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_fk7sx"]
-size = Vector3(3, 4, 3)
+[ext_resource type="Material" uid="uid://8ouwetdv6irc" path="res://Content/Classes/Column/Skins/Minecraft/Ground/Gound.tres" id="1_7vo4w"]
+[ext_resource type="ArrayMesh" uid="uid://sdwx8vblgr7h" path="res://Columns/default.res" id="1_pyklx"]
+[ext_resource type="Script" path="res://Content/Classes/Column/Skins/collumn_skin.gd" id="2_bqm16"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kfcaf"]
 albedo_color = Color(0.558688, 0.75147, 0.405137, 1)
@@ -17,7 +15,6 @@ radial_segments = 5
 rings = 3
 
 [sub_resource type="Curve" id="Curve_6rtse"]
-_limits = [-200.0, 200.0, 0.0, 1.0]
 _data = [Vector2(0, -85.0183), 0.0, 0.0, 0, 0, Vector2(1, 117.661), 0.0, 0.0, 0, 0]
 point_count = 2
 
@@ -27,9 +24,9 @@ point_count = 2
 
 [node name="Skin" type="MeshInstance3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
-mesh = SubResource("BoxMesh_fk7sx")
-surface_material_override/0 = ExtResource("1_iykec")
-script = ExtResource("2_b5gm4")
+mesh = ExtResource("1_pyklx")
+surface_material_override/0 = ExtResource("1_7vo4w")
+script = ExtResource("2_bqm16")
 
 [node name="Particles" type="CPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00775123, 4.03115, 0)

@@ -26,11 +26,11 @@ var canSaiving := false
 
 var UserAuth : bool = false
 
-var leaderboard : Dictionary  = { "1" : {"rank": "1", "name" : "Абрикосовый сироп", "score" : "20", "usr" : true, "img": [] },
-									 "2" : {"rank": "2", "name" : "Кроккодило Бомбардиро", "score" : "15", "usr" : false, "img": [] },
-										 "3" : {"rank": "3", "name" : "Зубенко Михаил", "score" : "12", "usr" : false, "img": [] },
-											"4" : {"rank": "4", "name" : "Летающее нечто", "score" : "7", "usr" : false, "img": [] },
-												"5" : {"rank": "5", "name" : "Очередной пингачок", "score" : "5", "usr" : false, "img": [] }}:
+var leaderboard : Dictionary:  #= { "1" : {"rank": "1", "name" : "Абрикосовый сироп", "score" : "20", "usr" : true, "img": [] },
+									#"2" : {"rank": "2", "name" : "Кроккодило Бомбардиро", "score" : "15", "usr" : false, "img": [] },
+										 #"3" : {"rank": "3", "name" : "Зубенко Михаил", "score" : "12", "usr" : false, "img": [] },
+											#"4" : {"rank": "4", "name" : "Летающее нечто", "score" : "7", "usr" : false, "img": [] },
+												#"5" : {"rank": "5", "name" : "Очередной пингачок", "score" : "5", "usr" : false, "img": [] }}:
 	get:
 		return leaderboard
 	set(value):

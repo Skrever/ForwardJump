@@ -53,5 +53,10 @@ var Localisation : Dictionary = {
 			"ru": "Создатель и разработчик этой игры - Skrever.\n.\nДизайнер интерфейса - Skrever.\n.\nИконки были разработаны :\nMiftahul Madani\nGrand Iconic\nGregor Gresnar\nCapCool\nRuslan Babkin\ntenBystry\n.\nСпасибо что играете в мою игру.\n",
 			"en": "The creator and developer of this game - Skrever.\n.\nUI developer - Skrever.\n.\nIcons were created by:\nMiftahul Madani\nGrand Iconic\nGregor Gresnar\nCapCool\nRuslan Babkin\ntenBystry\n.\nThank you for playing this game.\n"
 		},
+	"anvil" :
+		{
+			"ru" : "20кг",
+			"en" : "20kg",
+		}
 	
 }

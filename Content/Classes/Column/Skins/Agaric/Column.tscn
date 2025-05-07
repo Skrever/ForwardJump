@@ -1,0 +1,50 @@
+[gd_scene load_steps=8 format=3 uid="uid://dlys5agrxi17w"]
+
+[ext_resource type="ArrayMesh" uid="uid://j324438gqveo" path="res://Columns/Agaric.res" id="1_nhx6g"]
+[ext_resource type="Material" uid="uid://cxk5irqlegv31" path="res://Content/Classes/Column/Skins/Agaric/Agaric.tres" id="1_oy8rd"]
+[ext_resource type="Script" path="res://Content/Classes/Column/Skins/collumn_skin.gd" id="2_084kn"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lm50e"]
+albedo_color = Color(0.864977, 0.263532, 0.18427, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_otxog"]
+material = SubResource("StandardMaterial3D_lm50e")
+radius = 0.167
+height = 0.333
+radial_segments = 5
+rings = 3
+
+[sub_resource type="Curve" id="Curve_18m86"]
+_data = [Vector2(0, -85.0183), 0.0, 0.0, 0, 0, Vector2(1, 117.661), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_uudfh"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.2162), -1.00064, 0.0, 0, 0]
+point_count = 2
+
+[node name="Skin" type="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+mesh = ExtResource("1_nhx6g")
+surface_material_override/0 = ExtResource("1_oy8rd")
+script = ExtResource("2_084kn")
+
+[node name="Particles" type="CPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00775123, 4.03115, 0)
+emitting = false
+amount = 15
+lifetime = 1.5
+one_shot = true
+speed_scale = 7.0
+explosiveness = 1.0
+fixed_fps = 60
+mesh = SubResource("SphereMesh_otxog")
+direction = Vector3(0, -20, 0)
+spread = 180.0
+gravity = Vector3(0, -3, 0)
+initial_velocity_min = 2.0
+initial_velocity_max = 3.0
+angular_velocity_max = 2.0
+linear_accel_min = -3.0
+radial_accel_curve = SubResource("Curve_18m86")
+scale_amount_curve = SubResource("Curve_uudfh")
+hue_variation_max = 0.36

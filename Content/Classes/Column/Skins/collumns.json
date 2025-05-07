@@ -1,12 +1,47 @@
 {
-	"default": 
+	"default":
 		{
-			"scene": "uid://bha175p8plwjl",
-			"form" : "square"
+			"scene" : "uid://bha175p8plwjl",
+			"form" : "square",
 		},
-	"minecraft":
+	"default_circle":
+		{
+			"scene" : "uid://dev0mjebi6niw",
+			"form" : "circle",
+		},
+	"minecraft_ground":
 		{
 			"scene": "uid://d13d6pd138bca",
+			"form" : "square"
+		},
+	"minecraft_wood":
+		{
+			"scene": "uid://dsp5csbynbqio",
+			"form" : "square"
+		},
+	"tree_oak":
+		{
+			"scene": "uid://7jcojol1kyro",
+			"form" : "square"
+		},
+	"tree_sakura":
+		{
+			"scene": "uid://yvx1ghkjgbvb",
+			"form" : "square"
+		},
+	"anvil":
+		{
+			"scene": "uid://6yc8yn36qeot",
+			"form" : "square"
+		},
+	"agaric":
+		{
+			"scene": "uid://dlys5agrxi17w",
+			"form" : "circle"
+		},
+	"stool_square":
+		{
+			"scene": "uid://byalt8cau4yng",
 			"form" : "square"
 		}
 }

@@ -1,0 +1,49 @@
+[gd_scene load_steps=7 format=3 uid="uid://bha175p8plwjl"]
+
+[ext_resource type="Material" uid="uid://jdab3p6olubc" path="res://Content/Classes/Column/Skins/Default/Default.tres" id="1_wir0j"]
+[ext_resource type="Script" path="res://Content/Classes/Column/Skins/collumn_skin.gd" id="2_i4eyw"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_0x6u6"]
+size = Vector3(3, 4, 3)
+
+[sub_resource type="SphereMesh" id="SphereMesh_u1l2p"]
+material = ExtResource("1_wir0j")
+radius = 0.167
+height = 0.333
+radial_segments = 5
+rings = 3
+
+[sub_resource type="Curve" id="Curve_18m86"]
+_data = [Vector2(0, -85.0183), 0.0, 0.0, 0, 0, Vector2(1, 117.661), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_uudfh"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.2162), -1.00064, 0.0, 0, 0]
+point_count = 2
+
+[node name="Skin" type="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+mesh = SubResource("BoxMesh_0x6u6")
+surface_material_override/0 = ExtResource("1_wir0j")
+script = ExtResource("2_i4eyw")
+
+[node name="Particles" type="CPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00775123, 4.03115, 0)
+emitting = false
+amount = 15
+lifetime = 1.5
+one_shot = true
+speed_scale = 7.0
+explosiveness = 1.0
+fixed_fps = 60
+mesh = SubResource("SphereMesh_u1l2p")
+direction = Vector3(0, -20, 0)
+spread = 180.0
+gravity = Vector3(0, -3, 0)
+initial_velocity_min = 2.0
+initial_velocity_max = 3.0
+angular_velocity_max = 2.0
+linear_accel_min = -3.0
+radial_accel_curve = SubResource("Curve_18m86")
+scale_amount_curve = SubResource("Curve_uudfh")
+hue_variation_max = 0.36

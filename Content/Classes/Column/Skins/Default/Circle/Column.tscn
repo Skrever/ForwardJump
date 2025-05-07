@@ -1,13 +1,15 @@
-[gd_scene load_steps=7 format=3 uid="uid://bha175p8plwjl"]
+[gd_scene load_steps=7 format=3 uid="uid://dev0mjebi6niw"]
 
-[ext_resource type="Material" uid="uid://jdab3p6olubc" path="res://Content/Classes/Column/Skins/Default/Default.tres" id="1_8wxpo"]
-[ext_resource type="Script" path="res://Content/Classes/Column/Skins/collumn_skin.gd" id="1_cc3m2"]
+[ext_resource type="Material" uid="uid://jdab3p6olubc" path="res://Content/Classes/Column/Skins/Default/Default.tres" id="1_7e7gh"]
+[ext_resource type="Script" path="res://Content/Classes/Column/Skins/collumn_skin.gd" id="2_2ki4f"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_fk7sx"]
-size = Vector3(3, 4, 3)
+[sub_resource type="CylinderMesh" id="CylinderMesh_qaujt"]
+top_radius = 1.5
+bottom_radius = 1.5
+height = 4.0
 
 [sub_resource type="SphereMesh" id="SphereMesh_u1l2p"]
-material = ExtResource("1_8wxpo")
+material = ExtResource("1_7e7gh")
 radius = 0.167
 height = 0.333
 radial_segments = 5
@@ -23,9 +25,9 @@ point_count = 2
 
 [node name="Skin" type="MeshInstance3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
-mesh = SubResource("BoxMesh_fk7sx")
-surface_material_override/0 = ExtResource("1_8wxpo")
-script = ExtResource("1_cc3m2")
+mesh = SubResource("CylinderMesh_qaujt")
+surface_material_override/0 = ExtResource("1_7e7gh")
+script = ExtResource("2_2ki4f")
 
 [node name="Particles" type="CPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00775123, 4.03115, 0)

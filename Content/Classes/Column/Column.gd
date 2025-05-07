@@ -30,6 +30,7 @@ var canShake : bool = true
 @onready var rdLabel: Label = $NumberEffect/NumberEffect/SubViewport/Label
 @onready var rdNumberEffect: Sprite3D = $NumberEffect/NumberEffect
 @onready var rdRoot: Node3D = $Root
+@onready var rdCollision: CollisionShape3D = $Collision
 
 @onready var rdCombo: AudioStreamPlayer = $Combo
 @onready var rdCombo1: AudioStreamPlayer = $Combo1
@@ -65,6 +66,18 @@ func setSkin(rand : bool):
 	else:
 		rdMesh = load(Global.get_collumn_skin_by_key("default")["scene"]).instantiate()
 		form = string_to_enum_form(Global.get_collumn_skin_by_key("default")["form"])
+	var _collisionShape : Shape3D
+	match form:
+		FORM.SQUARE:
+			_collisionShape = BoxShape3D.new()
+			_collisionShape.size = Vector3(3, 4.018, 3)
+			#print("Collision is box")
+		FORM.CIRCLE:
+			_collisionShape = CylinderShape3D.new()
+			_collisionShape.height = 4.018
+			_collisionShape.radius = 1.5
+			#print("Collision is cylinder")
+	rdCollision.shape = _collisionShape
 	rdRoot.add_child(rdMesh)
 	
 func reload(ReloadLocation : Vector3 = Vector3(0, 30, 0)):
@@ -119,7 +132,7 @@ func _on_goal_area_body_entered(body: Node3D) -> void:
 					3: 
 						rdParticles3.emitting = true
 						rdParticles3_1.emitting = true
-		_double_shake()
+		rdMesh.double_shake()
 		match form:
 			FORM.SQUARE:
 				for i in range(0, rdGoalEffect.get_children().size()):
@@ -137,14 +150,10 @@ func _on_goal_area_body_entered(body: Node3D) -> void:
 			#rdGoalEffect.get_children()[i].visible = false
 
 func _vertical_shake():
-	var tween := create_tween().tween_property(rdMesh, "position", Vector3(0,-0.2, 0), 0.1)
-	await tween.finished
-	create_tween().tween_property(rdMesh, "position", Vector3(0, 0, 0), 0.1)
-
-func _double_shake():
-	var tween := create_tween().tween_property(rdMesh, "position", Vector3(0,-0.4, 0), 0.1)
-	await tween.finished
-	create_tween().tween_property(rdMesh, "position", Vector3(0, 0, 0), 0.1)
+	rdMesh.double_shake()
+	#var tween := create_tween().tween_property(rdMesh, "position", Vector3(0,-0.2, 0), 0.1)
+	#await tween.finished
+	#create_tween().tween_property(rdMesh, "position", Vector3(0, 0, 0), 0.1)
 
 func _show_number():
 	if Global.player.CountJump == 0 or Global.recentlyResumed: return
@@ -154,7 +163,8 @@ func _show_number():
 	for i in range(Global.lastShownRank):
 		if i + 1 > SDKBridge.leaderboard.keys().size() : break
 		if (Global.Score >= int(SDKBridge.leaderboard[SDKBridge.leaderboard.keys()[i]]["score"])):
-			rdRatedPlayer.setVisible(SDKBridge.leaderboard[SDKBridge.leaderboard.keys()[i]])
+			var generator : Generator = get_tree().get_first_node_in_group("Generator")
+			generator.Collumns[generator.Collumns.find(self) - 2].rdRatedPlayer.setVisible(SDKBridge.leaderboard[SDKBridge.leaderboard.keys()[i]])
 			Global.lastShownRank = i
 			break
 	

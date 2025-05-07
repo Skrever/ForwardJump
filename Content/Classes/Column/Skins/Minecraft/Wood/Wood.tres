@@ -1,0 +1,7 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://dxrjpgasxrw82"]
+
+[ext_resource type="Texture2D" uid="uid://du8dx2fvlcjuc" path="res://Content/Textures/T_WOOD.png" id="1_nsnvc"]
+
+[resource]
+albedo_texture = ExtResource("1_nsnvc")
+texture_filter = 0

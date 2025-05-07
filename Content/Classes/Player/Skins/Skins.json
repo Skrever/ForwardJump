@@ -4,11 +4,6 @@
 			"scene" : "uid://ctry6evki203u",
 			"price" : "0"
 		},
-	"minecraft_ground": 
-		{
-			"scene" : "uid://nlx3myrtifrn",
-			"price" : "20"
-		},
 	"minecraft_steve": 
 		{
 			"scene" : "uid://b8o36fr1rihbx",
@@ -34,30 +29,35 @@
 			"scene" : "uid://nfbaxbhu07ks",
 			"price" : "60"
 		},
+	"minecraft_ground": 
+		{
+			"scene" : "uid://nlx3myrtifrn",
+			"price" : "80"
+		},
 	"repo_red": 
 		{
 			"scene" : "uid://by30wvj5no1mh",
-			"price" : "60"
+			"price" : "80"
 		},
 	"repo_green": 
 		{
 			"scene" : "uid://b0usc0m23blt8",
-			"price" : "60"
+			"price" : "80"
 		},
 	"repo_blue": 
 		{
 			"scene" : "uid://dmqopf0lihkhp",
-			"price" : "60"
+			"price" : "80"
 		},
 	"bread": 
 		{
 			"scene" : "uid://dj5qb3bn8ik3y",
-			"price" : "80"
+			"price" : "100"
 		},
 	"rubecube": 
 		{
 			"scene" : "uid://0jb0h7n8c30r",
-			"price" : "80"
+			"price" : "100"
 		},
 	"bone": 
 		{

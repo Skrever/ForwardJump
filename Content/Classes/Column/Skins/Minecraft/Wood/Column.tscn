@@ -1,0 +1,50 @@
+[gd_scene load_steps=8 format=3 uid="uid://dsp5csbynbqio"]
+
+[ext_resource type="ArrayMesh" uid="uid://sdwx8vblgr7h" path="res://Columns/default.res" id="1_2qqoy"]
+[ext_resource type="Material" uid="uid://dxrjpgasxrw82" path="res://Content/Classes/Column/Skins/Minecraft/Wood/Wood.tres" id="1_dpxpg"]
+[ext_resource type="Script" path="res://Content/Classes/Column/Skins/collumn_skin.gd" id="2_tyswv"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bv3iq"]
+albedo_color = Color(0.594064, 0.491203, 0.269578, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_ebumr"]
+material = SubResource("StandardMaterial3D_bv3iq")
+radius = 0.167
+height = 0.333
+radial_segments = 5
+rings = 3
+
+[sub_resource type="Curve" id="Curve_6rtse"]
+_data = [Vector2(0, -85.0183), 0.0, 0.0, 0, 0, Vector2(1, 117.661), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_yc8hf"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.2162), -1.00064, 0.0, 0, 0]
+point_count = 2
+
+[node name="Skin" type="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+mesh = ExtResource("1_2qqoy")
+surface_material_override/0 = ExtResource("1_dpxpg")
+script = ExtResource("2_tyswv")
+
+[node name="Particles" type="CPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00775123, 4.03115, 0)
+emitting = false
+amount = 15
+lifetime = 1.5
+one_shot = true
+speed_scale = 7.0
+explosiveness = 1.0
+fixed_fps = 60
+mesh = SubResource("SphereMesh_ebumr")
+direction = Vector3(0, -20, 0)
+spread = 180.0
+gravity = Vector3(0, -3, 0)
+initial_velocity_min = 2.0
+initial_velocity_max = 3.0
+angular_velocity_max = 2.0
+linear_accel_min = -3.0
+radial_accel_curve = SubResource("Curve_6rtse")
+scale_amount_curve = SubResource("Curve_yc8hf")
+hue_variation_max = 0.36
