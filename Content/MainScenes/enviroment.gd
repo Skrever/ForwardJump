@@ -68,7 +68,7 @@ func _lerp_background_color():
 			NowInterpolateColor = true
 			colorCounter = 0
 	var tween := create_tween()
-	tween.tween_method(_color_from_to, 0.0, 0.002 * nomenclature, 5)
+	tween.tween_method(_color_from_to, 0.0, 0.005 * nomenclature, 5)
 	print(0.002 * nomenclature)
 	await tween.finished
 	nomenclature = 0 if nomenclature >= 1.0 else (nomenclature + 0.1)

@@ -38,7 +38,7 @@
             }
 
             #status {
-                background-color: #77dd77;
+                background-color: #a08db3;
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
@@ -57,34 +57,30 @@
             }
 
             #status-progress {
-            width: 50%;
-            height: 10px;
+            width: 30%;
+            height: 20px;
             border: 2px solid white; /* Белая рамка */
-            background: black; /* Фон черный, чтобы был виден белый прогресс */
-            border-radius: 5px; /* Скругление углов */
+            background: #a08db3; /* Фон черный, чтобы был виден белый прогресс */
             overflow: hidden;
 
             /* Размещаем прогрессбар внизу, но не вплотную */
             position: absolute;
             left: 50%;
             transform: translateX(-50%);
-            bottom: 30px; /* Отступ от нижнего края */
+            bottom: 100px; /* Отступ от нижнего края */
             }
             /* Для WebKit (Chrome, Safari, Edge) */
             #status-progress::-webkit-progress-bar {
                 background: black; /* Черный фон */
-                border-radius: 5px;
             }
 
             #status-progress::-webkit-progress-value {
                 background: white; /* Белое заполнение */
-                border-radius: 5px;
             }
 
             /* Для Firefox */
             #status-progress::-moz-progress-bar {
                 background: white; /* Белое заполнение */
-                border-radius: 5px;
             }
 
             #status-notice {

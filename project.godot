@@ -24,7 +24,8 @@ playgama_bridge/general/adsgram_block_id=""
 config/name="Forward Jump"
 run/main_scene="res://Content/MainScenes/MainScene.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
-config/icon="res://icon.svg"
+boot_splash/image="res://icon.png"
+config/icon="res://icon.png"
 
 [autoload]
 

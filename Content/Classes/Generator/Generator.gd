@@ -17,6 +17,8 @@ var SpawnGemsLocation : Vector3 = Vector3(0, 30, 0)
 
 var leaders : Dictionary
 
+var getPreLast : bool = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	add_to_group("Generator")
@@ -146,7 +148,12 @@ func _spawn_column(direction_ : Global.DIRECTION):
 	Collumns.push_front(ReplacedCollumn)
 		
 func delete_column():
-	Collumns.back().reload(NextCollumnLocation)
+	if !getPreLast:
+		Collumns.back().reload(NextCollumnLocation)
+		getPreLast = true
+	else:
+		Collumns[Collumns.size() - 2].reload(NextCollumnLocation)
+		getPreLast = false
 
 
 func _create_gem():
