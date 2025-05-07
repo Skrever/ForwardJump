@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://byalt8cau4yng"]
 
 [ext_resource type="Material" uid="uid://drdmcsdljyyfb" path="res://Content/Classes/Column/Skins/Stool/Square/Square.tres" id="1_edqbc"]
-[ext_resource type="ArrayMesh" uid="uid://bu41tvr4012a5" path="res://Columns/stool.res" id="1_knbmk"]
+[ext_resource type="ArrayMesh" uid="uid://bu41tvr4012a5" path="res://Content/Classes/Column/Skins/Models/stool.res" id="1_knbmk"]
 [ext_resource type="Script" path="res://Content/Classes/Column/Skins/collumn_skin.gd" id="2_8hy0h"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8jeya"]

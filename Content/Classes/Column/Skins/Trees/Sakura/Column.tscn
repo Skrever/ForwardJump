@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=3 uid="uid://yvx1ghkjgbvb"]
 
-[ext_resource type="ArrayMesh" uid="uid://b4agdv1ufw6gw" path="res://Columns/tree.res" id="1_ssu3w"]
+[ext_resource type="ArrayMesh" uid="uid://b4agdv1ufw6gw" path="res://Content/Classes/Column/Skins/Models/tree.res" id="1_ssu3w"]
 [ext_resource type="Script" path="res://Content/Classes/Column/Skins/collumn_skin.gd" id="2_2wmx8"]
 [ext_resource type="Material" uid="uid://cxhe2g8w8kyaa" path="res://Content/Classes/Column/Skins/Trees/Sakura/Sakura.tres" id="2_fic0s"]
 [ext_resource type="Texture2D" uid="uid://bhkkh47rhnt1m" path="res://Content/Textures/T_SAKURAPARTICLE.png" id="4_1u1oi"]
@@ -11,7 +11,7 @@ albedo_texture = ExtResource("4_1u1oi")
 metallic = 1.0
 metallic_specular = 1.0
 emission_enabled = true
-emission = Color(0.481789, 0.481789, 0.481789, 1)
+emission = Color(1, 1, 1, 1)
 emission_energy_multiplier = 0.79
 emission_operator = 1
 emission_texture = ExtResource("4_1u1oi")

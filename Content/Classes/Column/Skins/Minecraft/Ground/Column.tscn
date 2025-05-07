@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://d13d6pd138bca"]
 
 [ext_resource type="Material" uid="uid://8ouwetdv6irc" path="res://Content/Classes/Column/Skins/Minecraft/Ground/Gound.tres" id="1_7vo4w"]
-[ext_resource type="ArrayMesh" uid="uid://sdwx8vblgr7h" path="res://Columns/default.res" id="1_pyklx"]
+[ext_resource type="ArrayMesh" uid="uid://sdwx8vblgr7h" path="res://Content/Classes/Column/Skins/Models/default.res" id="1_pyklx"]
 [ext_resource type="Script" path="res://Content/Classes/Column/Skins/collumn_skin.gd" id="2_bqm16"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kfcaf"]

@@ -1,12 +1,13 @@
-[gd_scene load_steps=8 format=3 uid="uid://byuagjvh3bkib"]
+[gd_scene load_steps=9 format=3 uid="uid://byuagjvh3bkib"]
 
-[ext_resource type="Script" uid="uid://isedlkkqu4x3" path="res://Content/UI/Interface/MainMenu/main_menu.gd" id="1_2p0dp"]
+[ext_resource type="Script" path="res://Content/UI/Interface/MainMenu/main_menu.gd" id="1_2p0dp"]
 [ext_resource type="StyleBox" uid="uid://bftp76pqmv3oi" path="res://Content/UI/Panels/DefaultPanelWithoutBorders.tres" id="1_ev2de"]
 [ext_resource type="PackedScene" uid="uid://bdcq5ds5o4rni" path="res://Content/UI/Buttons/Crown/CrownButton.tscn" id="2_1k03k"]
 [ext_resource type="PackedScene" uid="uid://jqt3oa5ki8ym" path="res://Content/UI/Buttons/Settings/SettingsButton.tscn" id="3_6280k"]
 [ext_resource type="PackedScene" uid="uid://b0ehrqfiiwmb1" path="res://Content/UI/Buttons/Store/StoreButton.tscn" id="4_k8852"]
 [ext_resource type="PackedScene" uid="uid://bd0f7uots6sne" path="res://Content/UI/Buttons/AboutDev/AboutDev.tscn" id="6_j7bph"]
 [ext_resource type="Texture2D" uid="uid://ikwi7ckajefm" path="res://Content/UI/Textures/telegram.png" id="7_pw2ri"]
+[ext_resource type="Texture2D" uid="uid://crj54lrmiknvo" path="res://Content/UI/Textures/ICON-HOLD.png" id="8_xv0mt"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -128,6 +129,34 @@ texture_normal = ExtResource("7_pw2ri")
 ignore_texture_size = true
 stretch_mode = 0
 
+[node name="LearningTimer" type="Timer" parent="."]
+wait_time = 15.0
+
+[node name="Hint" type="Control" parent="."]
+custom_minimum_size = Vector2(100, 200)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -254.0
+offset_right = 50.0
+offset_bottom = 46.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(50, 150)
+
+[node name="HintHand" type="TextureRect" parent="Hint"]
+layout_mode = 0
+offset_top = 300.0
+offset_right = 100.0
+offset_bottom = 400.0
+pivot_offset = Vector2(50, 50)
+texture = ExtResource("8_xv0mt")
+expand_mode = 1
+
 [connection signal="pressed" from="GroupBox/Panel/CrownButton" to="." method="_on_crown_button_pressed"]
 [connection signal="pressed" from="GroupBox/Panel/SettingsButton" to="." method="_on_settings_button_pressed"]
 [connection signal="pressed" from="GroupBox/Panel/StoreButton" to="." method="_on_store_button_pressed"]
@@ -135,3 +164,4 @@ stretch_mode = 0
 [connection signal="button_down" from="GroupBoxAboutDeveloper/DevPanel/TelegramButton" to="." method="_on_telegram_button_button_down"]
 [connection signal="button_up" from="GroupBoxAboutDeveloper/DevPanel/TelegramButton" to="." method="_on_telegram_button_button_up"]
 [connection signal="pressed" from="GroupBoxAboutDeveloper/DevPanel/TelegramButton" to="." method="_on_telegram_button_pressed"]
+[connection signal="timeout" from="LearningTimer" to="." method="_on_learning_timer_timeout"]

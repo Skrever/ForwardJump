@@ -7,6 +7,9 @@ extends Control
 @onready var rdStoreButton: Button = $GroupBox/Panel/StoreButton
 @onready var rdDevPanel: Panel = $GroupBoxAboutDeveloper/DevPanel
 @onready var rdTelegramButton: TextureButton = $GroupBoxAboutDeveloper/DevPanel/TelegramButton
+@onready var rdLearningTimer: Timer = $LearningTimer
+
+@onready var rdHintHand: TextureRect = $Hint/HintHand
 
 
 # Called when the node enters the scene tree for the first time.
@@ -36,11 +39,13 @@ func setVisible():
 	create_tween().tween_property(rdCrownButton, "scale", Vector2(1, 1), 0.25)
 	await get_tree().create_timer(0.25).timeout
 	
-	
+	rdLearningTimer.start()
 	UI.MainMenuOpened.emit()
 	
 	
 func setInvisible():
+	rdLearningTimer.stop()
+	create_tween().tween_property(rdHintHand, "modulate:a", 0, 0.2)
 	create_tween().tween_property(rdDevPanel, "position", Vector2(15, -90), 0.1)
 	create_tween().tween_property(rdDevPanel, "scale", Vector2.ZERO, 0.1)
 	create_tween().tween_property(rdPanel, "position", Vector2(0, 200), 0.1)
@@ -89,3 +94,26 @@ func _on_about_dev_pressed() -> void:
 	await setInvisible()
 	UI.OpenAboutDeveloper.emit()
 	UI.CloseLearningMenu.emit()
+
+
+func _on_learning_timer_timeout() -> void:
+
+	for i in 3:
+		if !visible  or Global.player.IsPressed: return
+		rdHintHand.scale = Vector2(1,1)
+		rdHintHand.texture = load("uid://crj54lrmiknvo")
+		rdHintHand.position = Vector2(0, 300)
+		rdHintHand.modulate.a = 0
+		rdHintHand.visible = true
+		var tween_up := create_tween().tween_property(rdHintHand, "position", Vector2(0, 50), 1)
+		create_tween().tween_property(rdHintHand, "modulate:a", 1, 1)
+		await tween_up.finished
+		rdHintHand.texture = load("uid://ct4fvq7p7wnln")
+		var tween_down := create_tween().tween_property(rdHintHand, "position", Vector2(0, 200), 0.5)
+		await tween_down.finished
+		rdHintHand.texture = load("uid://crj54lrmiknvo")
+		tween_up = create_tween().tween_property(rdHintHand, "position", Vector2(0, 300), 0.25)
+		create_tween().tween_property(rdHintHand, "modulate:a", 0, 0.25)
+		create_tween().tween_property(rdHintHand, "scale", Vector2(1.2, 1.2), 0.25)
+		await tween_up.finished
+	

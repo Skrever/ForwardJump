@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://7jcojol1kyro"]
 
-[ext_resource type="ArrayMesh" uid="uid://b4agdv1ufw6gw" path="res://Columns/tree.res" id="1_5r2sk"]
+[ext_resource type="ArrayMesh" uid="uid://b4agdv1ufw6gw" path="res://Content/Classes/Column/Skins/Models/tree.res" id="1_5r2sk"]
 [ext_resource type="Script" path="res://Content/Classes/Column/Skins/collumn_skin.gd" id="2_g5xo8"]
 [ext_resource type="Texture2D" uid="uid://dsbsqow665vwn" path="res://Content/Textures/T_OAKPARTICLE.png" id="3_owki1"]
 

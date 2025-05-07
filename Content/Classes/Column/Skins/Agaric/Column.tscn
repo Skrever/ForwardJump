@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://dlys5agrxi17w"]
 
-[ext_resource type="ArrayMesh" uid="uid://j324438gqveo" path="res://Columns/Agaric.res" id="1_nhx6g"]
+[ext_resource type="ArrayMesh" uid="uid://j324438gqveo" path="res://Content/Classes/Column/Skins/Models/Agaric.res" id="1_nhx6g"]
 [ext_resource type="Material" uid="uid://cxk5irqlegv31" path="res://Content/Classes/Column/Skins/Agaric/Agaric.tres" id="1_oy8rd"]
 [ext_resource type="Script" path="res://Content/Classes/Column/Skins/collumn_skin.gd" id="2_084kn"]
 

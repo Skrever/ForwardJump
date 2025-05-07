@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://dsp5csbynbqio"]
 
-[ext_resource type="ArrayMesh" uid="uid://sdwx8vblgr7h" path="res://Columns/default.res" id="1_2qqoy"]
+[ext_resource type="ArrayMesh" uid="uid://sdwx8vblgr7h" path="res://Content/Classes/Column/Skins/Models/default.res" id="1_2qqoy"]
 [ext_resource type="Material" uid="uid://dxrjpgasxrw82" path="res://Content/Classes/Column/Skins/Minecraft/Wood/Wood.tres" id="1_dpxpg"]
 [ext_resource type="Script" path="res://Content/Classes/Column/Skins/collumn_skin.gd" id="2_tyswv"]
 
