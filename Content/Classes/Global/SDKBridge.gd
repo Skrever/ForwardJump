@@ -120,21 +120,18 @@ func _on_ad_state_changed(state):
 	match state:
 		"loading":
 			print("Ad loading...")
-			#Global.SetMusicVolume.emit(0)
+			AudioServer.set_bus_mute(0, true)
 		"opened" :
 			print("Ad opened...")
-			#Global.SetMusicVolume.emit(0)
-			#if Global.GameState == Global.GAMESTATS.GOING:
-				#Global.GamePaused.emit()
-				#Global.PauseMenuOpen.emit()
+			AudioServer.set_bus_mute(0, true)
 		"closed":
 			print("Ad closed...")
 			CloseAdd.emit()
-			#Global.SetMusicVolume.emit(Global.Music)
+			AudioServer.set_bus_mute(0, false)
 		"failed":
 			print("Ad failed...")
 			CloseAdd.emit()
-			#Global.SetMusicVolume.emit(Global.Music)
+			AudioServer.set_bus_mute(0, false)
 			
 	
 			
@@ -143,17 +140,15 @@ func _on_rewarded_ad_state_changed(state):
 	match state:
 		"loading":
 			print("Ad loading...")
-			#Global.SetMusicVolume.emit(0)
+			AudioServer.set_bus_mute(0, true)
 		"opened" :
 			print("Ad opened...")
-			#Global.SetMusicVolume.emit(0)
-			#if Global.GameState == Global.GAMESTATS.GOING:
-				#Global.GamePaused.emit()
-				#Global.PauseMenuOpen.emit()
+			AudioServer.set_bus_mute(0, true)
 		"closed":
 			print("Ad closed...")
-			#Global.SetMusicVolume.emit(Global.Music)
+			AudioServer.set_bus_mute(0, false)
 		"rewarded":
+			#AudioServer.set_bus_mute(0, false)
 			canReward = true
 			RewardedAdShowed.emit()
 			print("Ad rewarded...")
@@ -161,7 +156,8 @@ func _on_rewarded_ad_state_changed(state):
 		"failed":
 			print("Ad failed...")
 			RewardedAdShowed.emit()
-			#Global.SetMusicVolume.emit(Global.Music)
+			AudioServer.set_bus_mute(0, false)
+
 	
 
 func _game_ready():

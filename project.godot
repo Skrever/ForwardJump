@@ -23,6 +23,8 @@ playgama_bridge/general/adsgram_block_id=""
 
 config/name="Forward Jump"
 run/main_scene="res://Content/MainScenes/MainScene.tscn"
+run/disable_stdout=true
+run/disable_stderr=true
 config/features=PackedStringArray("4.3", "GL Compatibility")
 boot_splash/image="res://icon.png"
 config/icon="res://icon.png"

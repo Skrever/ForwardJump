@@ -15,7 +15,7 @@ func _change_price(TakedSkin : Global.SKINS):
 	#print(Global.boughtSkins[Global.TakedSkin])
 	var tween := create_tween().tween_property(self, "scale", Vector3.ZERO, 0.1).set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_IN)
 	await tween.finished
-	if !Global.boughtSkins[TakedSkin]:
+	if !Global.boughtSkins[TakedSkin] and (Global.get_skin_by_key(Global.getSkinByEnum(TakedSkin))["price"] != "0"):
 		message.changeText(Global.get_skin_by_key(Global.getSkinByEnum(TakedSkin))["price"])
 		create_tween().tween_property(self, "scale", Vector3(1,1,1), 0.1).set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_IN)
 	else:
