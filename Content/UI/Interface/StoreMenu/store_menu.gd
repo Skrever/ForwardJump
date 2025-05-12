@@ -95,7 +95,7 @@ func _on_yes_button_pressed() -> void:
 
 
 func _on_no_button_pressed() -> void:
-	if Global.boughtSkins[CurrentIndexOfSkins]:
+	if !Global.boughtSkins[CurrentIndexOfSkins]:
 		Global.ChangePlayerSkin.emit(Global.TakedSkin)
 	await setInvisible()
 	UI.OpenMainMenu.emit()
