@@ -18,6 +18,11 @@ var Localisation : Dictionary = {
 		"ru": "Авторизуйтесь, чтобы можно было видеть вас в списках лучших!",
 		"en": "Log in to be visible on the leaderboards!"
 		},
+	"auth1":
+		{
+		"ru": "Вы будете авторизовываться?",
+		"en": "Will you be logging in?"
+		},
 	"best" : 
 		{
 			"ru": "Топ 5",

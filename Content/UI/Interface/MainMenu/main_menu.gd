@@ -7,9 +7,13 @@ extends Control
 @onready var rdStoreButton: Button = $GroupBox/Panel/StoreButton
 @onready var rdDevPanel: Panel = $GroupBoxAboutDeveloper/DevPanel
 @onready var rdTelegramButton: TextureButton = $GroupBoxAboutDeveloper/DevPanel/TelegramButton
+@onready var rdAboutDev: Button = $GroupBoxAboutDeveloper/DevPanel/AboutDev
 @onready var rdLearningTimer: Timer = $LearningTimer
-
 @onready var rdHintHand: TextureRect = $Hint/HintHand
+
+var NeedLeaderboard : bool = true
+var BottomMenuPosX : float = 0
+var NeedTelegram : bool = true
 
 
 # Called when the node enters the scene tree for the first time.
@@ -18,6 +22,25 @@ func _ready() -> void:
 	setInvisible()
 	UI.OpenMainMenu.connect(setVisible)
 	UI.CloseMainMenu.connect(setInvisible)
+	
+	rdTelegramButton.visible = NeedTelegram
+	if !NeedTelegram:
+		rdAboutDev.position = Vector2(50, 10)
+	else:
+		rdTelegramButton.position = Vector2(10,10)
+		rdAboutDev.position = Vector2(90, 10)
+	
+	rdCrownButton.visible = NeedLeaderboard
+	if !NeedLeaderboard:
+		BottomMenuPosX = 51
+		rdPanel.size = Vector2(219, 112)
+	else:
+		BottomMenuPosX = 0
+		rdPanel.position = Vector2.ZERO
+		rdPanel.size = Vector2(321, 112)
+		rdCrownButton.position = Vector2(215, 8.5)
+		rdSettingsButton.position = Vector2(113, 8.5)
+		rdStoreButton.position = Vector2(11, 8.5)
 
 func setVisible():
 	
@@ -30,14 +53,15 @@ func setVisible():
 	create_tween().tween_property(rdDevPanel, "position", Vector2(15, 5), 0.1)
 	create_tween().tween_property(rdDevPanel, "scale", Vector2(1, 1), 0.1)
 	
-	create_tween().tween_property(rdPanel, "position", Vector2(0, 0), 0.1)
+	create_tween().tween_property(rdPanel, "position", Vector2(BottomMenuPosX, 0), 0.1)
 	await get_tree().create_timer(0.1).timeout
 	create_tween().tween_property(rdStoreButton, "scale", Vector2(1, 1), 0.15)
 	await get_tree().create_timer(0.1).timeout
 	create_tween().tween_property(rdSettingsButton, "scale", Vector2(1, 1), 0.2)
 	await get_tree().create_timer(0.1).timeout
-	create_tween().tween_property(rdCrownButton, "scale", Vector2(1, 1), 0.25)
-	await get_tree().create_timer(0.25).timeout
+	if NeedLeaderboard:
+		create_tween().tween_property(rdCrownButton, "scale", Vector2(1, 1), 0.25)
+		await get_tree().create_timer(0.25).timeout
 	
 	rdLearningTimer.start()
 	UI.MainMenuOpened.emit()
@@ -48,10 +72,11 @@ func setInvisible():
 	create_tween().tween_property(rdHintHand, "modulate:a", 0, 0.2)
 	create_tween().tween_property(rdDevPanel, "position", Vector2(15, -90), 0.1)
 	create_tween().tween_property(rdDevPanel, "scale", Vector2.ZERO, 0.1)
-	create_tween().tween_property(rdPanel, "position", Vector2(0, 200), 0.1)
+	create_tween().tween_property(rdPanel, "position", Vector2(BottomMenuPosX, 200), 0.1)
 	create_tween().tween_property(rdStoreButton, "scale", Vector2.ZERO, 0.1)
 	create_tween().tween_property(rdSettingsButton, "scale", Vector2.ZERO, 0.1)
-	create_tween().tween_property(rdCrownButton, "scale", Vector2.ZERO, 0.1)
+	if NeedLeaderboard:
+		create_tween().tween_property(rdCrownButton, "scale", Vector2.ZERO, 0.1)
 	await get_tree().create_timer(0.1).timeout
 	
 	visible = false

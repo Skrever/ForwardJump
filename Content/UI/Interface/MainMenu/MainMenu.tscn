@@ -33,7 +33,7 @@ grow_horizontal = 2
 grow_vertical = 0
 
 [node name="Panel" type="Panel" parent="GroupBox"]
-custom_minimum_size = Vector2(321, 112)
+custom_minimum_size = Vector2(0, 112)
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -58,24 +58,20 @@ grow_vertical = 2
 
 [node name="SettingsButton" parent="GroupBox/Panel" instance=ExtResource("3_6280k")]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
+anchors_preset = 4
 anchor_top = 0.5
-anchor_right = 0.5
 anchor_bottom = 0.5
-grow_horizontal = 2
+offset_left = 113.0
+offset_right = 208.0
 grow_vertical = 2
 
 [node name="StoreButton" parent="GroupBox/Panel" instance=ExtResource("4_k8852")]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
+anchors_preset = 4
 anchor_top = 0.5
-anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -149.5
-offset_right = -54.5
-grow_horizontal = 2
+offset_left = 11.0
+offset_right = 106.0
 grow_vertical = 2
 
 [node name="GroupBoxAboutDeveloper" type="Control" parent="."]
